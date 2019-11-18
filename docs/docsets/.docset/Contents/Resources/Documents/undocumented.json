@@ -1,0 +1,236 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/ChatHTTPClient.swift",
+      "line": 12,
+      "symbol": "HTTPClientResult",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/ChatHTTPClient.swift",
+      "line": 13,
+      "symbol": "HTTPClientResult.success(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/ChatHTTPClient.swift",
+      "line": 14,
+      "symbol": "HTTPClientResult.failure(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteAppIdLoader.swift",
+      "line": 17,
+      "symbol": "RemoteAppIdLoader.Error",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteAppIdLoader.swift",
+      "line": 18,
+      "symbol": "RemoteAppIdLoader.Error.connectivity",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteAppIdLoader.swift",
+      "line": 19,
+      "symbol": "RemoteAppIdLoader.Error.invalidData",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteAppIdLoader.swift",
+      "line": 22,
+      "symbol": "RemoteAppIdLoader.Result",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteAppIdLoader.swift",
+      "line": 23,
+      "symbol": "RemoteAppIdLoader.Result.success(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteAppIdLoader.swift",
+      "line": 24,
+      "symbol": "RemoteAppIdLoader.Result.failure(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteAppIdLoader.swift",
+      "line": 27,
+      "symbol": "RemoteAppIdLoader.init(url:client:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteAppIdLoader.swift",
+      "line": 32,
+      "symbol": "RemoteAppIdLoader.load(completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteTokenLoader.swift",
+      "line": 17,
+      "symbol": "RemoteTokenLoader.Error",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteTokenLoader.swift",
+      "line": 18,
+      "symbol": "RemoteTokenLoader.Error.connectivity",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteTokenLoader.swift",
+      "line": 19,
+      "symbol": "RemoteTokenLoader.Error.invalidData",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteTokenLoader.swift",
+      "line": 20,
+      "symbol": "RemoteTokenLoader.Error.authFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteTokenLoader.swift",
+      "line": 21,
+      "symbol": "RemoteTokenLoader.Error.unknownVendor",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteTokenLoader.swift",
+      "line": 24,
+      "symbol": "RemoteTokenLoader.Result",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteTokenLoader.swift",
+      "line": 25,
+      "symbol": "RemoteTokenLoader.Result.success(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteTokenLoader.swift",
+      "line": 26,
+      "symbol": "RemoteTokenLoader.Result.failure(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteTokenLoader.swift",
+      "line": 29,
+      "symbol": "RemoteTokenLoader.init(url:client:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ChatClient.swift",
+      "line": 20,
+      "symbol": "Initializable.StartResult",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ChatClient.swift",
+      "line": 22,
+      "symbol": "Initializable.startSDK(_:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ChatClient.swift",
+      "line": 27,
+      "symbol": "Loginable.LoginResult",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ChatClient.swift",
+      "line": 29,
+      "symbol": "Loginable.canLogin()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ChatClient.swift",
+      "line": 30,
+      "symbol": "Loginable.login(userId:token:completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ChatClient.swift",
+      "line": 31,
+      "symbol": "Loginable.logout(completion:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ClientManager.swift",
+      "line": 18,
+      "symbol": "ClientManager.Error.initFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ClientManager.swift",
+      "line": 19,
+      "symbol": "ClientManager.Error.invalidUserID",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ClientManager.swift",
+      "line": 20,
+      "symbol": "ClientManager.Error.invalidToken",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ClientManager.swift",
+      "line": 21,
+      "symbol": "ClientManager.Error.sdkNotInitialized",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ClientManager.swift",
+      "line": 22,
+      "symbol": "ClientManager.Error.logoutFails",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ClientManager.swift",
+      "line": 25,
+      "symbol": "ClientManager.Result",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ClientManager.swift",
+      "line": 27,
+      "symbol": "ClientManager.init(chat:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject"
+}

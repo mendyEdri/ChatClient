@@ -1,0 +1,17 @@
+version: "Apple Swift version 5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)"
+options: "311f46ff733b7e9a7b2c1edf6b76d2e4"
+build_time: [1574088240, 367252000]
+inputs:
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Platform Spesific/ViewController.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Implementation/SmoochChatClient.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteAppIdLoader.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Models/ResponseMetadata.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Platform Spesific/AppDelegate.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Platform Spesific/SceneDelegate.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ClientManager.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Business Logic/ChatClient.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/RemoteTokenLoader.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/API/ChatHTTPClient.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Models/ResponseHeader.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Models/ChatVendorAppId.swift": [9223372036, 854775807]
+  "/Users/mendyedri/Development/iOS/TDD Chat/TDDChatProject/TDDChatProject/Chat Framework/Models/ChatVendorToken.swift": [9223372036, 854775807]

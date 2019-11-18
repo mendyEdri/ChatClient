@@ -1,0 +1,13 @@
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Platform\ Spesific/ViewController.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Chat\ Framework/Implementation/SmoochChatClient.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Chat\ Framework/API/RemoteAppIdLoader.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Chat\ Framework/Models/ResponseMetadata.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Platform\ Spesific/AppDelegate.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Platform\ Spesific/SceneDelegate.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Chat\ Framework/Business\ Logic/ClientManager.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Chat\ Framework/Business\ Logic/ChatClient.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Chat\ Framework/API/RemoteTokenLoader.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Chat\ Framework/API/ChatHTTPClient.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Chat\ Framework/Models/ResponseHeader.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Chat\ Framework/Models/ChatVendorAppId.swift
+/Users/mendyedri/Development/iOS/TDD\ Chat/TDDChatProject/TDDChatProject/Chat\ Framework/Models/ChatVendorToken.swift
