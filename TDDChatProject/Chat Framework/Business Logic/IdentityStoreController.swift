@@ -11,8 +11,9 @@ import Foundation
 public final class IdentityStoreController {
     
     private let url: URL
-    private let loader: RemoteIdentityStoreLoader
-    private let persistent: ChatPersistent
+    // considure make it private and fix tests
+    internal let loader: RemoteIdentityStoreLoader
+    internal let persistent: ChatPersistent
     
     public init(url: URL, httpClient: ChatHTTPClient, storage: Storage) {
         self.url = url
@@ -20,9 +21,9 @@ public final class IdentityStoreController {
         self.persistent = ChatPersistent(storage: storage)
     }
     
-    func start() {
+    func start(_ completion: @escaping () -> Void) {
         // api should be requested only once per user, if the id is saved locally, ignore.
-        guard persistent.getVendorUserId() == nil else { return }
+        guard avoidRequestIfUserIDIsSaved() == false else { return }
 
         loader.load(from: url, completion: { [weak self] result in
             switch result {
@@ -32,6 +33,7 @@ public final class IdentityStoreController {
             case .failure(_):
                 break
             }
+            completion()
         })
     }
     
@@ -40,4 +42,7 @@ public final class IdentityStoreController {
         persistent.saveVendor(userId: userId)
     }
     
+    private func avoidRequestIfUserIDIsSaved() -> Bool {
+        return (persistent.getVendorUserId() != nil)
+    }
 }

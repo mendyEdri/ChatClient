@@ -35,17 +35,19 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOnAuthFailedJSON() {
         let (sut, client) = makeSUT()
+        let expectedJSON = IdentityStoreResponseHelper.makeAuthFailedJSON()
         
         expect(sut, toCompleteWith: .failure(.authFailed), when: {
-            client.complete(withSatus: 401, data: makeAuthFailedJSON().toData())
+            client.complete(withSatus: 401, data: expectedJSON.toData())
         })
     }
     
     func test_load_deliversAuthErrorOnAlreadyRegisterJSON() {
         let (sut, client) = makeSUT()
+        let expectedJSON = IdentityStoreResponseHelper.makeAlreadyRegisterJSON()
         
         expect(sut, toCompleteWith: .failure(.alreadyRegistered), when: {
-            client.complete(withSatus: 200, data: makeAlreadyRegisterJSON().toData())
+            client.complete(withSatus: 200, data: expectedJSON.toData())
         })
     }
     
@@ -53,7 +55,7 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
         let client = ChatHTTPClientMock()
         let sut = RemoteIdentityStoreLoader(client: client)
         
-        let JSON = makeJsonItem()
+        let JSON = IdentityStoreResponseHelper.makeJsonItem()
         let data = JSON.toData()
         let item = identityStore(from: data)
         
@@ -103,71 +105,8 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
     }
 }
 
-private extension Dictionary where Key == String {
+internal extension Dictionary where Key == String {
     func toData() -> Data {
         return try! JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
-    }
-}
-
-extension RemoteIdentityStoreLoaderTests {
-    
-    private func makeJsonItem() -> [String: Any] {
-        return [
-            "responseHeader" : [
-                "statusMessage": "Identity created successfully",
-                "res": [
-                    "result": [
-                        "ok": 1,
-                        "n": 1,
-                        "opTime": "6761667679536283849"
-                    ],
-                    "ops": [[
-                        "type": "SMOOCH",
-                        "travelerGUID": "A:40775EE7xx",
-                        "externalID": "SMOOCH138x",
-                        "_id": "5dd644ee76a2e50c285c7540"
-                        ]],
-                    "insertedCount": 1,
-                    "insertedIds": [
-                        "0": "5dd644ee76a2e50c285c7540"
-                    ]
-                ]
-            ],
-            "responseMeta": [
-                "trxId": "27bd641b-fd7f-4c79-a4f1-c90ddac77b7d",
-                "reqId": "27bd641b-fd7f-4c79-a4f1-c90ddac77b7d",
-                "status": "success"
-            ]
-        ]
-    }
-    
-    private func makeAuthFailedJSON() -> [String: Any] {
-        return [
-            "responseMeta": [
-                "trxId" : "c04a7821-4afd-4230-a4b0-792ed53463d7",
-                "reqId": "c04a7821-4afd-4230-a4b0-792ed53463d7",
-                "message": "Authentication failed"
-            ]
-        ]
-    }
-    
-    private func makeAlreadyRegisterJSON() -> [String: Any] {
-        return [
-            "responseHeader": [
-                "isRegister": true,
-                "statusMessage": "Identity already exists",
-                "record": [
-                    "_id": "5dd644ee76a2e50c285c7540",
-                    "type": "SMOOCH",
-                    "travelerGUID": "A:40775EE7xx",
-                    "externalID": "SMOOCH138x"
-                ]
-            ],
-           "responseMeta": [
-                "trxId": "27bd641b-fd7f-4c79-a4f1-c90ddac77b7d",
-                "reqId": "27bd641b-fd7f-4c79-a4f1-c90ddac77b7d",
-                "status": "success"
-            ]
-        ]
     }
 }

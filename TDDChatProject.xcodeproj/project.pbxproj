@@ -14,6 +14,7 @@
 		F0ACDF3C238BD10A003043E9 /* ChatPersistentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF3A238BD10A003043E9 /* ChatPersistentTests.swift */; };
 		F0ACDF3E238BD353003043E9 /* IdentityStoreControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */; };
 		F0ACDF41238BD43C003043E9 /* DefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */; };
+		F0ACDF43238BE3A1003043E9 /* IdentityStoreResponseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF42238BE3A1003043E9 /* IdentityStoreResponseHelper.swift */; };
 		F0E4F94B2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */; };
 		F0E4F94D2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F94C2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift */; };
 		F0E4F96223867FC90024E427 /* IdentityStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */; };
@@ -59,6 +60,7 @@
 		F0ACDF3A238BD10A003043E9 /* ChatPersistentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatPersistentTests.swift; path = ../../../DefaultStorage/DefaultStorageTests/ChatPersistentTests.swift; sourceTree = "<group>"; };
 		F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreControllerTests.swift; sourceTree = "<group>"; };
 		F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorage.swift; sourceTree = "<group>"; };
+		F0ACDF42238BE3A1003043E9 /* IdentityStoreResponseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreResponseHelper.swift; sourceTree = "<group>"; };
 		F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteIdentityStoreLoader.swift; sourceTree = "<group>"; };
 		F0E4F94C2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteIdentityStoreLoaderTests.swift; sourceTree = "<group>"; };
 		F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreModel.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				F0E77A132374934C002AB76E /* BuilderHelper.swift */,
 				F0E77A142374934C002AB76E /* ChatHTTPClientMock.swift */,
+				F0ACDF42238BE3A1003043E9 /* IdentityStoreResponseHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0E77A172374934C002AB76E /* ChatClientManagerTests.swift in Sources */,
+				F0ACDF43238BE3A1003043E9 /* IdentityStoreResponseHelper.swift in Sources */,
 				F0ACDF3C238BD10A003043E9 /* ChatPersistentTests.swift in Sources */,
 				F0ACDF3B238BD10A003043E9 /* DefaultStorageTests.swift in Sources */,
 				F0E77A192374934C002AB76E /* BuilderHelper.swift in Sources */,
