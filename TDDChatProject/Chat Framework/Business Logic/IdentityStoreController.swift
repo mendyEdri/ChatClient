@@ -11,14 +11,16 @@ import Foundation
 public final class IdentityStoreController {
     
     private let url: URL
-    // considure make it private and fix tests
+    // TODO: considure make it private and fix tests
     internal let loader: RemoteIdentityStoreLoader
-    internal let persistent: ChatPersistent
+
+    public typealias Store = (storage: Storage, key: String)
+    private let store: Store
     
-    public init(url: URL, httpClient: ChatHTTPClient, storage: Storage) {
+    public init(url: URL, httpClient: ChatHTTPClient, store: Store) {
         self.url = url
         self.loader = RemoteIdentityStoreLoader(client: httpClient)
-        self.persistent = ChatPersistent(storage: storage)
+        self.store = store
     }
     
     func start(_ completion: @escaping () -> Void) {
@@ -37,12 +39,16 @@ public final class IdentityStoreController {
         })
     }
     
+    private func delete() {
+        store.storage.delete(key: store.key)
+    }
+    
     private func save(_ value: String?) {
         guard let userId = value else { return }
-        persistent.saveVendor(userId: userId)
+        store.storage.save(value: userId, for: store.key)
     }
     
     private func avoidRequestIfUserIDIsSaved() -> Bool {
-        return (persistent.getVendorUserId() != nil)
+        return (store.storage.value(for: store.key) != nil)
     }
 }

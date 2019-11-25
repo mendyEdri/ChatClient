@@ -11,6 +11,8 @@ import XCTest
 
 class IdentityStoreControllerTests: XCTestCase {
 
+    private var testSpecificUserIDKey = "\(type(of: self)).user-id"
+    
     override func setUp() {
         super.setUp()
         setupEmptyStorageState()
@@ -22,8 +24,7 @@ class IdentityStoreControllerTests: XCTestCase {
     }
     
     func test_load_saveIdOnSuccessResponse() {
-        let (sut, client, _) = makeSUT()
-        let chatPersistent = ChatPersistent(storage: UserDefaultsStorage())
+        let (sut, client, storage) = makeSUT()
         let exp = expectation(description: "Wait for start method to end")
         let expectedData = IdentityStoreResponseHelper.makeJsonItem().toData()
         
@@ -34,15 +35,18 @@ class IdentityStoreControllerTests: XCTestCase {
         client.complete(withSatus: 200, data: expectedData)
         
         wait(for: [exp], timeout: 1.0)
-        XCTAssertEqual(chatPersistent.getVendorUserId(), IdentityStoreResponseHelper.userID)
+        XCTAssertEqual(storage.value(for: testSpecificUserIDKey) as? String, IdentityStoreResponseHelper.userID)
     }
     
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: IdentityStoreController, client: ChatHTTPClientMock, storage: UserDefaultsStorage) {
+        
         let storage = UserDefaultsStorage()
         let client = ChatHTTPClientMock()
-        let sut = IdentityStoreController(url: anyURL(), httpClient: client, storage: storage)
+        
+        let sut = IdentityStoreController(url: anyURL(), httpClient: client, store: (storage, testSpecificUserIDKey))
+    
         return (sut, client, storage)
     }
     
@@ -59,7 +63,7 @@ class IdentityStoreControllerTests: XCTestCase {
     }
     
     private func deleteTestStorage() {
-        let persistent = ChatPersistent(storage: UserDefaultsStorage())
-        persistent.deleteVendorUserId()
+        let (_, _, storage) = makeSUT()
+        storage.delete(key: testSpecificUserIDKey)
     }
 }
