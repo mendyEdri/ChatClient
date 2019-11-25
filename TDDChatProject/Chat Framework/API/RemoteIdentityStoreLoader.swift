@@ -15,7 +15,6 @@ public class RemoteIdentityStoreLoader {
     public enum Error: Swift.Error {
         case connectivity
         case authFailed
-        case alreadyRegistered
         case invalidData
     }
     
@@ -56,10 +55,6 @@ private struct IdentityStoreModelMapper {
                 } else {
                     return .failure(RemoteIdentityStoreLoader.Error.invalidData)
                 }
-        }
-        
-        if model.responseHeader.isRegister == true {
-            return .failure(.alreadyRegistered)
         }
         
         return .success(model)

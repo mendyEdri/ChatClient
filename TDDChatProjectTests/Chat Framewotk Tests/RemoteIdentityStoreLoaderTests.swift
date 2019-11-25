@@ -44,9 +44,11 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
     
     func test_load_deliversAuthErrorOnAlreadyRegisterJSON() {
         let (sut, client) = makeSUT()
-        let expectedJSON = IdentityStoreResponseHelper.makeAlreadyRegisterJSON()
         
-        expect(sut, toCompleteWith: .failure(.alreadyRegistered), when: {
+        let expectedJSON = IdentityStoreResponseHelper.makeJsonItem()
+        let item = identityStore(from: expectedJSON.toData())
+        
+        expect(sut, toCompleteWith: .success(item), when: {
             client.complete(withSatus: 200, data: expectedJSON.toData())
         })
     }

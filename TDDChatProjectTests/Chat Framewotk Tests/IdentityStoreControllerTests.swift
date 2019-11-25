@@ -38,6 +38,21 @@ class IdentityStoreControllerTests: XCTestCase {
         XCTAssertEqual(storage.value(for: testSpecificUserIdKey) as? String, IdentityStoreResponseHelper.userId)
     }
     
+    func test_start_savesUserIdOnAlreadyRegisterSuccessResponse() {
+        let (sut, client, storage) = makeSUT()
+        let exp = expectation(description: "Wait for start method to end")
+        let expectedData = IdentityStoreResponseHelper.makeAlreadyRegisterJSON().toData()
+        
+        sut.start { _ in
+            exp.fulfill()
+        }
+        
+        client.complete(withSatus: 200, data: expectedData)
+        
+        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(storage.value(for: testSpecificUserIdKey) as? String, IdentityStoreResponseHelper.userId)
+    }
+    
     func test_start_notHittingNetworkWhenUserIdIsSaved() {
         let (sut, client, storage) = makeSUT()
         
@@ -55,6 +70,8 @@ class IdentityStoreControllerTests: XCTestCase {
         
         XCTAssertTrue(sut.savedUserId() == nil)
     }
+    
+    // auth failed
     
     func test_start_trackMemoryLeak() {
         let (sut, client, _) = makeSUT()

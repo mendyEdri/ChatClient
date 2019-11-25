@@ -38,7 +38,7 @@ public final class IdentityStoreController {
         loader.load(from: url, completion: { [weak self] result in
             guard let self = self else { return }
             
-            completion(self.mapCompletion(from: result))
+            completion(self.mapResult(from: result))
         })
     }
     
@@ -61,10 +61,11 @@ public final class IdentityStoreController {
     
     // MARK: - Helpers
     
-    private func mapCompletion(from result: RemoteIdentityStoreLoader.Result) -> Result {
+    private func mapResult(from result: RemoteIdentityStoreLoader.Result) -> Result {
         switch result {
         case let .success(identityStore):
-            guard let userID = externalID(from: identityStore) else {
+            guard let userID = externalID(from: identityStore)
+                else {
                 return .failure(RemoteIdentityStoreLoader.Error.invalidData)
             }
             self.save(userID)
@@ -76,6 +77,15 @@ public final class IdentityStoreController {
     }
     
     private func externalID(from item: IdentityStoreModel) -> String? {
-        return item.responseHeader.res?.ops.first?.externalID
+        return oneOf(item.responseHeader.res?.ops.first?.externalID, item.responseHeader.record?.externalID)
+    }
+    
+    func oneOf<T>(_ val1: T?, _ val2: T?) -> T? {
+        if val1 != nil {
+            return val1
+        } else if val2 != nil {
+            return val2
+        }
+        return nil
     }
 }
