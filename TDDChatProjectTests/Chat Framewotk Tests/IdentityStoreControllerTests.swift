@@ -23,12 +23,12 @@ class IdentityStoreControllerTests: XCTestCase {
         undoStorageSideEffects()
     }
     
-    func test_load_saveIdOnSuccessResponse() {
+    func test_start_saveIdOnSuccessResponse() {
         let (sut, client, storage) = makeSUT()
         let exp = expectation(description: "Wait for start method to end")
         let expectedData = IdentityStoreResponseHelper.makeJsonItem().toData()
         
-        sut.start {
+        sut.start { _ in
             exp.fulfill()
         }
         
@@ -36,6 +36,22 @@ class IdentityStoreControllerTests: XCTestCase {
         
         wait(for: [exp], timeout: 1.0)
         XCTAssertEqual(storage.value(for: testSpecificUserIDKey) as? String, IdentityStoreResponseHelper.userID)
+    }
+    
+    func test_start_notHittingNetworkWhenUserIdIsSaved() {
+        let (sut, client, storage) = makeSUT()
+        
+        storage.save(value: anyUserID(), for: testSpecificUserIDKey)
+        sut.start { _ in }
+        
+        XCTAssertTrue(client.requestedURLs.isEmpty)
+    }
+    
+    func test_start_trackMemoryLeak() {
+        let (sut, client, _) = makeSUT()
+        
+        trackMemoryLeaks(sut)
+        trackMemoryLeaks(client)
     }
     
     // MARK: - Helpers
@@ -52,6 +68,10 @@ class IdentityStoreControllerTests: XCTestCase {
     
     private func anyURL() -> URL {
         return URL(string: "http://a-url.com")!
+    }
+    
+    private func anyUserID() -> String {
+        return "Greta.Thunberg"
     }
         
     private func setupEmptyStorageState() {

@@ -15,40 +15,63 @@ public final class IdentityStoreController {
     internal let loader: RemoteIdentityStoreLoader
 
     public typealias Store = (storage: Storage, key: String)
-    private let store: Store
+    private let storage: Storage
+    private let userIdSaveKey: String
+    
+    public enum Result {
+        case success(String)
+        case failure(Error)
+    }
     
     public init(url: URL, httpClient: ChatHTTPClient, store: Store) {
         self.url = url
         self.loader = RemoteIdentityStoreLoader(client: httpClient)
-        self.store = store
+        self.storage = store.storage
+        self.userIdSaveKey = store.key
     }
     
-    func start(_ completion: @escaping () -> Void) {
-        // api should be requested only once per user, if the id is saved locally, ignore.
-        guard avoidRequestIfUserIDIsSaved() == false else { return }
+    func start(_ completion: @escaping (Result) -> Void) {
+        if let avoidRequestUserSavedLocally = savedUserId() {
+            return completion(.success(avoidRequestUserSavedLocally))
+        }
 
         loader.load(from: url, completion: { [weak self] result in
-            switch result {
-            case let .success(item):
-                self?.save(item.responseHeader.res?.ops.first?.externalID)
-                
-            case .failure(_):
-                break
-            }
-            completion()
+            guard let self = self else { return }
+            
+            completion(self.mapCompletion(from: result))
         })
     }
     
     private func delete() {
-        store.storage.delete(key: store.key)
+        storage.delete(key: userIdSaveKey)
     }
     
     private func save(_ value: String?) {
         guard let userId = value else { return }
-        store.storage.save(value: userId, for: store.key)
+        storage.save(value: userId, for: userIdSaveKey)
     }
     
-    private func avoidRequestIfUserIDIsSaved() -> Bool {
-        return (store.storage.value(for: store.key) != nil)
+    private func savedUserId() -> String? {
+        return storage.value(for: userIdSaveKey) as? String
+    }
+    
+    // MARK: - Helpers
+    
+    private func mapCompletion(from result: RemoteIdentityStoreLoader.Result) -> Result {
+        switch result {
+        case let .success(identityStore):
+            guard let userID = externalID(from: identityStore) else {
+                return .failure(RemoteIdentityStoreLoader.Error.invalidData)
+            }
+            self.save(userID)
+            return .success(userID)
+            
+        case let .failure(error):
+            return .failure(error)
+        }
+    }
+    
+    private func externalID(from item: IdentityStoreModel) -> String? {
+        return item.responseHeader.res?.ops.first?.externalID
     }
 }
