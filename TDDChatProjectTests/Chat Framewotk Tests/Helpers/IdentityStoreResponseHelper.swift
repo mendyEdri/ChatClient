@@ -10,7 +10,7 @@ import Foundation
 
 internal struct IdentityStoreResponseHelper {
     
-    static let userID = "SMOOCH138x"
+    static let userId = "SMOOCH138x"
     
     static func makeJsonItem() -> [String: Any] {
         return [
@@ -25,7 +25,7 @@ internal struct IdentityStoreResponseHelper {
                     "ops": [[
                         "type": "SMOOCH",
                         "travelerGUID": "A:40775EE7xx",
-                        "externalID": IdentityStoreResponseHelper.userID,
+                        "externalID": IdentityStoreResponseHelper.userId,
                         "_id": "5dd644ee76a2e50c285c7540"
                         ]],
                     "insertedCount": 1,
@@ -61,7 +61,7 @@ internal struct IdentityStoreResponseHelper {
                     "_id": "5dd644ee76a2e50c285c7540",
                     "type": "SMOOCH",
                     "travelerGUID": "A:40775EE7xx",
-                    "externalID": IdentityStoreResponseHelper.userID
+                    "externalID": IdentityStoreResponseHelper.userId
                 ]
             ],
             "responseMeta": [

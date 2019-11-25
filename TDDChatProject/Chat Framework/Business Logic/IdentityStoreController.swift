@@ -42,6 +42,10 @@ public final class IdentityStoreController {
         })
     }
     
+    public func clearUserId() {
+        delete()
+    }
+    
     private func delete() {
         storage.delete(key: userIdSaveKey)
     }
@@ -51,7 +55,7 @@ public final class IdentityStoreController {
         storage.save(value: userId, for: userIdSaveKey)
     }
     
-    private func savedUserId() -> String? {
+    internal func savedUserId() -> String? {
         return storage.value(for: userIdSaveKey) as? String
     }
     
