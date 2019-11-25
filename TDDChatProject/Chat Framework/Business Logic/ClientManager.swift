@@ -7,7 +7,7 @@
 
 import Foundation
 
-/** Holds and run the right client request, according to the state. */
+/** Holds application specific business logic, interact with ChatClient and run the right client request, according to it state. */
 
 public class ClientManager {
     

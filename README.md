@@ -18,3 +18,16 @@ Giving the customer has connectivity
     When the customer opens the app to chat with an agent
     Then the app should display the chat establishing connection to remote
 ```
+
+#### Scenario Every customer open the app with chat
+
+```
+Giving the customer is a first time chat customer
+    When the customer opens the app for the first time a requet should be sent
+    Then the app should send request to save his 
+```
+
+```
+Giving the customer i
+    
+```

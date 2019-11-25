@@ -9,7 +9,8 @@
 import Foundation
 
 /** Data response model for mapping STS-metadata response */
-public struct ChatVendorAppId: Decodable, Equatable {
+
+public struct ChatVendorAppId: Codable, Equatable {
     
     var responseHeader: ResponseHeader
     var meta: ResponseMetadata

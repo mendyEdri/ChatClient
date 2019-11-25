@@ -35,6 +35,7 @@ public class RemoteAppIdLoader {
             switch result {
             case let .success(data, response):
                 completion(ChatVendorAppIdMapper.map(data: data, from: response))
+                
             case .failure:
                 completion(.failure(.connectivity))
             }

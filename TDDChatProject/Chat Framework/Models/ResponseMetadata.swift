@@ -10,7 +10,7 @@ import Foundation
 
 /** Data response model  for mapping STS and STS-metadata response metadata object */
 
-public struct ResponseMetadata: Decodable, Equatable {
+public struct ResponseMetadata: Codable, Equatable {
     var trxId: String
     var reqId: String
     var status: String

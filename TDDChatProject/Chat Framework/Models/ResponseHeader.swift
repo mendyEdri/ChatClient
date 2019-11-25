@@ -10,6 +10,6 @@ import Foundation
 
 /** Data response model  for mapping STS and STS-metadata response header object */
 
-public struct ResponseHeader: Decodable, Equatable {
+public struct ResponseHeader: Codable, Equatable {
     var statusMessage: String
 }

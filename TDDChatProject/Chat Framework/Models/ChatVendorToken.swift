@@ -9,7 +9,7 @@
 import Foundation
 
 /** Data response model for mapping STS response */
-public struct ChatVendorToken: Decodable, Equatable {
+public struct ChatVendorToken: Equatable, Codable {
     
     var header: ResponseHeader
     var tokenType: String
@@ -23,7 +23,7 @@ public struct ChatVendorToken: Decodable, Equatable {
         case tokenType = "token_type"
         case accessToken = "access_token"
         case expiration = "expires_in"
-        case cwtToken
+        case cwtToken = "cwtToken"
         case metadata = "responseMeta"
     }
 }
