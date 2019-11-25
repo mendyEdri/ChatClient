@@ -8,25 +8,27 @@
 
 import Foundation
 
-struct UserDefaultsStorage: Storage {
+public struct UserDefaultsStorage: Storage {
     
     private var defaults = UserDefaults.standard
     
-    func save(value: Any?, for key: String) {
+    public init() {}
+    
+    public func save(value: Any?, for key: String) {
         defaults.set(value, forKey: key)
         defaults.synchronize()
     }
     
-    func delete(key: String) {
+    public func delete(key: String) {
         defaults.removeObject(forKey: key)
         defaults.synchronize()
     }
     
-    func value(for key: String) -> Any? {
+    public func value(for key: String) -> Any? {
         return defaults.value(forKey: key)
     }
     
-    func hasValue(for key: String) -> Bool {
+    public func hasValue(for key: String) -> Bool {
         return defaults.value(forKey: key) != nil
     }
 }

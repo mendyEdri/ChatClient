@@ -8,13 +8,13 @@
 
 import Foundation
 
-final class IdentityStoreController {
+public final class IdentityStoreController {
     
     private let url: URL
     private let loader: RemoteIdentityStoreLoader
     private let persistent: ChatPersistent
     
-    init(url: URL, httpClient: ChatHTTPClient, storage: Storage) {
+    public init(url: URL, httpClient: ChatHTTPClient, storage: Storage) {
         self.url = url
         self.loader = RemoteIdentityStoreLoader(client: httpClient)
         self.persistent = ChatPersistent(storage: storage)

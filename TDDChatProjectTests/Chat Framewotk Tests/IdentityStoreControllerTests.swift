@@ -7,27 +7,45 @@
 //
 
 import XCTest
-import TDDChatProject
+@testable import TDDChatProject
 
 class IdentityStoreControllerTests: XCTestCase {
 
-    override class func setUp() {
-        
+    override func setUp() {
+        super.setUp()
+        setupEmptyStorageState()
     }
     
-    override class func tearDown() {
-        
+    override func tearDown() {
+        super.tearDown()
+        undoStorageSideEffects()
     }
     
     func test_load_saveIDonSuccessResponse() {
         let sut = makeSUT()
-        
         
     }
     
     // MARK: - Helpers
     
     private func makeSUT() -> IdentityStoreController {
-        return IdentityStoreController()
+        return IdentityStoreController(url: anyURL(), httpClient: ChatHTTPClientMock(), storage: UserDefaultsStorage())
+    }
+    
+    private func anyURL() -> URL {
+        return URL(string: "http://a-url.com")!
+    }
+    
+    private func setupEmptyStorageState() {
+        deleteTestStorage()
+    }
+    
+    private func undoStorageSideEffects() {
+        deleteTestStorage()
+    }
+    
+    private func deleteTestStorage() {
+        let persistent = ChatPersistent(storage: UserDefaultsStorage())
+        persistent.deleteVendorUserId()
     }
 }
