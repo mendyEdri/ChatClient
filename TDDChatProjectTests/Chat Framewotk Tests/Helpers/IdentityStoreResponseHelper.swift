@@ -9,10 +9,8 @@
 import Foundation
 
 internal struct IdentityStoreResponseHelper {
-    
-    static let userId = "SMOOCH138x"
-    
-    static func makeJsonItem() -> [String: Any] {
+        
+    static func makeJsonItem(_ id: String) -> [String: Any] {
         return [
             "responseHeader" : [
                 "statusMessage": "Identity created successfully",
@@ -25,7 +23,7 @@ internal struct IdentityStoreResponseHelper {
                     "ops": [[
                         "type": "SMOOCH",
                         "travelerGUID": "A:40775EE7xx",
-                        "externalID": IdentityStoreResponseHelper.userId,
+                        "externalID": id,
                         "_id": "5dd644ee76a2e50c285c7540"
                         ]],
                     "insertedCount": 1,
@@ -52,7 +50,7 @@ internal struct IdentityStoreResponseHelper {
         ]
     }
     
-    static func makeAlreadyRegisterJSON() -> [String: Any] {
+    static func makeAlreadyRegisterJSON(_ id: String) -> [String: Any] {
         return [
             "responseHeader": [
                 "isRegister": true,
@@ -61,7 +59,7 @@ internal struct IdentityStoreResponseHelper {
                     "_id": "5dd644ee76a2e50c285c7540",
                     "type": "SMOOCH",
                     "travelerGUID": "A:40775EE7xx",
-                    "externalID": IdentityStoreResponseHelper.userId
+                    "externalID": id
                 ]
             ],
             "responseMeta": [

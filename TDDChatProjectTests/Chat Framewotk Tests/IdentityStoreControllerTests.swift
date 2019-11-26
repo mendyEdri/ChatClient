@@ -10,8 +10,11 @@ import XCTest
 @testable import TDDChatProject
 
 class IdentityStoreControllerTests: XCTestCase {
-
+    
     private var testSpecificUserIdKey = "\(type(of: self)).user-id"
+    private var testSpecificUserIdValue = "astro.world.2019"
+    
+    private typealias Result = IdentityStoreController.Result
     
     override func setUp() {
         super.setUp()
@@ -25,32 +28,26 @@ class IdentityStoreControllerTests: XCTestCase {
     
     func test_start_saveIdOnSuccessResponse() {
         let (sut, client, storage) = makeSUT()
-        let exp = expectation(description: "Wait for start method to end")
-        let expectedData = IdentityStoreResponseHelper.makeJsonItem().toData()
         
-        sut.start { _ in
-            exp.fulfill()
-        }
+        let expectedData = IdentityStoreResponseHelper.makeJsonItem(testSpecificUserIdValue).toData()
         
-        client.complete(withSatus: 200, data: expectedData)
-        
-        wait(for: [exp], timeout: 1.0)
-        XCTAssertEqual(storage.value(for: testSpecificUserIdKey) as? String, IdentityStoreResponseHelper.userId)
+        start(sut, when: {
+            client.complete(withSatus: 200, data: expectedData)
+        }, assert: {
+            XCTAssertEqual(storage.value(for: testSpecificUserIdKey) as? String, testSpecificUserIdValue)
+        })
     }
     
     func test_start_savesUserIdOnAlreadyRegisterSuccessResponse() {
         let (sut, client, storage) = makeSUT()
-        let exp = expectation(description: "Wait for start method to end")
-        let expectedData = IdentityStoreResponseHelper.makeAlreadyRegisterJSON().toData()
         
-        sut.start { _ in
-            exp.fulfill()
-        }
+        let expectedData = IdentityStoreResponseHelper.makeAlreadyRegisterJSON(testSpecificUserIdValue).toData()
         
-        client.complete(withSatus: 200, data: expectedData)
-        
-        wait(for: [exp], timeout: 1.0)
-        XCTAssertEqual(storage.value(for: testSpecificUserIdKey) as? String, IdentityStoreResponseHelper.userId)
+        start(sut, when: {
+            client.complete(withSatus: 200, data: expectedData)
+        }, assert: {
+            XCTAssertEqual(storage.value(for: testSpecificUserIdKey) as? String, testSpecificUserIdValue)
+        })
     }
     
     func test_start_notHittingNetworkWhenUserIdIsSaved() {
@@ -62,6 +59,18 @@ class IdentityStoreControllerTests: XCTestCase {
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
+    func test_start_notSavingWhenDeliveredNot200FromAPI() {
+        let (sut, client, storage) = makeSUT()
+        
+        let jsonData = anyData()
+        
+        start(sut, when: {
+            client.complete(withSatus: 401, data: jsonData)
+        }, assert: {
+            XCTAssertNil(storage.value(for: testSpecificUserIdKey))
+        })
+    }
+    
     func test_clear_deletesCachedUserId() {
         let (sut, _, storage) = makeSUT()
         
@@ -70,8 +79,6 @@ class IdentityStoreControllerTests: XCTestCase {
         
         XCTAssertTrue(sut.savedUserId() == nil)
     }
-    
-    // auth failed
     
     func test_start_trackMemoryLeak() {
         let (sut, client, _) = makeSUT()
@@ -82,14 +89,34 @@ class IdentityStoreControllerTests: XCTestCase {
     
     // MARK: - Helpers
     
+    private func start(_ sut: IdentityStoreController, when action: () -> Void, assert: () -> Void) {
+        
+        let exp = expectation(description: "Wait for start method to end")
+        sut.start { _ in
+            exp.fulfill()
+        }
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        assert()
+    }
+    
     private func makeSUT() -> (sut: IdentityStoreController, client: ChatHTTPClientMock, storage: UserDefaultsStorage) {
         
         let storage = UserDefaultsStorage()
         let client = ChatHTTPClientMock()
         
         let sut = IdentityStoreController(url: anyURL(), httpClient: client, store: (storage, testSpecificUserIdKey))
-    
+        
         return (sut, client, storage)
+    }
+    
+    private func anyData() -> Data {
+        return IdentityStoreResponseHelper.makeJsonItem(testSpecificUserIdValue).toData()
+    }
+    
+    private func anyNSError() -> NSError {
+        return NSError(domain: "chat.unit", code: 1, userInfo: nil)
     }
     
     private func anyURL() -> URL {
@@ -99,7 +126,7 @@ class IdentityStoreControllerTests: XCTestCase {
     private func anyUserID() -> String {
         return "Greta.Thunberg"
     }
-        
+    
     private func setupEmptyStorageState() {
         deleteTestStorage()
     }

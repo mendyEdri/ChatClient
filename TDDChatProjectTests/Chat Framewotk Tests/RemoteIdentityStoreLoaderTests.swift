@@ -12,6 +12,7 @@ import TDDChatProject
 class RemoteIdentityStoreLoaderTests: XCTestCase {
     
     typealias Result = RemoteIdentityStoreLoader.Result
+    private var testSpecificUserValue = "Dustin.1984"
     
     func test_load_returnsResultBeforeCompletion() {
         let (sut, _) = makeSUT()
@@ -45,7 +46,7 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
     func test_load_deliversAuthErrorOnAlreadyRegisterJSON() {
         let (sut, client) = makeSUT()
         
-        let expectedJSON = IdentityStoreResponseHelper.makeJsonItem()
+        let expectedJSON = IdentityStoreResponseHelper.makeJsonItem(testSpecificUserValue)
         let item = identityStore(from: expectedJSON.toData())
         
         expect(sut, toCompleteWith: .success(item), when: {
@@ -54,15 +55,32 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
     }
     
     func test_load_deliversSucessOnSuccessJSONItem() {
-        let client = ChatHTTPClientMock()
-        let sut = RemoteIdentityStoreLoader(client: client)
+        let (sut, client) = makeSUT()
         
-        let JSON = IdentityStoreResponseHelper.makeJsonItem()
+        let JSON = IdentityStoreResponseHelper.makeJsonItem(testSpecificUserValue)
         let data = JSON.toData()
         let item = identityStore(from: data)
         
         expect(sut, toCompleteWith: .success(item), when: {
             client.complete(withSatus: 200, data: data)
+        })
+    }
+    
+    func test_load_deliversErrorOnInvalidJSON() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut, toCompleteWith: .failure(.invalidData), when: {
+            client.complete(withSatus: 200, data: Data("Invalid JSON".utf8))
+        })
+    }
+    
+    func test_load_deliversError200WithAuthFailedJSON() {
+        let (sut, client) = makeSUT()
+        
+        let JSON = IdentityStoreResponseHelper.makeAuthFailedJSON()
+        
+        expect(sut, toCompleteWith: .failure(.invalidData), when: {
+            client.complete(withSatus: 200, data: JSON.toData())
         })
     }
     
