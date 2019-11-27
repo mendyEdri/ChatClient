@@ -176,7 +176,7 @@ extension ChatClientManagerTests {
     func test_startSDK_notReturnsWhenInstanceIsDeallocated() {
         let settings = ChatSettings(appId: anyAppId, userId: anyUserID, token: anyToken)
         let client = ChatClientSpy(settings: settings)
-        var sut: ClientManager? = ClientManager(chat: client)
+        var sut: ClientManager? = ClientManager(chat: client, httpClient: ChatHTTPClientMock())
         
         var capturedResult = [Result]()
         sut?.start(anyAppId) { capturedResult.append($0) }
@@ -201,7 +201,7 @@ extension ChatClientManagerTests {
     private func makeOptionalSUT(_ settings: ChatSettings = ChatClientManagerTests.anySettings) -> (sut: ClientManager?, client: ChatClientSpy) {
         let settings = ChatSettings(appId: settings.appId, userId: settings.userId, token: settings.token)
         let client = ChatClientSpy(settings: settings)
-        let sut: ClientManager? = ClientManager(chat: client)
+        let sut: ClientManager? = ClientManager(chat: client, httpClient: ChatHTTPClientMock())
         
         trackMemoryLeaks(client)
         trackMemoryLeaks(sut!)

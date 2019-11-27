@@ -1,0 +1,2 @@
+target 'TDDChatProject'
+pod 'Smooch'

@@ -12,9 +12,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        startChat()
     }
 
+    
+    func startChat() {
+//        let settings = ChatSettings(appId: <#T##String#>, userId: <#T##String#>, token: <#T##String#>)
+//        let client = SmoochChatClient(settings: <#T##ChatSettings#>)
+//        let clientManager = ClientManager(chat: )
+    }
 
 }
 

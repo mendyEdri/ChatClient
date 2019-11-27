@@ -11,7 +11,8 @@ import Foundation
 
 public class ClientManager {
     
-    private let client: ChatClient
+    private let chatClient: ChatClient
+    private let httpClient: ChatHTTPClient
     
     /** Prepare function Result-type error */
     public enum Error: Swift.Error {
@@ -24,8 +25,9 @@ public class ClientManager {
     
     public typealias Result = Swift.Result<String, ClientManager.Error>
     
-    public init(chat: ChatClient) {
-        self.client = chat
+    public init(chat: ChatClient, httpClient: ChatHTTPClient) {
+        self.chatClient = chat
+        self.httpClient = httpClient
     }
     
     /** Instantiate Chat SDK and Login */
@@ -48,21 +50,54 @@ public class ClientManager {
     }
     
     internal func start(_ appId: String, completion: @escaping ((Result) -> Void)) {
-        client.startSDK(appId) { [weak self] result in
+        chatClient.startSDK(appId) { [weak self] result in
             guard self != nil else { return }
             completion(result)
         }
     }
     
     internal func login(userId: String, token: String, completion: @escaping (Result) -> Void) {
-        guard client.canLogin() == true else {
+        guard chatClient.canLogin() == true else {
             completion(.failure(.sdkNotInitialized))
             return
         }
-        client.login(userId: userId, token: token) { result in
+        chatClient.login(userId: userId, token: token) { result in
             completion(result)
         }
     }
 }
 
+extension ClientManager {
+    
+    // Given the appId isn't saved locally
+    // When the prepare() get called
+    // Then the app will request the STS-metadata API
+    
+    // Given the appId is saved locally
+    // When the prepare() get called
+    // Then the app will check if user token is saved locally
+    
+    // Given the user token isn't saved locally
+    // When the prepare() get called
+    // Then the app will call STS API
+    
+    // Given the user token is saved locally
+    // When the prepare() get called
+    // Then the app will call initialize on the ChatClient
+    
+    // Given the app called STS-metadata request completed
+    // When the request completed successfuly
+    // Then the app will save the appId locally
+    
+    // Given the app called STS-metadata request completed
+    // When the request completed with error
+    // Then the app will retry for one more time
+    
+    internal func retreiveRemoteAppId() {
+        let appIdLoader = RemoteAppIdLoader(url: URL(string: "")!, client: httpClient)
+        appIdLoader.load { result in
+            
+        }
+    }
+}
 
