@@ -122,7 +122,7 @@ extension ClientManager {
     }
     
     private func startSDKPreparation(_ strategy: MainClientProcessStrategy) {
-        let strategy = strategy.nextExecution()
+        let strategy = strategy.nextStepExecution()
         debugPrint(strategy)
         
         switch strategy {
