@@ -11,9 +11,9 @@ import Foundation
 /** Strategy design for decision making for next ClientManager step in the initialization process. */
 final internal class MainClientProcessStrategy: TokenBasedProcessStrategy {
     
-    private var storage: Storage
+    internal var storage: Storage
     
-    private var jwt: Jwtable
+    internal var jwt: Jwtable
     
     internal var client: ChatClient
     

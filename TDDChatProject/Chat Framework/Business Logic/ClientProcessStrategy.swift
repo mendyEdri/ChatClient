@@ -33,4 +33,6 @@ protocol TokenBasedProcessStrategy: BasicProcessStrategy {
     var appIdAvailable: Bool { get }
     var userTokenAvailable: Bool { get }
     var userTokenIsValid: Bool { get }
+    var storage: Storage { get }
+    var jwt: Jwtable { get }
 }
