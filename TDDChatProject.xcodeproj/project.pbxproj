@@ -3,14 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		406B701EAAA0474D5FD18E48 /* libPods-TDDChatProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20036174A8DC5C34C1B980C3 /* libPods-TDDChatProject.a */; };
+		F0071E05238FC95700563A9C /* ProcessStateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0071E04238FC95700563A9C /* ProcessStateHelperTests.swift */; };
+		F05E7EE823990E6C00389F76 /* ChatClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */; };
+		F063F0AA23954F3200F9E770 /* UserDefaultStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063F0A923954F3200F9E770 /* UserDefaultStorageMock.swift */; };
+		F064AAA4239EA5BD00E0909F /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064AAA3239EA5BD00E0909F /* URLSessionHTTPClient.swift */; };
+		F07D76A6239CF19A00063190 /* MainClientProcessStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76A5239CF19A00063190 /* MainClientProcessStrategy.swift */; };
+		F07D76A8239CF1B600063190 /* ClientProcessStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76A7239CF1B600063190 /* ClientProcessStrategyTests.swift */; };
+		F07D76BC239D089500063190 /* Jwt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76B8239D089500063190 /* Jwt.swift */; };
+		F07D76BD239D089500063190 /* JwtDefaultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76BA239D089500063190 /* JwtDefaultParser.swift */; };
+		F07D76C2239D08A800063190 /* JwtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76C0239D08A800063190 /* JwtTests.swift */; };
+		F07D76C8239D18A800063190 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76C7239D18A800063190 /* Storage.swift */; };
+		F07D76CA239D2DF900063190 /* DefaultStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76C9239D2DF900063190 /* DefaultStorageTests.swift */; };
+		F07D76CC239D367C00063190 /* ClientProcessStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76CB239D367C00063190 /* ClientProcessStrategy.swift */; };
 		F0ACDF30238AC178003043E9 /* IdentityStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */; };
-		F0ACDF36238BD0DD003043E9 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF35238BD0DD003043E9 /* Storage.swift */; };
-		F0ACDF3B238BD10A003043E9 /* DefaultStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF39238BD10A003043E9 /* DefaultStorageTests.swift */; };
 		F0ACDF3E238BD353003043E9 /* IdentityStoreControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */; };
 		F0ACDF41238BD43C003043E9 /* DefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */; };
 		F0ACDF43238BE3A1003043E9 /* IdentityStoreResponseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF42238BE3A1003043E9 /* IdentityStoreResponseHelper.swift */; };
@@ -18,7 +28,6 @@
 		F0E4F94D2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F94C2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift */; };
 		F0E4F96223867FC90024E427 /* IdentityStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */; };
 		F0E779EC2374932C002AB76E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E779EB2374932C002AB76E /* AppDelegate.swift */; };
-		F0E779EE2374932C002AB76E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E779ED2374932C002AB76E /* SceneDelegate.swift */; };
 		F0E779F02374932C002AB76E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E779EF2374932C002AB76E /* ViewController.swift */; };
 		F0E779F32374932C002AB76E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0E779F12374932C002AB76E /* Main.storyboard */; };
 		F0E779F52374932D002AB76E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0E779F42374932D002AB76E /* Assets.xcassets */; };
@@ -55,9 +64,20 @@
 		20036174A8DC5C34C1B980C3 /* libPods-TDDChatProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TDDChatProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F20C3F7E5D2FCBE63A4F2CA /* Pods-TDDChatProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDChatProject.debug.xcconfig"; path = "Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject.debug.xcconfig"; sourceTree = "<group>"; };
 		771CED41378EF474964900F1 /* Pods-TDDChatProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDChatProject.release.xcconfig"; path = "Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject.release.xcconfig"; sourceTree = "<group>"; };
+		F0071E04238FC95700563A9C /* ProcessStateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessStateHelperTests.swift; sourceTree = "<group>"; };
+		F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatClientSpy.swift; sourceTree = "<group>"; };
+		F063F0A923954F3200F9E770 /* UserDefaultStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultStorageMock.swift; sourceTree = "<group>"; };
+		F064AAA3239EA5BD00E0909F /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		F07D76A5239CF19A00063190 /* MainClientProcessStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainClientProcessStrategy.swift; sourceTree = "<group>"; };
+		F07D76A7239CF1B600063190 /* ClientProcessStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProcessStrategyTests.swift; sourceTree = "<group>"; };
+		F07D76B8239D089500063190 /* Jwt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jwt.swift; sourceTree = "<group>"; };
+		F07D76B9239D089500063190 /* Jwt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jwt.h; sourceTree = "<group>"; };
+		F07D76BA239D089500063190 /* JwtDefaultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JwtDefaultParser.swift; sourceTree = "<group>"; };
+		F07D76C0239D08A800063190 /* JwtTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JwtTests.swift; sourceTree = "<group>"; };
+		F07D76C7239D18A800063190 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		F07D76C9239D2DF900063190 /* DefaultStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultStorageTests.swift; sourceTree = "<group>"; };
+		F07D76CB239D367C00063190 /* ClientProcessStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProcessStrategy.swift; sourceTree = "<group>"; };
 		F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreController.swift; sourceTree = "<group>"; };
-		F0ACDF35238BD0DD003043E9 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Storage.swift; path = ../../../../DefaultStorage/DefaultStorage/Storage.swift; sourceTree = "<group>"; };
-		F0ACDF39238BD10A003043E9 /* DefaultStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultStorageTests.swift; path = ../../../DefaultStorage/DefaultStorageTests/DefaultStorageTests.swift; sourceTree = "<group>"; };
 		F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreControllerTests.swift; sourceTree = "<group>"; };
 		F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorage.swift; sourceTree = "<group>"; };
 		F0ACDF42238BE3A1003043E9 /* IdentityStoreResponseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreResponseHelper.swift; sourceTree = "<group>"; };
@@ -66,7 +86,6 @@
 		F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreModel.swift; sourceTree = "<group>"; };
 		F0E779E82374932C002AB76E /* TDDChatProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TDDChatProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E779EB2374932C002AB76E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F0E779ED2374932C002AB76E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F0E779EF2374932C002AB76E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F0E779F22374932C002AB76E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F0E779F42374932D002AB76E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,6 +138,42 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F07D76B7239D089500063190 /* Jwt */ = {
+			isa = PBXGroup;
+			children = (
+				F07D76B8239D089500063190 /* Jwt.swift */,
+				F07D76B9239D089500063190 /* Jwt.h */,
+				F07D76BA239D089500063190 /* JwtDefaultParser.swift */,
+			);
+			path = Jwt;
+			sourceTree = "<group>";
+		};
+		F07D76BF239D08A800063190 /* JwtTests */ = {
+			isa = PBXGroup;
+			children = (
+				F07D76C0239D08A800063190 /* JwtTests.swift */,
+			);
+			path = JwtTests;
+			sourceTree = "<group>";
+		};
+		F07D76C5239D08CE00063190 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F07D76B7239D089500063190 /* Jwt */,
+				F0ACDF31238BD05D003043E9 /* Storage */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		F07D76C6239D08E200063190 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F07D76BF239D08A800063190 /* JwtTests */,
+				F0ACDF34238BD09F003043E9 /* Storage Tests */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 		F0ACDF31238BD05D003043E9 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,7 +187,7 @@
 		F0ACDF32238BD06A003043E9 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				F0ACDF35238BD0DD003043E9 /* Storage.swift */,
+				F07D76C7239D18A800063190 /* Storage.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -147,7 +202,7 @@
 		F0ACDF34238BD09F003043E9 /* Storage Tests */ = {
 			isa = PBXGroup;
 			children = (
-				F0ACDF39238BD10A003043E9 /* DefaultStorageTests.swift */,
+				F07D76C9239D2DF900063190 /* DefaultStorageTests.swift */,
 			);
 			path = "Storage Tests";
 			sourceTree = "<group>";
@@ -183,9 +238,8 @@
 		F0E779EA2374932C002AB76E /* TDDChatProject */ = {
 			isa = PBXGroup;
 			children = (
-				F0ACDF31238BD05D003043E9 /* Storage */,
+				F07D76C5239D08CE00063190 /* Frameworks */,
 				F0E77A1C23749377002AB76E /* Chat Framework */,
-				F0E77A2223749377002AB76E /* Implementation */,
 				F0E77A1B23749357002AB76E /* Platform Spesific */,
 				F0E779F92374932D002AB76E /* Info.plist */,
 			);
@@ -198,7 +252,7 @@
 				F0E77A042374932D002AB76E /* Info.plist */,
 				F0E77A022374932D002AB76E /* Helper.swift */,
 				F0E77A0D2374934C002AB76E /* Chat Framewotk Tests */,
-				F0ACDF34238BD09F003043E9 /* Storage Tests */,
+				F07D76C6239D08E200063190 /* Frameworks */,
 			);
 			path = TDDChatProjectTests;
 			sourceTree = "<group>";
@@ -212,6 +266,8 @@
 				F0E77A112374934C002AB76E /* RemoteChatTokenLoaderTests.swift */,
 				F0E4F94C2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift */,
 				F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */,
+				F0071E04238FC95700563A9C /* ProcessStateHelperTests.swift */,
+				F07D76A7239CF1B600063190 /* ClientProcessStrategyTests.swift */,
 			);
 			path = "Chat Framewotk Tests";
 			sourceTree = "<group>";
@@ -222,6 +278,8 @@
 				F0E77A132374934C002AB76E /* BuilderHelper.swift */,
 				F0E77A142374934C002AB76E /* ChatHTTPClientMock.swift */,
 				F0ACDF42238BE3A1003043E9 /* IdentityStoreResponseHelper.swift */,
+				F063F0A923954F3200F9E770 /* UserDefaultStorageMock.swift */,
+				F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -230,7 +288,6 @@
 			isa = PBXGroup;
 			children = (
 				F0E779EB2374932C002AB76E /* AppDelegate.swift */,
-				F0E779ED2374932C002AB76E /* SceneDelegate.swift */,
 				F0E779EF2374932C002AB76E /* ViewController.swift */,
 				F0E779F12374932C002AB76E /* Main.storyboard */,
 				F0E779F42374932D002AB76E /* Assets.xcassets */,
@@ -245,6 +302,7 @@
 				F0E77A1D23749377002AB76E /* Models */,
 				F0E77A2423749377002AB76E /* API */,
 				F0E77A2823749377002AB76E /* Business Logic */,
+				F0E77A2223749377002AB76E /* Implementation */,
 			);
 			path = "Chat Framework";
 			sourceTree = "<group>";
@@ -264,7 +322,9 @@
 		F0E77A2223749377002AB76E /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				F07D76A5239CF19A00063190 /* MainClientProcessStrategy.swift */,
 				F0E77A2323749377002AB76E /* SmoochChatClient.swift */,
+				F064AAA3239EA5BD00E0909F /* URLSessionHTTPClient.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -284,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				F0E77A2923749377002AB76E /* ChatClient.swift */,
+				F07D76CB239D367C00063190 /* ClientProcessStrategy.swift */,
 				F0E77A2A23749377002AB76E /* ClientManager.swift */,
 				F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */,
 			);
@@ -296,7 +357,6 @@
 				4F20C3F7E5D2FCBE63A4F2CA /* Pods-TDDChatProject.debug.xcconfig */,
 				771CED41378EF474964900F1 /* Pods-TDDChatProject.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -451,17 +511,21 @@
 				F0ACDF30238AC178003043E9 /* IdentityStoreController.swift in Sources */,
 				F0E77A2B23749377002AB76E /* ResponseMetadata.swift in Sources */,
 				F0E779EC2374932C002AB76E /* AppDelegate.swift in Sources */,
-				F0E779EE2374932C002AB76E /* SceneDelegate.swift in Sources */,
+				F07D76A6239CF19A00063190 /* MainClientProcessStrategy.swift in Sources */,
+				F07D76C8239D18A800063190 /* Storage.swift in Sources */,
 				F0E77A3423749377002AB76E /* ClientManager.swift in Sources */,
+				F07D76BC239D089500063190 /* Jwt.swift in Sources */,
 				F0E77A3323749377002AB76E /* ChatClient.swift in Sources */,
 				F0E77A3223749377002AB76E /* RemoteTokenLoader.swift in Sources */,
+				F07D76BD239D089500063190 /* JwtDefaultParser.swift in Sources */,
 				F0E77A3123749377002AB76E /* ChatHTTPClient.swift in Sources */,
+				F07D76CC239D367C00063190 /* ClientProcessStrategy.swift in Sources */,
 				F0E4F94B2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift in Sources */,
 				F0E4F96223867FC90024E427 /* IdentityStoreModel.swift in Sources */,
+				F064AAA4239EA5BD00E0909F /* URLSessionHTTPClient.swift in Sources */,
 				F0E77A2E23749377002AB76E /* ResponseHeader.swift in Sources */,
 				F0ACDF41238BD43C003043E9 /* DefaultStorage.swift in Sources */,
 				F0E77A2D23749377002AB76E /* ChatVendorAppId.swift in Sources */,
-				F0ACDF36238BD0DD003043E9 /* Storage.swift in Sources */,
 				F0E77A2C23749377002AB76E /* ChatVendorToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,16 +534,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F05E7EE823990E6C00389F76 /* ChatClientSpy.swift in Sources */,
+				F07D76CA239D2DF900063190 /* DefaultStorageTests.swift in Sources */,
+				F07D76C2239D08A800063190 /* JwtTests.swift in Sources */,
 				F0E77A172374934C002AB76E /* ChatClientManagerTests.swift in Sources */,
 				F0ACDF43238BE3A1003043E9 /* IdentityStoreResponseHelper.swift in Sources */,
-				F0ACDF3B238BD10A003043E9 /* DefaultStorageTests.swift in Sources */,
 				F0E77A192374934C002AB76E /* BuilderHelper.swift in Sources */,
 				F0E77A032374932D002AB76E /* Helper.swift in Sources */,
 				F0E77A182374934C002AB76E /* RemoteChatTokenLoaderTests.swift in Sources */,
+				F063F0AA23954F3200F9E770 /* UserDefaultStorageMock.swift in Sources */,
 				F0E4F94D2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift in Sources */,
+				F07D76A8239CF1B600063190 /* ClientProcessStrategyTests.swift in Sources */,
 				F0ACDF3E238BD353003043E9 /* IdentityStoreControllerTests.swift in Sources */,
 				F0E77A1A2374934C002AB76E /* ChatHTTPClientMock.swift in Sources */,
 				F0E77A152374934C002AB76E /* RmoteAppIdLoaderTests.swift in Sources */,
+				F0071E05238FC95700563A9C /* ProcessStateHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +704,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96VXC495K7;
 				INFOPLIST_FILE = TDDChatProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -654,6 +724,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96VXC495K7;
 				INFOPLIST_FILE = TDDChatProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

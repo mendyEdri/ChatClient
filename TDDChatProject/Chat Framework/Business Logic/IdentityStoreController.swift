@@ -11,7 +11,9 @@ import Foundation
 public final class IdentityStoreController {
     
     private let url: URL
+    
     // TODO: considure make it private and fix tests
+    // This type is coupled, check how to fix it
     internal let loader: RemoteIdentityStoreLoader
 
     public typealias Store = (storage: Storage, key: String)

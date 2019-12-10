@@ -11,34 +11,36 @@ import Foundation
 import Smooch
 
 public class SmoochChatClient: ChatClient {
-    public var settings: ChatSettings
-    
-    init(settings: ChatSettings) {
-        self.settings = settings
-    }
-    
-    public func startSDK(_ appId: String, completion: @escaping (StartResult) -> Void) {
         
+    public func startSDK(_ appId: String, completion: @escaping (StartResult) -> Void) {
+
         let skSettings = SKTSettings(appId: appId)
         Smooch.initWith(skSettings) { (error, info) in
             completion(.success(appId))
         }
     }
     
-    public func canLogin() -> Bool {
-        return false
+    public func initialized() -> Bool {
+        return Smooch.conversation() != nil
     }
     
     public func login(userId: String, token: String, completion: @escaping (LoginResult) -> Void) {
         Smooch.login(userId, jwt: token) { (error, info) in
+            if error != nil {
+                return completion(.failure(.invalidUserID))
+            }
             completion(.success(token))
         }
     }
     
-    public func logout(completion: @escaping (LoginResult) -> Void) {
-        completion(.success(""))
+    public func loggedIn() -> Bool {
+        return SKTUser.current()?.userId != nil
     }
     
+    public func logout(completion: @escaping (LoginResult) -> Void) {
+        #warning("Check it out, what should we should do")
+        completion(.success(""))
+    }
 }
 
 

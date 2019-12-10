@@ -28,7 +28,7 @@ public class RemoteIdentityStoreLoader {
     }
     
     public func load(from url: URL, completion: @escaping (Result) -> Void) {
-        client.get(from: url) { result in
+        client.get(from: url, method: .GET) { result in
             
             switch result {
             case let .success(data, response):

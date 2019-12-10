@@ -8,14 +8,20 @@
 
 import Foundation
 
-/** HTTP response enum type, represents ChatHTTPClient requests' response object */
-public enum HTTPClientResult {
-    case success(Data, HTTPURLResponse)
-    case failure(Error)
+/** All supported http request methods */
+public enum HTTPMethod: String {
+    case GET
+    case POST
+    case DELETE
+    case UPDATE
 }
 
 /** Protocol for chat requests - STS, STS-metadata, Identity-Store */
 public protocol ChatHTTPClient {
+    
+    /** HTTP response enum type, represents ChatHTTPClient requests' response object */
+    typealias Result = Swift.Result<(Data, HTTPURLResponse), Error>
+    
     /** Generic request from URL function, used in Chat module  */
-    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void)
+    func get(from url: URL, method: HTTPMethod, completion: @escaping (Result) -> Void)
 }

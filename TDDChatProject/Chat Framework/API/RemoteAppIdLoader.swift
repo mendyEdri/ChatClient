@@ -18,11 +18,8 @@ public class RemoteAppIdLoader {
         case connectivity
         case invalidData
     }
-    
-    public enum Result: Equatable {
-        case success(ChatVendorAppId)
-        case failure(Error)
-    }
+        
+    public typealias Result = Swift.Result<ChatVendorAppId, Error>
     
     public init(url: URL, client: ChatHTTPClient) {
         self.url = url
@@ -30,8 +27,7 @@ public class RemoteAppIdLoader {
     }
         
     public func load(completion: @escaping (Result) -> Void) {
-        client.get(from: url) { result in
-            
+        client.get(from: url, method: .GET) { result in
             switch result {
             case let .success(data, response):
                 completion(ChatVendorAppIdMapper.map(data: data, from: response))

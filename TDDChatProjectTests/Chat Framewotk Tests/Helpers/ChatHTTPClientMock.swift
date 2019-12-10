@@ -11,11 +11,11 @@ import Foundation
 
 internal class ChatHTTPClientMock: ChatHTTPClient {
     
-    private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
+    private var messages = [(url: URL, completion: (ChatHTTPClient.Result) -> Void)]()
     
     // MARK: Implementation
     
-    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+    func get(from url: URL, method: HTTPMethod, completion: @escaping (ChatHTTPClient.Result) -> Void) {
         messages.append((url, completion))
     }
     
@@ -37,7 +37,7 @@ internal class ChatHTTPClientMock: ChatHTTPClient {
                                        httpVersion: nil,
                                        headerFields: nil)!
         
-        messages[index].completion(.success(data, response))
+        messages[index].completion(.success((data, response)))
     }
 }
 

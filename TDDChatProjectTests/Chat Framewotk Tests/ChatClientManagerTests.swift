@@ -8,66 +8,6 @@
 import XCTest
 @testable import TDDChatProject
 
-private class ChatClientSpy: ChatClient {
-    
-    typealias Error = ClientManager.Error
-    typealias Result = ClientManager.Result
-    
-    var settings: ChatSettings
-    
-    var startCompletions = [(StartResult) -> Void]()
-    var loginCompletions = [(LoginResult) -> Void]()
-    var logoutCompletions = [(LoginResult) -> Void]()
-    fileprivate var isInitialize = false
-    
-    internal init(settings: ChatSettings) {
-        self.settings = settings
-    }
-    
-    func startSDK(_ appId: String, completion: @escaping (StartResult) -> Void) {
-        startCompletions.append(completion)
-    }
-    
-    func login(userId: String, token: String, completion: @escaping (LoginResult) -> Void) {
-        loginCompletions.append(completion)
-    }
-    
-    func logout(completion: @escaping (LoginResult) -> Void) {
-        logoutCompletions.append(completion)
-    }
-    
-    func canLogin() -> Bool {
-        return isInitialize
-    }
-    
-    // MARK: - Mock Executions, Don't get exited
-    
-    fileprivate func completeStartSDKSuccessfuly(_ index: Int = 0) {
-        isInitialize = true
-        startCompletions[index](.success(settings.appId))
-    }
-    
-    fileprivate func completeStartSDKWithError(_ index: Int = 0) {
-        startCompletions[index](.failure(Error.initFailed))
-    }
-    
-    fileprivate func completeLoginWithSuccess(_ index: Int = 0) {
-        loginCompletions[index](.success(settings.userId))
-    }
-    
-    fileprivate func completeLoginWithErrorInvalidUserID(_ index: Int = 0) {
-        loginCompletions[index](.failure(Error.invalidUserID))
-    }
-    
-    fileprivate func completeLoginWithErrorInvalidToken(_ index: Int = 0) {
-        loginCompletions[index](.failure(Error.invalidToken))
-    }
-    
-    fileprivate func completeLoginWithErrorSDKNotInitialized(_ index: Int = 0) {
-        loginCompletions[index](.failure(Error.sdkNotInitialized))
-    }
-}
-
 // MARK: - Client Prepare SDK Tests
 
 class ChatClientManagerTests: XCTestCase {
@@ -87,14 +27,17 @@ class ChatClientManagerTests: XCTestCase {
         return "OSISA.1222.3SIDOA"
     }
     
+    private var appIdKey = "ChatClientManagerTests.appIdKey"
+    private var userTokenKey = "ChatClientManagerTests.userTokenKey"
+    
     private lazy var anyAppId = "10203"
     
     private static var anySettings: ChatSettings {
-        return ChatSettings(appId: "10103", userId: "anyUser1203", token: "OSISA.1xxx.3SIDOA")
+        return ChatSettings(appId: "10103", token: "OSISA.1xxx.3SIDOA", userId: "anyUser1203")
     }
-    
+    /*
     func test_prepareSDK_deliversAppIdWhenPrepareCompleted() {
-        let (sut, client) = makeSUT()
+        let (sut, client, _) = makeSUT()
         
         var capturedResult = [String]()
         let exp = expectation(description: "Wait for prepare to callback")
@@ -114,7 +57,7 @@ class ChatClientManagerTests: XCTestCase {
     }
     
     func test_prepareSDK_deliverNoResultWhenInstanceHasBeenDeallocated() {
-        var (sut, client) = makeOptionalSUT()
+        var (sut, client, _) = makeOptionalSUT()
         
         var capturedResult = [Result]()
         sut?.prepare(with: client.settings) { capturedResult.append($0) }
@@ -126,7 +69,7 @@ class ChatClientManagerTests: XCTestCase {
     }
     
     func test_prepareSDK_deliversNoResultOnInitSuccessAndLoginFails() {
-        var (sut, client) = makeOptionalSUT()
+        var (sut, client, _) = makeOptionalSUT()
         
         var capturedResult = [Result]()
         sut?.prepare(with: client.settings, { capturedResult.append($0) })
@@ -139,7 +82,7 @@ class ChatClientManagerTests: XCTestCase {
     }
     
     func test_prepareSDK_deliversErrorOnInitSuccessAndLoginError() {
-        let (sut, client) = makeSUT()
+        let (sut, client, _) = makeSUT()
         
         var capturedResult = [Result]()
         sut.prepare(with: client.settings, { capturedResult.append($0) })
@@ -149,6 +92,7 @@ class ChatClientManagerTests: XCTestCase {
         
         XCTAssertEqual(capturedResult, [.failure(.invalidUserID)])
     }
+ */
 }
 
 // MARK: - Client StartSDK Tests
@@ -156,17 +100,16 @@ class ChatClientManagerTests: XCTestCase {
 extension ChatClientManagerTests {
     
     func test_startSDK_returnsAppId() {
-        let sett = ChatSettings(appId: "NOONEWILLSTOPYOU2020", userId: "2222", token: "11111")
+        let sett = ChatSettings(appId: "NOONEWILLSTOPYOU2020", token: "11111", userId: "2222")
         
-        let (sut, client) = makeSUT(sett)
-        
-        expectStart(sut, toCompleteWith: .success(sett.appId), when: {
+        let (sut, client, _) = makeSUT(sett)
+        expectStart(appId: sett.appId, sut, toCompleteWith: .success(sett.appId), when: {
             client.completeStartSDKSuccessfuly()
         })
     }
     
     func test_stardSDK_failsOnWrongId() {
-        let (sut, client) = makeSUT()
+        let (sut, client, _) = makeSUT()
         
         expectStart(sut, toCompleteWith: .failure(.initFailed), when: {
             client.completeStartSDKWithError()
@@ -174,9 +117,7 @@ extension ChatClientManagerTests {
     }
     
     func test_startSDK_notReturnsWhenInstanceIsDeallocated() {
-        let settings = ChatSettings(appId: anyAppId, userId: anyUserID, token: anyToken)
-        let client = ChatClientSpy(settings: settings)
-        var sut: ClientManager? = ClientManager(chat: client, httpClient: ChatHTTPClientMock())
+        var (sut, client, _) = makeOptionalSUT()
         
         var capturedResult = [Result]()
         sut?.start(anyAppId) { capturedResult.append($0) }
@@ -188,25 +129,30 @@ extension ChatClientManagerTests {
     }
     
     // MARK: - Helpers
-
-    private func makeSUT(_ settings: ChatSettings = ChatClientManagerTests.anySettings) -> (sut: ClientManager, client: ChatClientSpy) {
-        let (sut, client) = makeOptionalSUT(settings)
+    
+    private func makeSUT(_ settings: ChatSettings = ChatClientManagerTests.anySettings, storage: UserDefaultStorageMock = UserDefaultStorageMock()) -> (sut: ClientManager, client: ChatClientSpy, httpClient: ChatHTTPClientMock) {
+        
+        let (sut, client, httpClient) = makeOptionalSUT(settings, storage: storage)
         
         trackMemoryLeaks(client)
         trackMemoryLeaks(sut!)
         
-        return (sut!, client)
+        return (sut!, client, httpClient)
     }
     
-    private func makeOptionalSUT(_ settings: ChatSettings = ChatClientManagerTests.anySettings) -> (sut: ClientManager?, client: ChatClientSpy) {
-        let settings = ChatSettings(appId: settings.appId, userId: settings.userId, token: settings.token)
+    private func makeOptionalSUT(_ settings: ChatSettings = ChatClientManagerTests.anySettings, storage: UserDefaultStorageMock = UserDefaultStorageMock()) -> (sut: ClientManager?, client: ChatClientSpy, httpClient: ChatHTTPClientMock) {
+        
         let client = ChatClientSpy(settings: settings)
-        let sut: ClientManager? = ClientManager(chat: client, httpClient: ChatHTTPClientMock())
+        let httpClient = ChatHTTPClientMock()
+        
+        let clients = ClientManagerClients(chatClient: client, httpClient: httpClient, jwtClient: Jwt(), storage: storage)
+        
+        let sut: ClientManager? = ClientManager(clients: clients)
         
         trackMemoryLeaks(client)
         trackMemoryLeaks(sut!)
         
-        return (sut, client)
+        return (sut, client, httpClient)
     }
     
     private func expectStart(appId: String = "10233", _ sut: ClientManager, toCompleteWith expectedResult: Result, when action: @escaping () -> Void, file: StaticString = #file, line: UInt = #line) {
@@ -245,18 +191,18 @@ extension ChatClientManagerTests {
 extension ChatClientManagerTests {
     
     func test_loginSDK_deliversSuccessWithValidUserID() {
-        let sett = ChatSettings(appId: "appId-10101", userId: "userId-2222", token: "11111")
-
-        let (sut, client) = makeSUT(sett)
+        let sett = ChatSettings(appId: "appId-10101", token: "11111", userId: "userId-2222")
+        
+        let (sut, client, _) = makeSUT(sett)
         client.isInitialize = true
-
-        expectLogin(sut, toCompleteWith: .success(sett.userId), when: {
+        
+        expectLogin(sut, toCompleteWith: .success(sett.userId!), when: {
             client.completeLoginWithSuccess()
         })
     }
     
     func test_loginSDK_deliversErrorOnInvalidUserId() {
-        let (sut, client) = makeSUT()
+        let (sut, client, _) = makeSUT()
         
         client.isInitialize = true
         expectLogin(sut, toCompleteWith: .failure(.invalidUserID), when: {
@@ -265,7 +211,7 @@ extension ChatClientManagerTests {
     }
     
     func test_loginSDK_deliversErrorOnInvalidToken() {
-        let (sut, client) = makeSUT()
+        let (sut, client, _) = makeSUT()
         
         client.isInitialize = true
         expectLogin(sut, toCompleteWith: .failure(.invalidToken), when: {
@@ -274,7 +220,7 @@ extension ChatClientManagerTests {
     }
     
     func test_loginWontCallBeforeInitilized() {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
         
         var capturedResult = [Result]()
         let exp = expectation(description: "Waits for prepare to complete")
@@ -286,5 +232,23 @@ extension ChatClientManagerTests {
         
         wait(for: [exp], timeout: 1.0)
         XCTAssertEqual(capturedResult, [.failure(.sdkNotInitialized)])
+    }
+}
+
+private extension UserDefaultStorageMock {
+    private var unmeaningfulAppId: String {
+        return "109.++33.dd"
+    }
+    
+    private var unmeaningfulToken: String {
+        return "U.99.aP-8"
+    }
+    
+    func setAppIdAsSaved(for key: String) {
+        save(value: unmeaningfulAppId, for: key)
+    }
+    
+    func setUserTokenAsSaved(for key: String) {
+        save(value: unmeaningfulToken, for: key)
     }
 }

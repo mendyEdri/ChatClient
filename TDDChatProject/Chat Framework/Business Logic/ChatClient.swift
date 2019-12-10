@@ -8,14 +8,7 @@
 
 import Foundation
 
-/** Enum type returns success or failure with an associated value */
-public struct ChatSettings {
-    var appId: String
-    var userId: String
-    var token: String
-}
-
-/** Protocol for Initialization. To make Intializable decupled from ChatClient ChatSettings property */
+/** Protocol for Initialization. To make Intializable decupled from ChatClient  */
 public protocol Initializable {
     typealias StartResult = Result<String, ClientManager.Error>
     
@@ -26,13 +19,24 @@ public protocol Initializable {
 public protocol Loginable {
     typealias LoginResult = Result<String, ClientManager.Error>
     
-    func canLogin() -> Bool
+    func initialized() -> Bool
+    func loggedIn() -> Bool
     func login(userId: String, token: String, completion: @escaping (LoginResult) -> Void)
     func logout(completion: @escaping (LoginResult) -> Void)
 }
 
-/** Chat Client Protocol, conforms to Initializable and Loginable, on his own added ChatSettings */
+/** Chat Client Protocol, conforms to Initializable and Loginable */
 public protocol ChatClient: Initializable, Loginable {
-    /** Enum type returns success or failure with an associated value */
-    var settings: ChatSettings { get }
+    var appIdKey: String { get }
+    var userTokenKey: String { get }
+}
+
+extension ChatClient {
+    public var appIdKey: String {
+        return "\(type(of: self)).appIdKey"
+    }
+    
+    public var userTokenKey: String {
+        return "\(type(of: self)).userTokenKey"
+    }
 }

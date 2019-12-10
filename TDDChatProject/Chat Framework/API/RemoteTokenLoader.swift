@@ -21,10 +21,7 @@ public class RemoteTokenLoader {
         case unknownVendor
     }
     
-    public enum Result: Equatable {
-        case success(ChatVendorToken)
-        case failure(Error)
-    }
+    public typealias Result = Swift.Result<ChatVendorToken, Error>
     
     public init(url: URL, client: ChatHTTPClient) {
         self.url = url
@@ -32,7 +29,7 @@ public class RemoteTokenLoader {
     }
     
     func load(completion: @escaping (Result) -> Void) {
-        client.get(from: url) { (result) in
+        client.get(from: url, method: .POST) { result in
             switch result {
             case let .success(data, response):
                 completion(ChatVendorTokenMapper.map(data: data, from: response))
