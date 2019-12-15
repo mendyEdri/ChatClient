@@ -7,49 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "56FF354B-D2F9-4774-89F3-20B2FA2BE1D6"
+            uuid = "77E700E0-474E-43A1-9D00-7040BE85B54D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TDDChatProject/Chat Framework/Business Logic/ClientManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "deinit"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "loginCommand()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "56FF354B-D2F9-4774-89F3-20B2FA2BE1D6 - 562eccd562df208b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TDDChatProject.ClientManager.deinit"
-                  moduleName = "TDDChatProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mendyedri/Development/iOS/TDD%20Chat/TDDChatProject/TDDChatProject/Chat%20Framework/Business%20Logic/ClientManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "122"
-                  endingLineNumber = "122"
-                  offsetFromSymbolStart = "22">
-               </Location>
-               <Location
-                  uuid = "56FF354B-D2F9-4774-89F3-20B2FA2BE1D6 - ee12f1c2cec7c813"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ChatEndToEndTests.ClientManager.deinit"
-                  moduleName = "ChatEndToEndTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mendyedri/Development/iOS/TDD%20Chat/TDDChatProject/TDDChatProject/Chat%20Framework/Business%20Logic/ClientManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "122"
-                  endingLineNumber = "122"
-                  offsetFromSymbolStart = "22">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

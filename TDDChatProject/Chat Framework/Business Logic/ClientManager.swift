@@ -19,11 +19,6 @@ public struct ClientManagerClients {
     var strategy: BasicProcessStrategy
 }
 
-/** Commands needs to run the sdk initialization process, conforms to AnyObject to have the Commands instance weak - to prevent retains cycle  */
-private protocol Commands: AnyObject {
-    typealias CommandsCompletion = (Swift.Result<String, ClientManager.Error>) -> Void
-}
-
 extension ClientManager: Commands {}
 
 /** Holds application specific business logic, interact with ChatClient and run the right client request via ChatHTTPClient, according to it state. */
@@ -47,7 +42,7 @@ public class ClientManager {
         case appIdIsMissing, tokenOrUserIdAreMissing
     }
     
-    enum ClientState: Equatable {
+    public enum ClientState: Equatable {
         case notReady
         case ready
         case failed
@@ -111,6 +106,8 @@ public class ClientManager {
     
     var prepareCompletion: (ClientState) -> Void = { _ in }
     
+    private var retries = 0
+    
     private weak var commands: Commands?
     
     public init(clients: ClientManagerClients) {
@@ -127,10 +124,24 @@ extension ClientManager {
     
     /** Instantiate Chat SDK and Login */
     
-    func prepare(_ completion: @escaping (ClientState) -> Void) {
+    public func prepare(_ completion: @escaping (ClientState) -> Void) {
         prepareCompletion = completion
         
         startSDKPreparation(strategy)
+    }
+    
+    public func renewUserToken(completion: @escaping (Result) -> Void) {
+        userTokenCommand { result in
+            completion(result)
+        }
+    }
+    
+    public func logout(_ completion: @escaping (Result) -> Void) {
+        chatClient.logout { result in
+            if case .success = result {
+                
+            }
+        }
     }
     
     private func startSDKPreparation(_ strategy: BasicProcessStrategy) {
@@ -160,30 +171,49 @@ extension ClientManager {
         storage.save(value: value, for: key)
     }
 
+    private func delete(for key: String) {
+        storage.delete(key: key)
+    }
     
     //MARK: - Helpers
     
     /* Uses Genric function to bypass swift compilation error that it won't compile when the function getting Result<SomeType, Swift.Error> and we send some Swift.Error specific implementation (such as Class.Error),
      In Functions, the same behaviour of passing a spesific implementation of an Error to a generic Swift.Error parameter will work. :\--
      */
+        
     private func handle<T>(_ result: Swift.Result<String, T>) where T: Swift.Error {
         
         switch result {
         case .success:
+            retries = 0
             self.startSDKPreparation(strategy)
             
         case .failure:
+            guard retries > 0 else {
+                self.startSDKPreparation(strategy)
+                retries += 1
+                return
+            }
+            
             self.clientState = .failed
-            #warning("should we retry here?")
         }
     }
     
-    private func completeDeveloperError(_ error: ImplementationError) {
-        prepareCompletion(.failed)
+    private func cleanChatStorage() {
+        deleteSavedAppId()
+        deleteSavedUserToken()
+    }
+    
+    private func deleteSavedAppId() {
+        storage.delete(key: chatClient.appIdKey)
+    }
+    
+    private func deleteSavedUserToken() {
+        storage.delete(key: chatClient.userTokenKey)
     }
 }
 
-extension ClientManager {
+private extension ClientManager {
     private func appIdCommand() {
         commands?.getRemoteAppId(loader: appIdLoader, completion: { [weak self] result in
             guard let self = self else { return }
@@ -192,7 +222,7 @@ extension ClientManager {
         })
     }
     
-    private func userTokenCommand() {
+    private func userTokenCommand(_ completion: ((Result) -> Void)? = nil) {
         commands?.getRemoteToken(loader: userTokenLoader) { result in
             self.save(result: result, for: self.userTokenKey)
             self.handle(result)
@@ -202,6 +232,9 @@ extension ClientManager {
     private func startCommand() {
         commands?.startSDK(for: (chatClient, appId)) { [weak self] result in
             guard let self = self else { return }
+            if case .failure = result {
+                self.delete(for: self.chatClient.appIdKey)
+            }
             self.handle(result)
         }
     }
@@ -214,49 +247,5 @@ extension ClientManager {
     
     private func readyCommand() {
         clientState = .ready
-    }
-}
-
-extension Commands {
-    
-    fileprivate func getRemoteAppId(loader: RemoteAppIdLoader, completion: @escaping CommandsCompletion) {
-        loader.load { [weak self] in
-            guard self != nil else { return }
-            completion($0.map { $0.appId }.mapError { _ in .failsFetchAppId })
-        }
-    }
-    
-    fileprivate func getRemoteToken(loader: RemoteTokenLoader, completion: @escaping CommandsCompletion) {
-        loader.load { [weak self] in
-            guard self != nil else { return }
-            completion($0.map { $0.accessToken }.mapError { _ in .failsFetchToken })
-        }
-    }
-    
-    fileprivate func startSDK(for sdk: (client: ChatClient, appId: String?), completion: @escaping CommandsCompletion) {
-        let client = sdk.client
-        client.startSDK(sdk.appId) { [weak self] in
-            guard self != nil else { return }
-            completion($0.mapError { _ in .initFailed })
-        }
-    }
-    
-    fileprivate func loginSDK(for sdk: (client: ChatClient, token: String?, userId: String?), completion: @escaping CommandsCompletion) {
-        
-        guard let userId = sdk.userId, let token = sdk.token else {
-            return completion(.failure(.invalidToken))
-        }
-        
-        let client = sdk.client
-        guard client.initialized() == true else {
-            completion(.failure(.sdkNotInitialized))
-            // to indicate failing if login called before initialize SDK
-            return
-        }
-        
-        client.login(userId: userId, token: token) { [weak self] result in
-            guard self != nil else { return }
-            completion(result.mapError { _ in return .loginFailed })
-        }
     }
 }

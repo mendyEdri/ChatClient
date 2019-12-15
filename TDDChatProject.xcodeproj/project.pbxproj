@@ -48,6 +48,8 @@
 		F0D596F423A2A4C80005C76F /* ResponseMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A1E23749377002AB76E /* ResponseMetadata.swift */; };
 		F0D596F523A2A4D00005C76F /* JwtDefaultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76BA239D089500063190 /* JwtDefaultParser.swift */; };
 		F0D596F623A2A4D50005C76F /* ChatVendorToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A1F23749377002AB76E /* ChatVendorToken.swift */; };
+		F0D596F923A6619D0005C76F /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D596F823A6619D0005C76F /* Commands.swift */; };
+		F0D596FA23A662080005C76F /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D596F823A6619D0005C76F /* Commands.swift */; };
 		F0E4F94B2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */; };
 		F0E4F94D2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F94C2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift */; };
 		F0E4F96223867FC90024E427 /* IdentityStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */; };
@@ -122,6 +124,7 @@
 		F0D596DB23A297710005C76F /* ChatEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEndToEndTests.swift; sourceTree = "<group>"; };
 		F0D596DD23A297710005C76F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0D596EA23A2A2590005C76F /* libPods-TDDChatProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-TDDChatProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0D596F823A6619D0005C76F /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteIdentityStoreLoader.swift; sourceTree = "<group>"; };
 		F0E4F94C2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteIdentityStoreLoaderTests.swift; sourceTree = "<group>"; };
 		F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreModel.swift; sourceTree = "<group>"; };
@@ -421,6 +424,7 @@
 				F07D76CB239D367C00063190 /* ClientProcessStrategy.swift */,
 				F0E77A2A23749377002AB76E /* ClientManager.swift */,
 				F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */,
+				F0D596F823A6619D0005C76F /* Commands.swift */,
 			);
 			path = "Business Logic";
 			sourceTree = "<group>";
@@ -655,6 +659,7 @@
 				F0D596EE23A2A49B0005C76F /* RemoteAppIdLoader.swift in Sources */,
 				F0D596E323A2A1C60005C76F /* ChatDefaultComposition.swift in Sources */,
 				F0D596E823A2A1DF0005C76F /* Jwt.swift in Sources */,
+				F0D596FA23A662080005C76F /* Commands.swift in Sources */,
 				F0D596E723A2A1DB0005C76F /* DefaultStorage.swift in Sources */,
 				F0D596F223A2A4B70005C76F /* ChatVendorAppId.swift in Sources */,
 				F0D596EC23A2A4740005C76F /* ChatClient.swift in Sources */,
@@ -696,6 +701,7 @@
 				F0E77A3123749377002AB76E /* ChatHTTPClient.swift in Sources */,
 				F07D76CC239D367C00063190 /* ClientProcessStrategy.swift in Sources */,
 				F0E4F94B2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift in Sources */,
+				F0D596F923A6619D0005C76F /* Commands.swift in Sources */,
 				F0E4F96223867FC90024E427 /* IdentityStoreModel.swift in Sources */,
 				F064AAA4239EA5BD00E0909F /* URLSessionHTTPClient.swift in Sources */,
 				F0E77A2E23749377002AB76E /* ResponseHeader.swift in Sources */,

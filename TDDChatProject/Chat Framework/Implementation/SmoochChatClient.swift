@@ -10,12 +10,29 @@ import Foundation
 
 import Smooch
 
+class AuthenticationDelegate: NSObject, SKTAuthenticationDelegate {
+    
+    func onInvalidToken(_ error: Error, handler completionHandler: @escaping SKTAuthenticationCompletionBlock) {
+        ChatDefaultComposition.manager.renewUserToken { result in
+            let newToken = try? result.get()
+            completionHandler(newToken ?? "")
+        }
+    }
+}
+
 public class SmoochChatClient: ChatClient {
         
+    private var authenticationDelegate = AuthenticationDelegate()
+    
     public func startSDK(_ appId: String?, completion: @escaping (StartResult) -> Void) {
         guard let appId = appId else { return completion(.failure(.initFailed)) }
-        let skSettings = SKTSettings(appId: appId)
-        Smooch.initWith(skSettings) { (error, info) in
+        
+        Smooch.initWith(chatSettings(with: appId)) { (error, info) in
+            guard error == nil else {
+                Smooch.destroy()
+                
+                return completion(.failure(.initFailed))
+            }
             completion(.success(appId))
         }
     }
@@ -38,7 +55,19 @@ public class SmoochChatClient: ChatClient {
     }
     
     public func logout(completion: @escaping (LoginResult) -> Void) {
-        #warning("Check it out, what should we should do")
-        completion(.success(""))
+        Smooch.logout { error, info in
+            if error != nil {
+                return completion(.failure(.logoutFails))
+            }
+            return completion(.success(""))
+        }
+    }
+    
+    // MARK: Helpers
+    
+    private func chatSettings(with appId: String) -> SKTSettings {
+        let settings = SKTSettings(appId: appId)
+        settings.authenticationDelegate = authenticationDelegate
+        return settings
     }
 }
