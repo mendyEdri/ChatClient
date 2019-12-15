@@ -139,7 +139,7 @@ extension ClientManager {
     public func logout(_ completion: @escaping (Result) -> Void) {
         chatClient.logout { result in
             if case .success = result {
-                
+                self.cleanChatStorage()
             }
         }
     }
