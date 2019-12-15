@@ -9,7 +9,7 @@
 import Foundation
 
 /** Strategy design for decision making for next ClientManager step in the initialization process. */
-final internal class MainClientProcessStrategy: TokenBasedProcessStrategy {
+final internal class TokenBasedClientStrategy: TokenBasedProcessStrategy {
     
     internal var storage: Storage
     
@@ -31,13 +31,10 @@ final internal class MainClientProcessStrategy: TokenBasedProcessStrategy {
     }
     
     internal var userTokenIsValid: Bool {
-        var valid = false
-        do {
-            valid = try !self.jwt.isJwtExp()
-        } catch {}
-        return valid
+        let valid = try? !self.jwt.isJwtExp()
+        return valid ?? false
     }
-    
+        
     init(client: ChatClient, storage: Storage, jwt: Jwtable) {
         self.client = client
         self.storage = storage

@@ -170,11 +170,11 @@ class ClientProcessStrategyTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeSUT() -> (sut: MainClientProcessStrategy, storage: Storage, chatClient: ChatClientSpy) {
+    private func makeSUT() -> (sut: TokenBasedClientStrategy, storage: Storage, chatClient: ChatClientSpy) {
         let chatClient = anyChatClient
         let storage = UserDefaultStorageMock()
         
-        let sut = MainClientProcessStrategy(client: chatClient, storage: storage, jwt: Jwt())
+        let sut = TokenBasedClientStrategy(client: chatClient, storage: storage, jwt: Jwt())
         return (sut, storage, chatClient)
     }
 }
@@ -182,8 +182,7 @@ class ClientProcessStrategyTests: XCTestCase {
 extension ClientProcessStrategyTests {
     
     private var anyChatClient: ChatClientSpy {
-        let settings = ChatSettings(appId: anyAppId, token: anyToken, userId: anyUserId)
-        let clientSpy = ChatClientSpy(settings: settings)
+        let clientSpy = ChatClientSpy()
         return clientSpy
     }
 }

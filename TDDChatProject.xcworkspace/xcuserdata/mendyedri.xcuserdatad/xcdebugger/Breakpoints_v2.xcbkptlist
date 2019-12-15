@@ -7,160 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5D55F652-2FC3-40E0-8223-A1F0D1FE7E85"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TDDChatProject/Platform Spesific/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "instance"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "95B7C3E8-D35D-4ABB-8190-B0DD1D89A571"
+            uuid = "56FF354B-D2F9-4774-89F3-20B2FA2BE1D6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TDDChatProject/Chat Framework/Business Logic/ClientManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
-            landmarkName = "loadAndSaveUserToken(_:)"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "deinit"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "95B7C3E8-D35D-4ABB-8190-B0DD1D89A571 - 570bf6ffc24bc46c"
+                  uuid = "56FF354B-D2F9-4774-89F3-20B2FA2BE1D6 - 562eccd562df208b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "TDDChatProject.ClientManager.(loadAndSaveUserToken in _90EBC55185EE132E79F73027EF8BA80F)((Swift.Result&lt;TDDChatProject.ChatVendorToken, TDDChatProject.RemoteTokenLoader.Error&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "TDDChatProject.ClientManager.deinit"
                   moduleName = "TDDChatProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mendyedri/Development/iOS/TDD%20Chat/TDDChatProject/TDDChatProject/Chat%20Framework/Business%20Logic/ClientManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "226"
-                  endingLineNumber = "226"
-                  offsetFromSymbolStart = "108">
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "22">
                </Location>
                <Location
-                  uuid = "95B7C3E8-D35D-4ABB-8190-B0DD1D89A571 - a7b37118870132ca"
+                  uuid = "56FF354B-D2F9-4774-89F3-20B2FA2BE1D6 - ee12f1c2cec7c813"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;TDDChatProject.ChatVendorToken, TDDChatProject.RemoteTokenLoader.Error&gt;) -&gt; () in TDDChatProject.ClientManager.(loadAndSaveUserToken in _90EBC55185EE132E79F73027EF8BA80F)((Swift.Result&lt;TDDChatProject.ChatVendorToken, TDDChatProject.RemoteTokenLoader.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "TDDChatProject"
+                  symbolName = "ChatEndToEndTests.ClientManager.deinit"
+                  moduleName = "ChatEndToEndTests"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mendyedri/Development/iOS/TDD%20Chat/TDDChatProject/TDDChatProject/Chat%20Framework/Business%20Logic/ClientManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "226"
-                  endingLineNumber = "226"
-                  offsetFromSymbolStart = "156">
+                  startingLineNumber = "122"
+                  endingLineNumber = "122"
+                  offsetFromSymbolStart = "22">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1EF0F7F0-0244-4622-A22B-8699F00CAF4D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TDDChatProject/Chat Framework/Business Logic/ClientManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
-            landmarkName = "loadAndSaveUserToken(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1EF0F7F0-0244-4622-A22B-8699F00CAF4D - a7b37118870132ca"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;TDDChatProject.ChatVendorToken, TDDChatProject.RemoteTokenLoader.Error&gt;) -&gt; () in TDDChatProject.ClientManager.(loadAndSaveUserToken in _90EBC55185EE132E79F73027EF8BA80F)((Swift.Result&lt;TDDChatProject.ChatVendorToken, TDDChatProject.RemoteTokenLoader.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "TDDChatProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mendyedri/Development/iOS/TDD%20Chat/TDDChatProject/TDDChatProject/Chat%20Framework/Business%20Logic/ClientManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
-                  offsetFromSymbolStart = "272">
-               </Location>
-               <Location
-                  uuid = "1EF0F7F0-0244-4622-A22B-8699F00CAF4D - a7b37118870132ca"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;TDDChatProject.ChatVendorToken, TDDChatProject.RemoteTokenLoader.Error&gt;) -&gt; () in TDDChatProject.ClientManager.(loadAndSaveUserToken in _90EBC55185EE132E79F73027EF8BA80F)((Swift.Result&lt;TDDChatProject.ChatVendorToken, TDDChatProject.RemoteTokenLoader.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "TDDChatProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mendyedri/Development/iOS/TDD%20Chat/TDDChatProject/TDDChatProject/Chat%20Framework/Business%20Logic/ClientManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
-                  offsetFromSymbolStart = "300">
-               </Location>
-               <Location
-                  uuid = "1EF0F7F0-0244-4622-A22B-8699F00CAF4D - a7b37118870132ca"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;TDDChatProject.ChatVendorToken, TDDChatProject.RemoteTokenLoader.Error&gt;) -&gt; () in TDDChatProject.ClientManager.(loadAndSaveUserToken in _90EBC55185EE132E79F73027EF8BA80F)((Swift.Result&lt;TDDChatProject.ChatVendorToken, TDDChatProject.RemoteTokenLoader.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "TDDChatProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mendyedri/Development/iOS/TDD%20Chat/TDDChatProject/TDDChatProject/Chat%20Framework/Business%20Logic/ClientManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
-                  offsetFromSymbolStart = "592">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "05C59D5C-B8D1-4F99-AD43-816763E5A98D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TDDChatProject/Chat Framework/Business Logic/ClientManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "startSDKPreparation(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6E070A9E-C287-4EFB-8BF4-1E95E6205442"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TDDChatProject/Frameworks/Jwt/Jwt.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "value(for:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

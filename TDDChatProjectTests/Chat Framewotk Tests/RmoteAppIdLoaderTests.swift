@@ -11,10 +11,6 @@ import XCTest
 
 class RmoteAppIdLoaderTests: XCTestCase {
     
-    // list of requests:
-    // 1. STS-Metadata - Getting Vendor App Id - This is the one in here.
-    // 2. Smooch.init - Initialize vendor SDK
-    // 4. Smooch.login - Login to vendor with jwt
     static let ValidAppId = "5c0176f943aea6002248a53b"
     
     func test_apiAppIdLoader_emptyURL() {
@@ -119,6 +115,5 @@ private extension ChatVendorAppId {
                     "reqId": item.meta.reqId,
                     "status": item.meta.status
             ]] as [String : Any]
-        
     }
 }

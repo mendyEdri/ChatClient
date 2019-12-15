@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F6E9B61A52BAD3D35BF5314 /* libPods-ChatEndToEndTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C20F6553B73BC0AFABF3 /* libPods-ChatEndToEndTests.a */; };
 		406B701EAAA0474D5FD18E48 /* libPods-TDDChatProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20036174A8DC5C34C1B980C3 /* libPods-TDDChatProject.a */; };
+		966377ABFB3D85CA2B2EE5A2 /* libPods-TDDChatProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D596EA23A2A2590005C76F /* libPods-TDDChatProject.a */; };
 		F0071E05238FC95700563A9C /* ProcessStateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0071E04238FC95700563A9C /* ProcessStateHelperTests.swift */; };
 		F05E7EE823990E6C00389F76 /* ChatClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */; };
 		F063F0AA23954F3200F9E770 /* UserDefaultStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063F0A923954F3200F9E770 /* UserDefaultStorageMock.swift */; };
 		F064AAA4239EA5BD00E0909F /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064AAA3239EA5BD00E0909F /* URLSessionHTTPClient.swift */; };
-		F07D76A6239CF19A00063190 /* MainClientProcessStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76A5239CF19A00063190 /* MainClientProcessStrategy.swift */; };
+		F07D76A6239CF19A00063190 /* TokenBasedClientStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76A5239CF19A00063190 /* TokenBasedClientStrategy.swift */; };
 		F07D76A8239CF1B600063190 /* ClientProcessStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76A7239CF1B600063190 /* ClientProcessStrategyTests.swift */; };
 		F07D76BC239D089500063190 /* Jwt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76B8239D089500063190 /* Jwt.swift */; };
 		F07D76BD239D089500063190 /* JwtDefaultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76BA239D089500063190 /* JwtDefaultParser.swift */; };
@@ -24,6 +26,28 @@
 		F0ACDF3E238BD353003043E9 /* IdentityStoreControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */; };
 		F0ACDF41238BD43C003043E9 /* DefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */; };
 		F0ACDF43238BE3A1003043E9 /* IdentityStoreResponseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF42238BE3A1003043E9 /* IdentityStoreResponseHelper.swift */; };
+		F0D5969D23A0011F0005C76F /* ChatDefaultComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5969C23A0011F0005C76F /* ChatDefaultComposition.swift */; };
+		F0D596A123A0E6D40005C76F /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D596A023A0E6D40005C76F /* Requests.swift */; };
+		F0D596D423A28CCE0005C76F /* JSONMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D596D323A28CCE0005C76F /* JSONMockData.swift */; };
+		F0D596DC23A297710005C76F /* ChatEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D596DB23A297710005C76F /* ChatEndToEndTests.swift */; };
+		F0D596E323A2A1C60005C76F /* ChatDefaultComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5969C23A0011F0005C76F /* ChatDefaultComposition.swift */; };
+		F0D596E423A2A1CF0005C76F /* ClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2A23749377002AB76E /* ClientManager.swift */; };
+		F0D596E523A2A1D40005C76F /* SmoochChatClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2323749377002AB76E /* SmoochChatClient.swift */; };
+		F0D596E623A2A1D70005C76F /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F064AAA3239EA5BD00E0909F /* URLSessionHTTPClient.swift */; };
+		F0D596E723A2A1DB0005C76F /* DefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */; };
+		F0D596E823A2A1DF0005C76F /* Jwt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76B8239D089500063190 /* Jwt.swift */; };
+		F0D596E923A2A1E40005C76F /* TokenBasedClientStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76A5239CF19A00063190 /* TokenBasedClientStrategy.swift */; };
+		F0D596EC23A2A4740005C76F /* ChatClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2923749377002AB76E /* ChatClient.swift */; };
+		F0D596ED23A2A4860005C76F /* ChatHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2623749377002AB76E /* ChatHTTPClient.swift */; };
+		F0D596EE23A2A49B0005C76F /* RemoteAppIdLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2523749377002AB76E /* RemoteAppIdLoader.swift */; };
+		F0D596EF23A2A49E0005C76F /* RemoteTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2723749377002AB76E /* RemoteTokenLoader.swift */; };
+		F0D596F023A2A4A90005C76F /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76C7239D18A800063190 /* Storage.swift */; };
+		F0D596F123A2A4B00005C76F /* ClientProcessStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76CB239D367C00063190 /* ClientProcessStrategy.swift */; };
+		F0D596F223A2A4B70005C76F /* ChatVendorAppId.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2023749377002AB76E /* ChatVendorAppId.swift */; };
+		F0D596F323A2A4C40005C76F /* ResponseHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2123749377002AB76E /* ResponseHeader.swift */; };
+		F0D596F423A2A4C80005C76F /* ResponseMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A1E23749377002AB76E /* ResponseMetadata.swift */; };
+		F0D596F523A2A4D00005C76F /* JwtDefaultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76BA239D089500063190 /* JwtDefaultParser.swift */; };
+		F0D596F623A2A4D50005C76F /* ChatVendorToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A1F23749377002AB76E /* ChatVendorToken.swift */; };
 		F0E4F94B2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */; };
 		F0E4F94D2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F94C2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift */; };
 		F0E4F96223867FC90024E427 /* IdentityStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */; };
@@ -51,6 +75,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F0D596DE23A297710005C76F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0E779E02374932C002AB76E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F0E779E72374932C002AB76E;
+			remoteInfo = TDDChatProject;
+		};
 		F0E779FF2374932D002AB76E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F0E779E02374932C002AB76E /* Project object */;
@@ -62,13 +93,16 @@
 
 /* Begin PBXFileReference section */
 		20036174A8DC5C34C1B980C3 /* libPods-TDDChatProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TDDChatProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2204C20F6553B73BC0AFABF3 /* libPods-ChatEndToEndTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChatEndToEndTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47D0747548E59A4170795549 /* Pods-ChatEndToEndTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatEndToEndTests.debug.xcconfig"; path = "Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F20C3F7E5D2FCBE63A4F2CA /* Pods-TDDChatProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDChatProject.debug.xcconfig"; path = "Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject.debug.xcconfig"; sourceTree = "<group>"; };
 		771CED41378EF474964900F1 /* Pods-TDDChatProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDChatProject.release.xcconfig"; path = "Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject.release.xcconfig"; sourceTree = "<group>"; };
+		9E7E9E8392F4D3427F896A2E /* Pods-ChatEndToEndTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatEndToEndTests.release.xcconfig"; path = "Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0071E04238FC95700563A9C /* ProcessStateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessStateHelperTests.swift; sourceTree = "<group>"; };
 		F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatClientSpy.swift; sourceTree = "<group>"; };
 		F063F0A923954F3200F9E770 /* UserDefaultStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultStorageMock.swift; sourceTree = "<group>"; };
 		F064AAA3239EA5BD00E0909F /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
-		F07D76A5239CF19A00063190 /* MainClientProcessStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainClientProcessStrategy.swift; sourceTree = "<group>"; };
+		F07D76A5239CF19A00063190 /* TokenBasedClientStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBasedClientStrategy.swift; sourceTree = "<group>"; };
 		F07D76A7239CF1B600063190 /* ClientProcessStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProcessStrategyTests.swift; sourceTree = "<group>"; };
 		F07D76B8239D089500063190 /* Jwt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jwt.swift; sourceTree = "<group>"; };
 		F07D76B9239D089500063190 /* Jwt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jwt.h; sourceTree = "<group>"; };
@@ -81,6 +115,13 @@
 		F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreControllerTests.swift; sourceTree = "<group>"; };
 		F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorage.swift; sourceTree = "<group>"; };
 		F0ACDF42238BE3A1003043E9 /* IdentityStoreResponseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreResponseHelper.swift; sourceTree = "<group>"; };
+		F0D5969C23A0011F0005C76F /* ChatDefaultComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDefaultComposition.swift; sourceTree = "<group>"; };
+		F0D596A023A0E6D40005C76F /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
+		F0D596D323A28CCE0005C76F /* JSONMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMockData.swift; sourceTree = "<group>"; };
+		F0D596D923A297710005C76F /* ChatEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0D596DB23A297710005C76F /* ChatEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEndToEndTests.swift; sourceTree = "<group>"; };
+		F0D596DD23A297710005C76F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0D596EA23A2A2590005C76F /* libPods-TDDChatProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-TDDChatProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteIdentityStoreLoader.swift; sourceTree = "<group>"; };
 		F0E4F94C2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteIdentityStoreLoaderTests.swift; sourceTree = "<group>"; };
 		F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreModel.swift; sourceTree = "<group>"; };
@@ -112,11 +153,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F0D596D623A297710005C76F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F6E9B61A52BAD3D35BF5314 /* libPods-ChatEndToEndTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0E779E52374932C002AB76E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				406B701EAAA0474D5FD18E48 /* libPods-TDDChatProject.a in Frameworks */,
+				966377ABFB3D85CA2B2EE5A2 /* libPods-TDDChatProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +183,9 @@
 		922A2F6EC8C97604250E31AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F0D596EA23A2A2590005C76F /* libPods-TDDChatProject.a */,
 				20036174A8DC5C34C1B980C3 /* libPods-TDDChatProject.a */,
+				2204C20F6553B73BC0AFABF3 /* libPods-ChatEndToEndTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -215,11 +267,29 @@
 			path = Implementations;
 			sourceTree = "<group>";
 		};
+		F0D5969B23A001030005C76F /* Chat App Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				F0D5969C23A0011F0005C76F /* ChatDefaultComposition.swift */,
+			);
+			path = "Chat App Implementation";
+			sourceTree = "<group>";
+		};
+		F0D596DA23A297710005C76F /* ChatEndToEndTests */ = {
+			isa = PBXGroup;
+			children = (
+				F0D596DB23A297710005C76F /* ChatEndToEndTests.swift */,
+				F0D596DD23A297710005C76F /* Info.plist */,
+			);
+			path = ChatEndToEndTests;
+			sourceTree = "<group>";
+		};
 		F0E779DF2374932C002AB76E = {
 			isa = PBXGroup;
 			children = (
 				F0E779EA2374932C002AB76E /* TDDChatProject */,
 				F0E77A012374932D002AB76E /* TDDChatProjectTests */,
+				F0D596DA23A297710005C76F /* ChatEndToEndTests */,
 				F0E779E92374932C002AB76E /* Products */,
 				FC50F3F0D3E7A5617CC15EB5 /* Pods */,
 				922A2F6EC8C97604250E31AA /* Frameworks */,
@@ -231,6 +301,7 @@
 			children = (
 				F0E779E82374932C002AB76E /* TDDChatProject.app */,
 				F0E779FE2374932D002AB76E /* TDDChatProjectTests.xctest */,
+				F0D596D923A297710005C76F /* ChatEndToEndTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,6 +351,7 @@
 				F0ACDF42238BE3A1003043E9 /* IdentityStoreResponseHelper.swift */,
 				F063F0A923954F3200F9E770 /* UserDefaultStorageMock.swift */,
 				F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */,
+				F0D596D323A28CCE0005C76F /* JSONMockData.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -287,6 +359,7 @@
 		F0E77A1B23749357002AB76E /* Platform Spesific */ = {
 			isa = PBXGroup;
 			children = (
+				F0D5969B23A001030005C76F /* Chat App Implementation */,
 				F0E779EB2374932C002AB76E /* AppDelegate.swift */,
 				F0E779EF2374932C002AB76E /* ViewController.swift */,
 				F0E779F12374932C002AB76E /* Main.storyboard */,
@@ -322,7 +395,7 @@
 		F0E77A2223749377002AB76E /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				F07D76A5239CF19A00063190 /* MainClientProcessStrategy.swift */,
+				F07D76A5239CF19A00063190 /* TokenBasedClientStrategy.swift */,
 				F0E77A2323749377002AB76E /* SmoochChatClient.swift */,
 				F064AAA3239EA5BD00E0909F /* URLSessionHTTPClient.swift */,
 			);
@@ -336,6 +409,7 @@
 				F0E77A2523749377002AB76E /* RemoteAppIdLoader.swift */,
 				F0E77A2723749377002AB76E /* RemoteTokenLoader.swift */,
 				F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */,
+				F0D596A023A0E6D40005C76F /* Requests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -356,6 +430,8 @@
 			children = (
 				4F20C3F7E5D2FCBE63A4F2CA /* Pods-TDDChatProject.debug.xcconfig */,
 				771CED41378EF474964900F1 /* Pods-TDDChatProject.release.xcconfig */,
+				47D0747548E59A4170795549 /* Pods-ChatEndToEndTests.debug.xcconfig */,
+				9E7E9E8392F4D3427F896A2E /* Pods-ChatEndToEndTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -363,6 +439,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F0D596D823A297710005C76F /* ChatEndToEndTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0D596E023A297710005C76F /* Build configuration list for PBXNativeTarget "ChatEndToEndTests" */;
+			buildPhases = (
+				102FF815BFE4332F122D4ECD /* [CP] Check Pods Manifest.lock */,
+				F0D596D523A297710005C76F /* Sources */,
+				F0D596D623A297710005C76F /* Frameworks */,
+				F0D596D723A297710005C76F /* Resources */,
+				CD1E5CD341BB3F1A7676713F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F0D596DF23A297710005C76F /* PBXTargetDependency */,
+			);
+			name = ChatEndToEndTests;
+			productName = ChatEndToEndTests;
+			productReference = F0D596D923A297710005C76F /* ChatEndToEndTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F0E779E72374932C002AB76E /* TDDChatProject */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0E77A072374932D002AB76E /* Build configuration list for PBXNativeTarget "TDDChatProject" */;
@@ -410,6 +506,10 @@
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = CWT;
 				TargetAttributes = {
+					F0D596D823A297710005C76F = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = F0E779E72374932C002AB76E;
+					};
 					F0E779E72374932C002AB76E = {
 						CreatedOnToolsVersion = 11.1;
 					};
@@ -434,11 +534,19 @@
 			targets = (
 				F0E779E72374932C002AB76E /* TDDChatProject */,
 				F0E779FD2374932D002AB76E /* TDDChatProjectTests */,
+				F0D596D823A297710005C76F /* ChatEndToEndTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F0D596D723A297710005C76F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0E779E62374932C002AB76E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -459,6 +567,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		102FF815BFE4332F122D4ECD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChatEndToEndTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8EB5C81E83375CC61BD6D81B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -498,9 +628,52 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CD1E5CD341BB3F1A7676713F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F0D596D523A297710005C76F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0D596EE23A2A49B0005C76F /* RemoteAppIdLoader.swift in Sources */,
+				F0D596E323A2A1C60005C76F /* ChatDefaultComposition.swift in Sources */,
+				F0D596E823A2A1DF0005C76F /* Jwt.swift in Sources */,
+				F0D596E723A2A1DB0005C76F /* DefaultStorage.swift in Sources */,
+				F0D596F223A2A4B70005C76F /* ChatVendorAppId.swift in Sources */,
+				F0D596EC23A2A4740005C76F /* ChatClient.swift in Sources */,
+				F0D596F523A2A4D00005C76F /* JwtDefaultParser.swift in Sources */,
+				F0D596E923A2A1E40005C76F /* TokenBasedClientStrategy.swift in Sources */,
+				F0D596F623A2A4D50005C76F /* ChatVendorToken.swift in Sources */,
+				F0D596F323A2A4C40005C76F /* ResponseHeader.swift in Sources */,
+				F0D596E623A2A1D70005C76F /* URLSessionHTTPClient.swift in Sources */,
+				F0D596ED23A2A4860005C76F /* ChatHTTPClient.swift in Sources */,
+				F0D596E523A2A1D40005C76F /* SmoochChatClient.swift in Sources */,
+				F0D596F123A2A4B00005C76F /* ClientProcessStrategy.swift in Sources */,
+				F0D596DC23A297710005C76F /* ChatEndToEndTests.swift in Sources */,
+				F0D596F423A2A4C80005C76F /* ResponseMetadata.swift in Sources */,
+				F0D596EF23A2A49E0005C76F /* RemoteTokenLoader.swift in Sources */,
+				F0D596E423A2A1CF0005C76F /* ClientManager.swift in Sources */,
+				F0D596F023A2A4A90005C76F /* Storage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0E779E42374932C002AB76E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -511,13 +684,15 @@
 				F0ACDF30238AC178003043E9 /* IdentityStoreController.swift in Sources */,
 				F0E77A2B23749377002AB76E /* ResponseMetadata.swift in Sources */,
 				F0E779EC2374932C002AB76E /* AppDelegate.swift in Sources */,
-				F07D76A6239CF19A00063190 /* MainClientProcessStrategy.swift in Sources */,
+				F07D76A6239CF19A00063190 /* TokenBasedClientStrategy.swift in Sources */,
 				F07D76C8239D18A800063190 /* Storage.swift in Sources */,
+				F0D596A123A0E6D40005C76F /* Requests.swift in Sources */,
 				F0E77A3423749377002AB76E /* ClientManager.swift in Sources */,
 				F07D76BC239D089500063190 /* Jwt.swift in Sources */,
 				F0E77A3323749377002AB76E /* ChatClient.swift in Sources */,
 				F0E77A3223749377002AB76E /* RemoteTokenLoader.swift in Sources */,
 				F07D76BD239D089500063190 /* JwtDefaultParser.swift in Sources */,
+				F0D5969D23A0011F0005C76F /* ChatDefaultComposition.swift in Sources */,
 				F0E77A3123749377002AB76E /* ChatHTTPClient.swift in Sources */,
 				F07D76CC239D367C00063190 /* ClientProcessStrategy.swift in Sources */,
 				F0E4F94B2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift in Sources */,
@@ -545,6 +720,7 @@
 				F063F0AA23954F3200F9E770 /* UserDefaultStorageMock.swift in Sources */,
 				F0E4F94D2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift in Sources */,
 				F07D76A8239CF1B600063190 /* ClientProcessStrategyTests.swift in Sources */,
+				F0D596D423A28CCE0005C76F /* JSONMockData.swift in Sources */,
 				F0ACDF3E238BD353003043E9 /* IdentityStoreControllerTests.swift in Sources */,
 				F0E77A1A2374934C002AB76E /* ChatHTTPClientMock.swift in Sources */,
 				F0E77A152374934C002AB76E /* RmoteAppIdLoaderTests.swift in Sources */,
@@ -555,6 +731,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F0D596DF23A297710005C76F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F0E779E72374932C002AB76E /* TDDChatProject */;
+			targetProxy = F0D596DE23A297710005C76F /* PBXContainerItemProxy */;
+		};
 		F0E77A002374932D002AB76E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F0E779E72374932C002AB76E /* TDDChatProject */;
@@ -582,6 +763,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F0D596E123A297710005C76F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47D0747548E59A4170795549 /* Pods-ChatEndToEndTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 96VXC495K7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Pods",
+				);
+				INFOPLIST_FILE = ChatEndToEndTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cwt.end-to-end.ChatEndToEndTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TDDChatProject.app/TDDChatProject";
+			};
+			name = Debug;
+		};
+		F0D596E223A297710005C76F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E7E9E8392F4D3427F896A2E /* Pods-ChatEndToEndTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 96VXC495K7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Pods",
+				);
+				INFOPLIST_FILE = ChatEndToEndTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cwt.end-to-end.ChatEndToEndTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TDDChatProject.app/TDDChatProject";
+			};
+			name = Release;
+		};
 		F0E77A052374932D002AB76E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -783,6 +1014,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F0D596E023A297710005C76F /* Build configuration list for PBXNativeTarget "ChatEndToEndTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0D596E123A297710005C76F /* Debug */,
+				F0D596E223A297710005C76F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F0E779E32374932C002AB76E /* Build configuration list for PBXProject "TDDChatProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

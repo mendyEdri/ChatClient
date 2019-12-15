@@ -16,7 +16,15 @@ public struct ClientManagerClients {
     var httpClient: ChatHTTPClient
     var jwtClient: Jwtable
     var storage: Storage
+    var strategy: BasicProcessStrategy
 }
+
+/** Commands needs to run the sdk initialization process, conforms to AnyObject to have the Commands instance weak - to prevent retains cycle  */
+private protocol Commands: AnyObject {
+    typealias CommandsCompletion = (Swift.Result<String, ClientManager.Error>) -> Void
+}
+
+extension ClientManager: Commands {}
 
 /** Holds application specific business logic, interact with ChatClient and run the right client request via ChatHTTPClient, according to it state. */
 
@@ -27,16 +35,22 @@ public class ClientManager {
     /** Prepare function Result-type error */
     public enum Error: Swift.Error {
         case initFailed
-        case invalidUserID
+        case loginFailed
         case invalidToken
         case sdkNotInitialized
         case logoutFails
+        case failsFetchAppId
+        case failsFetchToken
     }
     
-    enum ClientState {
+    public enum ImplementationError: Swift.Error {
+        case appIdIsMissing, tokenOrUserIdAreMissing
+    }
+    
+    enum ClientState: Equatable {
         case notReady
         case ready
-        case failed(Swift.Error)
+        case failed
     }
     
     private var clientState: ClientState = .notReady {
@@ -57,6 +71,10 @@ public class ClientManager {
     
     private var storage: Storage {
         return clients.storage
+    }
+    
+    private var strategy: BasicProcessStrategy {
+        return self.clients.strategy
     }
     
     private var appIdKey: String {
@@ -91,79 +109,57 @@ public class ClientManager {
     
     private let userTokenEndpointURL = URL(string: "https://api.worldmate.com/tokens/vendors/smooch")!
     
-    private var strategy: MainClientProcessStrategy
-    
     var prepareCompletion: (ClientState) -> Void = { _ in }
-        
+    
+    private weak var commands: Commands?
+    
     public init(clients: ClientManagerClients) {
         self.clients = clients
-        
-        strategy = MainClientProcessStrategy(client: clients.chatClient, storage: clients.storage, jwt: Jwt())
+        commands = self
+    }
+    
+    deinit {
+        debugPrint("ClientManager get's deallocated")
     }
 }
 
 extension ClientManager {
     
-    typealias CompletionResult = (Result) -> Void
-    typealias CompletionAPIResult = (APIResult) -> Void
-    
-    struct Actions {
-        var sdkInit: CompletionResult
-        var sdkLogin: CompletionResult
-        var fetchRemoteAppId: CompletionAPIResult
-        var fetchRemoteUserToken: CompletionAPIResult
-    }
-    
     /** Instantiate Chat SDK and Login */
     
     func prepare(_ completion: @escaping (ClientState) -> Void) {
         prepareCompletion = completion
+        
         startSDKPreparation(strategy)
     }
     
-    private func startSDKPreparation(_ strategy: MainClientProcessStrategy) {
+    private func startSDKPreparation(_ strategy: BasicProcessStrategy) {
         let strategy = strategy.nextStepExecution()
         debugPrint(strategy)
         
         switch strategy {
         case .remoteFetchAppId:
-            loadAndSaveAppId { [weak self] result in
-                guard let self = self else { return }
-                
-                // mapped Result<RemoteAppIdLoader, Error> with a spesific type to Result<String, Erro> more generic type to have single handle function
-                self.handle(result.map { $0.appId })
-            }
+            appIdCommand()
             
         case .remoteFetchUserToken:
-            loadAndSaveUserToken { [weak self] result in
-                guard let self = self else { return }
-                
-                self.handle(result.map { $0.accessToken })
-            }
+            userTokenCommand()
             
         case .SDKInit:
-            #warning("handle return")
-            guard let appId = appId else { return }
-            
-            start(appId) { [weak self] result in
-                guard let self = self else { return }
-                self.handle(result)
-            }
-            
+            startCommand()
+                        
         case .SDKLogin:
-            #warning("handle return")
-            guard let userToken = userToken, let userId = userId
-                else { return }
-            
-            login(userId: userId, token: userToken) { [weak self] result in
-                guard let self = self else { return }
-                self.handle(result.map { $0 })
-            }
+            loginCommand()
             
         case .SDKReadyToUse:
-            clientState = .ready
+            readyCommand()
         }
     }
+    
+    private func save(result: Swift.Result<String, ClientManager.Error>, for key: String) {
+        guard case let .success(value) = result else { return }
+        storage.save(value: value, for: key)
+    }
+
     
     //MARK: - Helpers
     
@@ -176,64 +172,91 @@ extension ClientManager {
         case .success:
             self.startSDKPreparation(strategy)
             
-        case let .failure(error):
-            self.clientState = .failed(error)
-            // mm..should we retry here?
-        }
-    }
-}
-
-// MARK: - ChatClient calls
-extension ClientManager {
-    internal func start(_ appId: String, completion: @escaping ((Result) -> Void)) {
-        chatClient.startSDK(appId) { [weak self] result in
-            guard self != nil else { return }
-            completion(result)
+        case .failure:
+            self.clientState = .failed
+            #warning("should we retry here?")
         }
     }
     
-    internal func login(userId: String, token: String, completion: @escaping (Result) -> Void) {
-        guard chatClient.initialized() == true else {
+    private func completeDeveloperError(_ error: ImplementationError) {
+        prepareCompletion(.failed)
+    }
+}
+
+extension ClientManager {
+    private func appIdCommand() {
+        commands?.getRemoteAppId(loader: appIdLoader, completion: { [weak self] result in
+            guard let self = self else { return }
+            self.save(result: result, for: self.appIdKey)
+            self.handle(result)
+        })
+    }
+    
+    private func userTokenCommand() {
+        commands?.getRemoteToken(loader: userTokenLoader) { result in
+            self.save(result: result, for: self.userTokenKey)
+            self.handle(result)
+        }
+    }
+    
+    private func startCommand() {
+        commands?.startSDK(for: (chatClient, appId)) { [weak self] result in
+            guard let self = self else { return }
+            self.handle(result)
+        }
+    }
+    
+    private func loginCommand() {
+        commands?.loginSDK(for: (chatClient, userToken, userId)) { result in
+            self.handle(result)
+        }
+    }
+    
+    private func readyCommand() {
+        clientState = .ready
+    }
+}
+
+extension Commands {
+    
+    fileprivate func getRemoteAppId(loader: RemoteAppIdLoader, completion: @escaping CommandsCompletion) {
+        loader.load { [weak self] in
+            guard self != nil else { return }
+            completion($0.map { $0.appId }.mapError { _ in .failsFetchAppId })
+        }
+    }
+    
+    fileprivate func getRemoteToken(loader: RemoteTokenLoader, completion: @escaping CommandsCompletion) {
+        loader.load { [weak self] in
+            guard self != nil else { return }
+            completion($0.map { $0.accessToken }.mapError { _ in .failsFetchToken })
+        }
+    }
+    
+    fileprivate func startSDK(for sdk: (client: ChatClient, appId: String?), completion: @escaping CommandsCompletion) {
+        let client = sdk.client
+        client.startSDK(sdk.appId) { [weak self] in
+            guard self != nil else { return }
+            completion($0.mapError { _ in .initFailed })
+        }
+    }
+    
+    fileprivate func loginSDK(for sdk: (client: ChatClient, token: String?, userId: String?), completion: @escaping CommandsCompletion) {
+        
+        guard let userId = sdk.userId, let token = sdk.token else {
+            return completion(.failure(.invalidToken))
+        }
+        
+        let client = sdk.client
+        guard client.initialized() == true else {
             completion(.failure(.sdkNotInitialized))
             // to indicate failing if login called before initialize SDK
             return
         }
-        chatClient.login(userId: userId, token: token) { result in
-            completion(result)
+        
+        client.login(userId: userId, token: token) { [weak self] result in
+            guard self != nil else { return }
+            completion(result.mapError { _ in return .loginFailed })
         }
-    }
-}
-
-// MARK: - Our Endpoints Calls (AppId + Token)
-extension ClientManager {
-    
-    private func loadAndSaveAppId(_ completion: @escaping (RemoteAppIdLoader.Result) -> Void) {
-        appIdLoader.load(completion: { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case let .success(appIdItem):
-                self.storage.save(value: appIdItem.appId, for: self.appIdKey)
-                return completion(.success(appIdItem))
-                
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        })
-    }
-    
-    private func loadAndSaveUserToken(_ completion: @escaping (RemoteTokenLoader.Result) -> Void) {
-        userTokenLoader.load(completion: { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case let .success(vendorToken):
-                self.storage.save(value: vendorToken.accessToken, for: self.userTokenKey)
-                completion(result)
-                
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        })
     }
 }

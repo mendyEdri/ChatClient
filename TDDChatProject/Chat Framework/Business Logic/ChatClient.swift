@@ -9,10 +9,11 @@
 import Foundation
 
 /** Protocol for Initialization. To make Intializable decupled from ChatClient  */
+
 public protocol Initializable {
     typealias StartResult = Result<String, ClientManager.Error>
     
-    func startSDK(_ appId: String, completion: @escaping (StartResult) -> Void)
+    func startSDK(_ appId: String?, completion: @escaping (StartResult) -> Void)
 }
 
 /** Protocol for Login to a SDK. seperated from ChatClient to have more flexability for other SDK that might not need Initializable protocol */

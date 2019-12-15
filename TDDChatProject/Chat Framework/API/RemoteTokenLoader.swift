@@ -11,6 +11,7 @@ import Foundation
 /** STS - request, Loads token uses to login into chat vendor sdk */
 
 public class RemoteTokenLoader {
+    
     private let url: URL
     private let client: ChatHTTPClient
     

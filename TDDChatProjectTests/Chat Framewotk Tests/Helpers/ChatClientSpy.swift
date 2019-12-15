@@ -9,19 +9,10 @@
 import Foundation
 @testable import TDDChatProject
 
-/** Enum type returns success or failure with an associated value */
-public struct ChatSettings {
-    var appId: String
-    var token: String
-    var userId: String?
-}
-
 class ChatClientSpy: ChatClient {    
     
     typealias Error = ClientManager.Error
     typealias Result = ClientManager.Result
-    
-    var settings: ChatSettings
     
     private var startCompletions = [(StartResult) -> Void]()
     private var loginCompletions = [(LoginResult) -> Void]()
@@ -29,16 +20,16 @@ class ChatClientSpy: ChatClient {
     internal var isInitialize = false 
     private var isLoggedIn = false
     
+    private var appId: String!
+    private var userId: String!
     
-    internal init(settings: ChatSettings) {
-        self.settings = settings
-    }
-    
-    func startSDK(_ appId: String, completion: @escaping (StartResult) -> Void) {
+    func startSDK(_ appId: String?, completion: @escaping (StartResult) -> Void) {
+        self.appId = appId
         startCompletions.append(completion)
     }
     
     func login(userId: String, token: String, completion: @escaping (LoginResult) -> Void) {
+        self.userId = userId
         loginCompletions.append(completion)
     }
     
@@ -58,7 +49,7 @@ class ChatClientSpy: ChatClient {
     
     func completeStartSDKSuccessfuly(_ index: Int = 0) {
         isInitialize = true
-        startCompletions[index](.success(settings.appId))
+        startCompletions[index](.success(appId))
     }
     
     func completeStartSDKWithError(_ index: Int = 0) {
@@ -68,12 +59,7 @@ class ChatClientSpy: ChatClient {
     
     func completeLoginWithSuccess(_ index: Int = 0) {
         isLoggedIn = true
-        loginCompletions[index](.success(settings.userId!))
-    }
-    
-    func completeLoginWithErrorInvalidUserID(_ index: Int = 0) {
-        isLoggedIn = false
-        loginCompletions[index](.failure(Error.invalidUserID))
+        loginCompletions[index](.success(userId))
     }
     
     func completeLoginWithErrorInvalidToken(_ index: Int = 0) {

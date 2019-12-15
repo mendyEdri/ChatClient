@@ -13,7 +13,8 @@ import XCTest
 class ChatClientManagerTests: XCTestCase {
     
     private typealias Error = ClientManager.Error
-    private typealias Result = ClientManager.Result
+    //private typealias Result = ClientManager.Result
+    private typealias Result = Swift.Result<String, ClientManager.Error>
     
     private var ValidAppId: String {
         return "FU#KPLASTIC2020"
@@ -23,232 +24,70 @@ class ChatClientManagerTests: XCTestCase {
         return "anyUser19203"
     }
     
-    private var anyToken: String {
-        return "OSISA.1222.3SIDOA"
+    // experation date in 2029
+    private var futureToken: String {
+       return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE4OTE0MzEwNTcsImlkIjoicGluZ0lkMTIzNCIsInVzZXJJZCI6InVzZXJJZDk4NzYifQ.4DXgPqyAxvw2DpRFKHjmCMMY3vr4k3od4BNyV2oSNXE"
+      }
+    
+    private var expiredToken: String {
+        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1NDQyNjU4NTcsImlkIjoicGluZ0lkMTIzNCIsInVzZXJJZCI6InVzZXJJZDk4NzYifQ.HsMn_2_Ym2RDhazQs-PCvLd5V54a8FkVRR7vXs8_KjI"
     }
     
-    private var appIdKey = "ChatClientManagerTests.appIdKey"
-    private var userTokenKey = "ChatClientManagerTests.userTokenKey"
+    private var futureTokenWithEmptyUserId: String {
+        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE4OTE0MzEwNTcsImlkIjoicGluZ0lkMTIzNCIsInVzZXJJZCI6IiJ9.VhNo_gGtTnnWAqGsRlk9o3C4UWM4EmwxiT7P2qeE190"
+    }
+        
+    private var futureTokenWithoutUserId: String {
+        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE4OTE0MzEwNTcsImlkIjoicGluZ0lkMTIzNCJ9.ALvokNaSsHcOw035a6895Z-1ptxIYVUuyXF-ZCwS2Oo"
+    }
     
     private lazy var anyAppId = "10203"
-    
-    private static var anySettings: ChatSettings {
-        return ChatSettings(appId: "10103", token: "OSISA.1xxx.3SIDOA", userId: "anyUser1203")
-    }
-    /*
-    func test_prepareSDK_deliversAppIdWhenPrepareCompleted() {
-        let (sut, client, _) = makeSUT()
-        
-        var capturedResult = [String]()
-        let exp = expectation(description: "Wait for prepare to callback")
-        
-        sut.prepare(with: client.settings) { result in
-            if case let .success(appId) = result {
-                capturedResult.append(appId)
-            }
-            exp.fulfill()
-        }
-        
-        client.completeStartSDKSuccessfuly()
-        client.completeLoginWithSuccess()
-        
-        wait(for: [exp], timeout: 1.0)
-        XCTAssertEqual(capturedResult, [client.settings.userId])
-    }
-    
-    func test_prepareSDK_deliverNoResultWhenInstanceHasBeenDeallocated() {
-        var (sut, client, _) = makeOptionalSUT()
-        
-        var capturedResult = [Result]()
-        sut?.prepare(with: client.settings) { capturedResult.append($0) }
-        
-        sut = nil
-        client.completeStartSDKSuccessfuly()
-        
-        XCTAssertTrue(capturedResult.isEmpty)
-    }
-    
-    func test_prepareSDK_deliversNoResultOnInitSuccessAndLoginFails() {
-        var (sut, client, _) = makeOptionalSUT()
-        
-        var capturedResult = [Result]()
-        sut?.prepare(with: client.settings, { capturedResult.append($0) })
-        
-        client.completeStartSDKSuccessfuly()
-        sut = nil
-        client.completeLoginWithErrorInvalidUserID()
-        
-        XCTAssertTrue(capturedResult.isEmpty)
-    }
-    
-    func test_prepareSDK_deliversErrorOnInitSuccessAndLoginError() {
-        let (sut, client, _) = makeSUT()
-        
-        var capturedResult = [Result]()
-        sut.prepare(with: client.settings, { capturedResult.append($0) })
-        
-        client.completeStartSDKSuccessfuly()
-        client.completeLoginWithErrorInvalidUserID()
-        
-        XCTAssertEqual(capturedResult, [.failure(.invalidUserID)])
-    }
- */
 }
 
-// MARK: - Client StartSDK Tests
-
 extension ChatClientManagerTests {
+   
+    #warning("Should it be on end-to-end tests?")
+    func test_prepareSDK_notDeliveringWhenInstanceHasBeenDeallocated() {
+        var (sut, client, _, _) = makeSUT()
     
-    func test_startSDK_returnsAppId() {
-        let sett = ChatSettings(appId: "NOONEWILLSTOPYOU2020", token: "11111", userId: "2222")
+        var capturedResult = [ClientManager.ClientState]()
         
-        let (sut, client, _) = makeSUT(sett)
-        expectStart(appId: sett.appId, sut, toCompleteWith: .success(sett.appId), when: {
-            client.completeStartSDKSuccessfuly()
-        })
-    }
-    
-    func test_stardSDK_failsOnWrongId() {
-        let (sut, client, _) = makeSUT()
-        
-        expectStart(sut, toCompleteWith: .failure(.initFailed), when: {
-            client.completeStartSDKWithError()
-        })
-    }
-    
-    func test_startSDK_notReturnsWhenInstanceIsDeallocated() {
-        var (sut, client, _) = makeOptionalSUT()
-        
-        var capturedResult = [Result]()
-        sut?.start(anyAppId) { capturedResult.append($0) }
+        sut?.prepare { result in
+            capturedResult.append(result)
+        }
         
         sut = nil
-        client.completeStartSDKSuccessfuly()
+        client.complete(withSatus: 200, data: JSONMockData.appIdRemoteApiData().toData())
         
         XCTAssertTrue(capturedResult.isEmpty)
     }
-    
-    // MARK: - Helpers
-    
-    private func makeSUT(_ settings: ChatSettings = ChatClientManagerTests.anySettings, storage: UserDefaultStorageMock = UserDefaultStorageMock()) -> (sut: ClientManager, client: ChatClientSpy, httpClient: ChatHTTPClientMock) {
         
-        let (sut, client, httpClient) = makeOptionalSUT(settings, storage: storage)
+    // MARK: Helpers
+    
+    private func makeSUT() -> (sut: ClientManager?, httpClient: ChatHTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
+        let (managerClients, httpClient, chatClient, storage) = makeClients()
+        let sut: ClientManager? = ClientManager(clients: managerClients)
         
-        trackMemoryLeaks(client)
         trackMemoryLeaks(sut!)
         
-        return (sut!, client, httpClient)
+        return (sut, httpClient, chatClient, storage)
     }
     
-    private func makeOptionalSUT(_ settings: ChatSettings = ChatClientManagerTests.anySettings, storage: UserDefaultStorageMock = UserDefaultStorageMock()) -> (sut: ClientManager?, client: ChatClientSpy, httpClient: ChatHTTPClientMock) {
-        
-        let client = ChatClientSpy(settings: settings)
+    private func makeClients() -> (managerClients: ClientManagerClients, httpClient: ChatHTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
+        let chatCliet = ChatClientSpy()
         let httpClient = ChatHTTPClientMock()
+        let jwt = Jwt()
+        let storage = UserDefaultStorageMock()
+        let strategy = TokenBasedClientStrategy(client: chatCliet, storage: storage, jwt: jwt)
         
-        let clients = ClientManagerClients(chatClient: client, httpClient: httpClient, jwtClient: Jwt(), storage: storage)
-        
-        let sut: ClientManager? = ClientManager(clients: clients)
-        
-        trackMemoryLeaks(client)
-        trackMemoryLeaks(sut!)
-        
-        return (sut, client, httpClient)
-    }
     
-    private func expectStart(appId: String = "10233", _ sut: ClientManager, toCompleteWith expectedResult: Result, when action: @escaping () -> Void, file: StaticString = #file, line: UInt = #line) {
+        let clients = ClientManagerClients(chatClient: chatCliet, httpClient: httpClient, jwtClient: jwt, storage: storage, strategy: strategy)
         
-        let exp = expectation(description: "wait for start sdk completion")
-        var capturedResult = [Result]()
+        trackMemoryLeaks(chatCliet)
+        trackMemoryLeaks(httpClient)
+        trackMemoryLeaks(storage)
+        trackMemoryLeaks(strategy)
         
-        sut.start(appId) { result in
-            capturedResult.append(result)
-            exp.fulfill()
-        }
-        
-        action()
-        
-        wait(for: [exp], timeout: 1.0)
-        XCTAssertEqual(capturedResult, [expectedResult], file: file, line: line)
-    }
-    
-    private func expectLogin(_ sut: ClientManager, toCompleteWith expectedResult: Result, when action: @escaping () -> Void, file: StaticString = #file, line: UInt = #line) {
-        
-        let exp = expectation(description: "wait for login sdk to complete")
-        var capturedResult = [Result]()
-        sut.login(userId: anyUserID, token: anyToken) { result in
-            capturedResult.append(result)
-            exp.fulfill()
-        }
-        
-        action()
-        
-        wait(for: [exp], timeout: 1.0)
-        XCTAssertEqual(capturedResult, [expectedResult], file: file, line: line)
-    }
-}
-
-// MARK: - Client Login Tests
-extension ChatClientManagerTests {
-    
-    func test_loginSDK_deliversSuccessWithValidUserID() {
-        let sett = ChatSettings(appId: "appId-10101", token: "11111", userId: "userId-2222")
-        
-        let (sut, client, _) = makeSUT(sett)
-        client.isInitialize = true
-        
-        expectLogin(sut, toCompleteWith: .success(sett.userId!), when: {
-            client.completeLoginWithSuccess()
-        })
-    }
-    
-    func test_loginSDK_deliversErrorOnInvalidUserId() {
-        let (sut, client, _) = makeSUT()
-        
-        client.isInitialize = true
-        expectLogin(sut, toCompleteWith: .failure(.invalidUserID), when: {
-            client.completeLoginWithErrorInvalidUserID()
-        })
-    }
-    
-    func test_loginSDK_deliversErrorOnInvalidToken() {
-        let (sut, client, _) = makeSUT()
-        
-        client.isInitialize = true
-        expectLogin(sut, toCompleteWith: .failure(.invalidToken), when: {
-            client.completeLoginWithErrorInvalidToken()
-        })
-    }
-    
-    func test_loginWontCallBeforeInitilized() {
-        let (sut, _, _) = makeSUT()
-        
-        var capturedResult = [Result]()
-        let exp = expectation(description: "Waits for prepare to complete")
-        
-        sut.login(userId: anyUserID, token: anyToken) { result in
-            capturedResult.append(result)
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
-        XCTAssertEqual(capturedResult, [.failure(.sdkNotInitialized)])
-    }
-}
-
-private extension UserDefaultStorageMock {
-    private var unmeaningfulAppId: String {
-        return "109.++33.dd"
-    }
-    
-    private var unmeaningfulToken: String {
-        return "U.99.aP-8"
-    }
-    
-    func setAppIdAsSaved(for key: String) {
-        save(value: unmeaningfulAppId, for: key)
-    }
-    
-    func setUserTokenAsSaved(for key: String) {
-        save(value: unmeaningfulToken, for: key)
+        return (clients, httpClient, chatCliet, storage)
     }
 }
