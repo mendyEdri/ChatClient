@@ -16,10 +16,9 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
     
     func test_load_returnsResultBeforeCompletion() {
         let (sut, _) = makeSUT()
-        let url = URL(string: "https://a-url.com")!
         
         var capturedResult = [Result]()
-        sut.load(from: url) { result in
+        sut.load { result in
             capturedResult.append(result)
         }
         
@@ -88,7 +87,7 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
     
     private func makeSUT() -> (RemoteIdentityStoreLoader, ChatHTTPClientMock) {
         let client = ChatHTTPClientMock()
-        let sut = RemoteIdentityStoreLoader(client: client)
+        let sut = RemoteIdentityStoreLoader(url: anyURL(), client: client)
         
         return (sut, client)
     }
@@ -99,7 +98,7 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
         let exp = expectation(description: "Wait for load to complete")
         var capturedResult = [Result]()
         
-        sut.load(from: anyURL()) { result in
+        sut.load { result in
             capturedResult.append(result)
             exp.fulfill()
         }
@@ -122,11 +121,5 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
     
     private func anyNSError() -> NSError {
         return NSError(domain: "domain.com", code: 401, userInfo: nil)
-    }
-}
-
-internal extension Dictionary where Key == String {
-    func toData() -> Data {
-        return try! JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
     }
 }

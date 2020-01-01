@@ -7,15 +7,16 @@
 //
 
 import Foundation
-
 import Smooch
 
 class AuthenticationDelegate: NSObject, SKTAuthenticationDelegate {
     
     func onInvalidToken(_ error: Error, handler completionHandler: @escaping SKTAuthenticationCompletionBlock) {
-        ChatDefaultComposition.manager.renewUserToken { result in
-            let newToken = try? result.get()
-            completionHandler(newToken ?? "")
+        DispatchQueue.main.async {
+            ChatDefaultComposition.manager.renewUserToken { result in
+                let newToken = try? result.get()
+                completionHandler(newToken ?? "")
+            }
         }
     }
 }
@@ -67,7 +68,7 @@ public class SmoochChatClient: ChatClient {
     
     private func chatSettings(with appId: String) -> SKTSettings {
         let settings = SKTSettings(appId: appId)
-        settings.authenticationDelegate = authenticationDelegate
+        //settings.authenticationDelegate = authenticationDelegate
         return settings
     }
 }

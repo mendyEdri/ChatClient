@@ -12,32 +12,30 @@ public final class IdentityStoreController {
     
     private let url: URL
     
-    // TODO: considure make it private and fix tests
-    // This type is coupled, check how to fix it
     internal let loader: RemoteIdentityStoreLoader
 
-    public typealias Store = (storage: Storage, key: String)
     private let storage: Storage
     private let userIdSaveKey: String
+    private let key = "IdentityStoreController.identityStoreKey"
     
     public enum Result {
         case success(String)
         case failure(Error)
     }
     
-    public init(url: URL, httpClient: ChatHTTPClient, store: Store) {
+    public required init(url: URL, httpClient: HTTPClient, storage: Storage, key: String = "IdentityStoreController.identityStoreKey") {
         self.url = url
-        self.loader = RemoteIdentityStoreLoader(client: httpClient)
-        self.storage = store.storage
-        self.userIdSaveKey = store.key
+        self.loader = RemoteIdentityStoreLoader(url: url, client: httpClient)
+        self.storage = storage
+        self.userIdSaveKey = key
     }
     
-    func start(_ completion: @escaping (Result) -> Void) {
-        if let avoidRequestUserSavedLocally = savedUserId() {
-            return completion(.success(avoidRequestUserSavedLocally))
+    func registerIfNeeded(_ completion: @escaping ((Result) -> Void)) {
+        if let avoidRequestSinceUserSavedLocally = savedUserId() {
+            return completion(.success(avoidRequestSinceUserSavedLocally))
         }
 
-        loader.load(from: url, completion: { [weak self] result in
+        loader.load(completion: { [weak self] result in
             guard let self = self else { return }
             
             completion(self.mapResult(from: result))

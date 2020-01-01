@@ -11,10 +11,10 @@ import Foundation
 
 /** Commands needs to run the sdk initialization process, conforms to AnyObject to have the Commands instance weak - to prevent retains cycle  */
 protocol Commands: AnyObject {
-    typealias CommandsCompletion = (Swift.Result<String, ClientManager.Error>) -> Void
+    typealias CommandsCompletion = (Swift.Result<String, ClientMediator.Error>) -> Void
     
     func getRemoteAppId(loader: RemoteAppIdLoader, completion: @escaping CommandsCompletion)
-    func getRemoteToken(loader: RemoteTokenLoader, completion: @escaping CommandsCompletion)
+    func getRemoteToken(loader: RemoteClientTokenLoader, completion: @escaping CommandsCompletion)
     func startSDK(for sdk: (client: ChatClient, appId: String?), completion: @escaping CommandsCompletion)
     func loginSDK(for sdk: (client: ChatClient, token: String?, userId: String?), completion: @escaping CommandsCompletion)
 }
@@ -28,7 +28,7 @@ extension Commands {
         }
     }
     
-    internal func getRemoteToken(loader: RemoteTokenLoader, completion: @escaping CommandsCompletion) {
+    internal func getRemoteToken(loader: RemoteClientTokenLoader, completion: @escaping CommandsCompletion) {
         loader.load { [weak self] in
             guard self != nil else { return }
             completion($0.map { $0.accessToken }.mapError { _ in .failsFetchToken })
@@ -43,6 +43,7 @@ extension Commands {
         }
     }
     
+    #warning("Method is too long")
     internal func loginSDK(for sdk: (client: ChatClient, token: String?, userId: String?), completion: @escaping CommandsCompletion) {
         
         guard let userId = sdk.userId, let token = sdk.token else {

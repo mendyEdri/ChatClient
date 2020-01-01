@@ -59,7 +59,7 @@ struct Jwt: Jwtable {
 }
 
 extension Jwt {
-    private enum CommonKeys: String {
+    enum CommonKeys: String {
         case experation = "exp"
         case userId = "userId"
         case pingId = "id"

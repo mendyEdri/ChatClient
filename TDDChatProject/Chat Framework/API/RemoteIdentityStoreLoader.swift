@@ -10,7 +10,8 @@ import Foundation
 
 public class RemoteIdentityStoreLoader {
     
-    var client: ChatHTTPClient
+    var client: HTTPClient
+    private let url: URL
     
     public enum Error: Swift.Error {
         case connectivity
@@ -18,16 +19,14 @@ public class RemoteIdentityStoreLoader {
         case invalidData
     }
     
-    public enum Result: Equatable {
-        case success(IdentityStoreModel)
-        case failure(Error)
-    }
+    public typealias Result = Swift.Result<IdentityStoreModel, Error>
     
-    public init(client: ChatHTTPClient) {
+    public init(url: URL, client: HTTPClient) {
         self.client = client
+        self.url = url
     }
     
-    public func load(from url: URL, completion: @escaping (Result) -> Void) {
+    public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url, method: .GET) { result in
             
             switch result {

@@ -11,8 +11,8 @@ import Foundation
 
 class ChatClientSpy: ChatClient {    
     
-    typealias Error = ClientManager.Error
-    typealias Result = ClientManager.Result
+    typealias Error = ClientMediator.Error
+    typealias Result = ClientMediator.Result
     
     private var startCompletions = [(StartResult) -> Void]()
     private var loginCompletions = [(LoginResult) -> Void]()

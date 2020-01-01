@@ -1,5 +1,5 @@
 //
-//  ChatClientManagerTests.swift
+//  ChatClientMediatorTests.swift
 //  CWTTests
 //
 //  Created by Mendy Edri on 07/11/2019.
@@ -10,11 +10,10 @@ import XCTest
 
 // MARK: - Client Prepare SDK Tests
 
-class ChatClientManagerTests: XCTestCase {
+class ChatClientMediatorTests: XCTestCase {
     
-    private typealias Error = ClientManager.Error
-    //private typealias Result = ClientManager.Result
-    private typealias Result = Swift.Result<String, ClientManager.Error>
+    private typealias Error = ClientMediator.Error
+    private typealias Result = Swift.Result<String, ClientMediator.Error>
     
     private var ValidAppId: String {
         return "FU#KPLASTIC2020"
@@ -44,13 +43,13 @@ class ChatClientManagerTests: XCTestCase {
     private lazy var anyAppId = "10203"
 }
 
-extension ChatClientManagerTests {
+extension ChatClientMediatorTests {
    
-    #warning("Should it be on end-to-end tests?")
+    #warning("Should it be done via end-to-end tests?")
     func test_prepareSDK_notDeliveringWhenInstanceHasBeenDeallocated() {
         var (sut, client, _, _) = makeSUT()
     
-        var capturedResult = [ClientManager.ClientState]()
+        var capturedResult = [ClientMediator.ClientState]()
         
         sut?.prepare { result in
             capturedResult.append(result)
@@ -64,16 +63,16 @@ extension ChatClientManagerTests {
         
     // MARK: Helpers
     
-    private func makeSUT() -> (sut: ClientManager?, httpClient: ChatHTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
+    private func makeSUT() -> (sut: ClientMediator?, httpClient: ChatHTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
         let (managerClients, httpClient, chatClient, storage) = makeClients()
-        let sut: ClientManager? = ClientManager(clients: managerClients)
+        let sut: ClientMediator? = ClientMediator(clients: managerClients)
         
         trackMemoryLeaks(sut!)
         
         return (sut, httpClient, chatClient, storage)
     }
     
-    private func makeClients() -> (managerClients: ClientManagerClients, httpClient: ChatHTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
+    private func makeClients() -> (managerClients: ClientMediatorClients, httpClient: ChatHTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
         let chatCliet = ChatClientSpy()
         let httpClient = ChatHTTPClientMock()
         let jwt = Jwt()
@@ -81,7 +80,7 @@ extension ChatClientManagerTests {
         let strategy = TokenBasedClientStrategy(client: chatCliet, storage: storage, jwt: jwt)
         
     
-        let clients = ClientManagerClients(chatClient: chatCliet, httpClient: httpClient, jwtClient: jwt, storage: storage, strategy: strategy)
+        let clients = ClientMediatorClients(chatClient: chatCliet, httpClient: httpClient, jwtClient: jwt, storage: storage, strategy: strategy)
         
         trackMemoryLeaks(chatCliet)
         trackMemoryLeaks(httpClient)

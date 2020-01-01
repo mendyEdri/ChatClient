@@ -12,7 +12,7 @@ import Foundation
 
 public class RemoteAppIdLoader {
     private let url: URL
-    private let client: ChatHTTPClient
+    private let client: HTTPClient
     
     public enum Error: Swift.Error {
         case connectivity
@@ -21,7 +21,7 @@ public class RemoteAppIdLoader {
         
     public typealias Result = Swift.Result<ChatVendorAppId, Error>
     
-    public init(url: URL, client: ChatHTTPClient) {
+    public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }

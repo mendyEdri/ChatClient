@@ -1,0 +1,19 @@
+//
+//  AccessTokenAdapter.swift
+//  TDDChatProject
+//
+//  Created by Mendy Edri on 31/12/2019.
+//  Copyright © 2019 CWT. All rights reserved.
+//
+
+import Foundation
+
+public protocol AccessTokenAdapter {
+    func requestAccessToken(_ completion: (Result<String, Error>) -> Void)
+}
+
+internal struct AccessTokenTempAdapter: AccessTokenAdapter {
+    func requestAccessToken(_ completion: (Result<String, Error>) -> Void) {
+        completion(.success("eyJhbGciOiJSUzUxMiIsImtpZCI6InRva2VuQ2VydCJ9.eyJzY29wZSI6WyJvcGVuaWQiLCJwcm9maWxlIl0sImNsaWVudF9pZCI6IkN3dFRvR29PYXV0aENsaWVudCIsImp3dE9BdXRoIjoiQXoweXEyaDNnOWlHQktTeWJCMmNzMW5wVUppbmpzc1QiLCJpZG1FbWFpbCI6ImRlQHlvcG1haWwuY29tIiwibGFzdE5hbWUiOiJJRE0iLCJ0b3BJZCI6IjE0OjRhYjczIiwicm9sZXMiOiJ0cmF2ZWxlciIsInRyYXZlbGVyRW1haWwiOiJkZUB5b3BtYWlsLmNvbSIsInRyYXZlbGVyVHlwZUdVSUQiOiIxNDo0MWMzNSIsInN1YklkIjoiMTQ6YzU0NTAiLCJmaXJzdE5hbWUiOiJERSIsIm1pZGRsZU5hbWUiOiJ0ZWFzdCIsImlkIjoiNzc3YWUwOGItNmE2Yi00MmU5LTkwNjgtMzE0ZGUwNGJjOTgyIiwidHJhdmVsZXJHVUlEIjoiMTQ6MjU5Nzc5OGUiLCJ1c2VybmFtZSI6ImRlQHlvcG1haWwuY29tIiwiZXhwIjoxNTc3ODcyODAzfQ.e9Bm81oMqX4dJvfEyAxKUR_ej6jJKErVmrF7AOsIJybLoHxr7nRQH2Zkwti0n3rMwxWa2wGoDlQNcbfpxxRKZlRKL2cbCaLFOGPXCRPRBUQPdG9rV0wCudv3uOFZBuRTG4VMoAKlCqMZ0A3UU13XFrVbGyw5sHW10hkJ8ydtG1l2tT9fd1ItWbnebTSjTT73fJVNBO61poC095Yo2bnSMMrcFT_HHQQpfU5kUt3TVSAj6OXknLBBfEPpGuqPyHNyrZ-L-kgu3i3dXKC2wG1Y3OVcwc8SWvCl8AI6e1ykwYJFAhU68-6FGfvzK86nb_U5QFatD4iSRal5-xe06GA3oQ"))
+    }
+}

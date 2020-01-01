@@ -14,7 +14,7 @@ protocol JwtParserable {
     func jwt(_ string: String)
 }
 
-class JwtDefaultParser: JwtParserable {
+public class JwtDefaultParser: JwtParserable {
     
     private var parser: CWTJwtParser = CWTJwtParser()
     var jwtString: String?

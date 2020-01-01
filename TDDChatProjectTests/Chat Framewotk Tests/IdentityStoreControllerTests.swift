@@ -54,7 +54,7 @@ class IdentityStoreControllerTests: XCTestCase {
         let (sut, client, storage) = makeSUT()
         
         storage.save(value: anyUserID(), for: testSpecificUserIdKey)
-        sut.start { _ in }
+        sut.registerIfNeeded { _ in }
         
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
@@ -92,7 +92,7 @@ class IdentityStoreControllerTests: XCTestCase {
     private func start(_ sut: IdentityStoreController, when action: () -> Void, assert: () -> Void) {
         
         let exp = expectation(description: "Wait for start method to end")
-        sut.start { _ in
+        sut.registerIfNeeded { _ in
             exp.fulfill()
         }
         action()
@@ -106,7 +106,7 @@ class IdentityStoreControllerTests: XCTestCase {
         let storage = UserDefaultsStorage()
         let client = ChatHTTPClientMock()
         
-        let sut = IdentityStoreController(url: anyURL(), httpClient: client, store: (storage, testSpecificUserIdKey))
+        let sut = IdentityStoreController(url: anyURL(), httpClient: client, storage: storage, key: testSpecificUserIdKey)
         
         return (sut, client, storage)
     }

@@ -81,17 +81,17 @@ class RemoteChatTokenLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (RemoteTokenLoader, ChatHTTPClientMock) {
+    private func makeSUT() -> (RemoteClientTokenLoader, ChatHTTPClientMock) {
         let client = ChatHTTPClientMock()
         let url = URL(string: "https://a-url.com")!
-        let sut = RemoteTokenLoader(url: url, client: client)
+        let sut = RemoteClientTokenLoader(url: url, client: client)
         
         return (sut, client)
     }
     
-    private func expect(that sut: RemoteTokenLoader, be result: RemoteTokenLoader.Result, when action: () -> Void,  file: StaticString = #file, line: UInt = #line) {
+    private func expect(that sut: RemoteClientTokenLoader, be result: RemoteClientTokenLoader.Result, when action: () -> Void,  file: StaticString = #file, line: UInt = #line) {
         
-        var capturedResult = [RemoteTokenLoader.Result]()
+        var capturedResult = [RemoteClientTokenLoader.Result]()
         
         sut.load { capturedResult.append($0) }
         

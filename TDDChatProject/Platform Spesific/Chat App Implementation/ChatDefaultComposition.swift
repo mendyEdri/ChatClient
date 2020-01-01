@@ -8,10 +8,11 @@
 
 import Foundation
 
-enum ChatDefaultComposition {
-    public static var manager = makeManager()
-    
-    private static func makeManager() -> ClientManager {
+struct ChatDefaultComposition {
+        
+    static var manager = ChatDefaultComposition.makeManager()
+
+    private static func makeManager() -> ClientMediator {
         let smoochClient = SmoochChatClient()
         let httpClient = URLSessionHTTPClient()
         let storage = UserDefaultsStorage()
@@ -19,13 +20,13 @@ enum ChatDefaultComposition {
         
         let strategy = TokenBasedClientStrategy(client: smoochClient, storage: storage, jwt: jwt)
         
-        let managerClients = ClientManagerClients(
+        let managerClients = ClientMediatorClients(
             chatClient: smoochClient,
             httpClient: httpClient,
             jwtClient: jwt,
             storage: storage,
             strategy: strategy)
     
-        return ClientManager(clients: managerClients)
+        return ClientMediator(clients: managerClients)
     }
 }

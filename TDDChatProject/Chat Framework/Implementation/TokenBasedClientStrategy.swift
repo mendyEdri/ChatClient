@@ -8,7 +8,7 @@
 
 import Foundation
 
-/** Strategy design for decision making for next ClientManager step in the initialization process. */
+/** Strategy design for decision making for next ClientMediator step in the initialization process. */
 final internal class TokenBasedClientStrategy: TokenBasedProcessStrategy {
     
     internal var storage: Storage

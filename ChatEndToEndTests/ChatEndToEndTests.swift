@@ -7,10 +7,12 @@
 //
 
 import XCTest
-import TDDChatProject
+@testable import TDDChatProject
 
 class ChatEndToEndTests: XCTestCase {
-
+    
+    var accessToken: String? = nil
+    
     override func setUp() {
         super.setUp()
         cleanUp()
@@ -21,77 +23,53 @@ class ChatEndToEndTests: XCTestCase {
         cleanUp()
     }
     
-    func test_prepareSDK_deliverReadyStateWhenNoAppIdOrTokenSaved() {
-        let exp = expectation(description: "Wait for chat to be prepared")
-        var capturedResult = [ClientManager.ClientState]()
-                
-        ChatDefaultComposition.manager.prepare { result in
-            capturedResult.append(result)
-            exp.fulfill()
+    private func wrapWithToken(_ action: @escaping (String?) -> Void) {
+        guard isTokenValid() == true else { return action(accessToken) }
+            
+        let loader = RemoteAccessTokenLoader(url: AccessTokenLoaderURL.prod.url, client: URLSessionHTTPClient())
+        loader.load { [weak self] result in
+            if case let .success(token) = result {
+                self?.accessToken = token.accessToken
+                action(token.accessToken)
+            }
         }
-        
-        wait(for: [exp], timeout: 10.0)
-        XCTAssertEqual(capturedResult, [.ready])
+    }
+    
+    private func isTokenValid() -> Bool {
+        var expired: Bool?
+        if let token = accessToken {
+            let jwt = Jwt(string: token, parser: JwtDefaultParser())
+            expired = try? jwt.isJwtExp()
+        }
+        return expired ?? false
+    }
+    
+    func test_prepareSDK_deliverReadyStateWhenNoAppIdOrTokenSaved() {
+        expectState(toBe: .ready)
     }
     
     func test_prepareSDK_deliverReadyStateWhenAppIdIsSavedAndTokenIsNotSaved() {
         saveRealAppId()
         
-        let exp = expectation(description: "Wait for chat to be prepared")
-        var capturedResult = [ClientManager.ClientState]()
-                
-        ChatDefaultComposition.manager.prepare { result in
-            capturedResult.append(result)
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 10.0)
-        XCTAssertEqual(capturedResult, [.ready])
+        expectState(toBe: .ready)
     }
     
     func test_prepareSDK_deliverReadyStateRecoverFromInvalidAppIdIsSaved() {
         saveInvalidAppId()
         
-        let exp = expectation(description: "Wait for chat to be prepared")
-        var capturedResult = [ClientManager.ClientState]()
-                
-        ChatDefaultComposition.manager.prepare { result in
-            capturedResult.append(result)
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 10.0)
-        XCTAssertEqual(capturedResult, [.ready])
+        expectState(toBe: .ready)
     }
     
     func test_preparteSDK_deliverReadyRecoveringFromInvalidUserToken() {
         saveInvalidToken()
         
-        let exp = expectation(description: "Wait for chat to be prepared")
-        var capturedResult = [ClientManager.ClientState]()
-                
-        ChatDefaultComposition.manager.prepare { result in
-            capturedResult.append(result)
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 10.0)
-        XCTAssertEqual(capturedResult, [.ready])
+        expectState(toBe: .ready)
     }
     
     func test_prepareSDK_deliverReadyRecoveringFromExpiredUserToken() {
         saveExpiredToken()
         
-        let exp = expectation(description: "Wait for chat to be prepared")
-        var capturedResult = [ClientManager.ClientState]()
-                
-        ChatDefaultComposition.manager.prepare { result in
-            capturedResult.append(result)
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 10.0)
-        XCTAssertEqual(capturedResult, [.ready])
+        expectState(toBe: .ready)
     }
     
     func test_prepareSDK_processMesure() {
@@ -102,6 +80,21 @@ class ChatEndToEndTests: XCTestCase {
             }
             wait(for: [exp], timeout: 10.0)
         }
+    }
+    
+    // MARK - Helpers
+    
+    private func expectState(toBe state: ClientMediator.ClientState, file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait for chat to be prepared")
+        var capturedResult = [ClientMediator.ClientState]()
+                
+        ChatDefaultComposition.manager.prepare { result in
+            capturedResult.append(result)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 10.0)
+        XCTAssertEqual(capturedResult, [state], file: file, line: line)
     }
 }
 

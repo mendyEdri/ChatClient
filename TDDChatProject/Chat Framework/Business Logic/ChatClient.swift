@@ -11,14 +11,14 @@ import Foundation
 /** Protocol for Initialization. To make Intializable decupled from ChatClient  */
 
 public protocol Initializable {
-    typealias StartResult = Result<String, ClientManager.Error>
+    typealias StartResult = Result<String, ClientMediator.Error>
     
     func startSDK(_ appId: String?, completion: @escaping (StartResult) -> Void)
 }
 
 /** Protocol for Login to a SDK. seperated from ChatClient to have more flexability for other SDK that might not need Initializable protocol */
 public protocol Loginable {
-    typealias LoginResult = Result<String, ClientManager.Error>
+    typealias LoginResult = Result<String, ClientMediator.Error>
     
     func initialized() -> Bool
     func loggedIn() -> Bool

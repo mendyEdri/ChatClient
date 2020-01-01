@@ -9,18 +9,17 @@
 import Foundation
 @testable import TDDChatProject
 
-internal class ChatHTTPClientMock: ChatHTTPClient {
+internal class ChatHTTPClientMock: HTTPClient {
     
-    private var messages = [(url: URL, completion: (ChatHTTPClient.Result) -> Void)]()
+    private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
     
     // MARK: Implementation
     
-    func get(from url: URL, method: HTTPMethod, completion: @escaping (ChatHTTPClient.Result) -> Void) {
+    func get(from url: URL, method: HTTPMethod, headers: [String: String]?, body: [String: String]?, completion: @escaping (HTTPClient.Result) -> Void) {
         messages.append((url, completion))
     }
     
     // MARK: Helpers
-    
     var requestedURLs: [URL] {
         return messages.map { $0.url }
     }
