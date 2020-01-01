@@ -11,27 +11,45 @@ import TDDChatProject
 
 class RetryExecutorTests: XCTestCase {
 
-    func test_retry_canRetryDeliversFalseAfterReachedMaxRetries() {
-        let sut = RetryExecutor(attempts: 3)
+    func test_retry_canRetryExecuteRetries() {
         
-        XCTAssertTrue(sut.canRetry())
+        var counter = 0
+        let sut = RetryExecutor(attempts: 3) {
+            counter += 1
+        }!
         
-        sut.retried()
-        sut.retried()
-        sut.retried()
+        sut.retry()
+        sut.retry()
+        sut.retry()
         
-        XCTAssertFalse(sut.canRetry())
+        XCTAssertTrue(counter == 3)
     }
     
-    func test_retry_withZeroNonReturnsCanRetryAsTrue() {
-        let sut = RetryExecutor(attempts: 0)
+    func test_retry_withZeroNonReturnsWontCallBlock() {
+    
+        var sut = RetryExecutor(attempts: 0) {}
+        XCTAssertNil(sut)
         
-        XCTAssertFalse(sut.canRetry())
+        sut = RetryExecutor(attempts: -2) {}
+        XCTAssertNil(sut)
         
-        sut.retried()
-        sut.retried()
+        sut = RetryExecutor(attempts: 1) {}
+        XCTAssertNotNil(sut)
+    }
+    
+    func test_retry_executesMaxTimesAndNotMore() {
         
-        XCTAssertFalse(sut.canRetry())
+        var counter = 0
+        let sut = RetryExecutor(attempts: 2) {
+            counter += 1
+        }!
+        
+        sut.retry()
+        sut.retry()
+        sut.retry()
+        sut.retry()
+        
+        XCTAssertTrue(counter == 2)
     }
     
     // MARK: Helpers
@@ -39,68 +57,5 @@ class RetryExecutorTests: XCTestCase {
     private func anyError() -> Error {
         return NSError()
     }
-    
-    
-    func test_protocols() {
-        let accessTokenRetryNetworking = AccessTokenRetryNetworking()
-        accessTokenRetryNetworking.get(url: "") {
-            print("Done.")
-        }
-    }
 }
 
-protocol Networking {
-    func get(url: String, complete: @escaping () -> Void)
-}
-
-struct NetworkingClient: Networking {
-    func get(url: String, complete: () -> Void) {
-        print("Networking Client")
-        complete()
-    }
-}
-
-protocol AccessTokenNetworking: Networking {}
-
-extension AccessTokenNetworking {
-    func getAccessToken(complete: (String) -> Void) {
-        fetchingAccesToken(url: "https://access-token.com", complete: complete)
-    }
-
-    func fetchingAccesToken(url: String, complete: (String) -> Void) {
-        print("Getting access token")
-        sleep(2)
-        complete("90320IQWEOQUA.12-10.090")
-    }
-}
-
-protocol RetryNetworking: Networking {}
-
-extension RetryNetworking {
-    func retry(url: String, completion: @escaping () -> Void) {
-        retryRequest(url: url, complete: completion)
-    }
-    
-    func retryRequest(url: String, complete: () -> Void) {
-        print("Got error")
-        print("Retrying..")
-        complete()
-    }
-}
-
-struct AccessTokenRetryNetworking: Networking, AccessTokenNetworking, RetryNetworking {
-    func get(url: String, complete: @escaping () -> Void) {
-        
-        var requestSuccess = false
-        
-        getAccessToken { token in
-            print(token)
-            if requestSuccess {
-                complete()
-            } else {
-                retry(url: url, completion: complete)
-                requestSuccess = true
-            }
-        }
-    }
-}
