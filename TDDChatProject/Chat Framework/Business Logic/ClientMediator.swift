@@ -137,11 +137,9 @@ extension ClientMediator {
     }
     
     public func renewUserToken(completion: @escaping (Result) -> Void) {
-        completion(.success("eyJhbGciOiJSUzUxMiIsImtpZCI6InRva2VuQ2VydCJ9.eyJzY29wZSI6WyJvcGVuaWQiLCJwcm9maWxlIl0sImNsaWVudF9pZCI6IkN3dFRvR29PYXV0aENsaWVudCIsImp3dE9BdXRoIjoiQ0hyaTNSRW54WHMzWEhsWmIyemk4clJUU1A4TlU3b0ciLCJpZG1FbWFpbCI6ImRlQHlvcG1haWwuY29tIiwibGFzdE5hbWUiOiJJRE0iLCJ0b3BJZCI6IjE0OjRhYjczIiwicm9sZXMiOiJ0cmF2ZWxlciIsInRyYXZlbGVyRW1haWwiOiJkZUB5b3BtYWlsLmNvbSIsInRyYXZlbGVyVHlwZUdVSUQiOiIxNDo0MWMzNSIsInN1YklkIjoiMTQ6YzU0NTAiLCJmaXJzdE5hbWUiOiJERSIsIm1pZGRsZU5hbWUiOiJ0ZWFzdCIsImlkIjoiNzc3YWUwOGItNmE2Yi00MmU5LTkwNjgtMzE0ZGUwNGJjOTgyIiwidHJhdmVsZXJHVUlEIjoiMTQ6MjU5Nzc5OGUiLCJ1c2VybmFtZSI6ImRlQHlvcG1haWwuY29tIiwiZXhwIjoxNTc3ODcwMTMwfQ.ZekrIcVIVB2k6MnCYDOCvtLuuB4fr7LMpafD1qApOOOage4EQr9MvUVI7X9qhWyv1BhaRl4OEdzmY4jAUFtNDSlLOtTThI8KbpvgZFvVwSN2le1XblYNj9WF-unlS8kLoYmEbQPPq5MyP0bY73ftOseKzazr0tWuOeT9zz3byVue9o35fhVyfQbFhkyFKjELNHzu2GQTwGxeUB30lg1d35aS7H34ZpJcFgafO9azrmxW_znbvp8w2S8JOFVF871wx6zG1Gs5ROyjtq8NO9bCU0dOg7y7C-AdGE5xkz68ChTwRAiInQve28IE0-MRdcnHSUhvKkMWjBpfMSAxDHcmCg"))
-        
-//        userTokenCommand { result in
-//            completion(result)
-//        }
+        userTokenCommand { result in
+            completion(result)
+        }
     }
     
     public func logout(_ completion: @escaping (Result) -> Void) {
