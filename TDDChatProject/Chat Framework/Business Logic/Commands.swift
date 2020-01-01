@@ -24,14 +24,14 @@ extension Commands {
     internal func getRemoteAppId(loader: RemoteAppIdLoader, completion: @escaping CommandsCompletion) {
         loader.load { [weak self] in
             guard self != nil else { return }
-            completion($0.map { $0.appId }.mapError { _ in .failsFetchAppId })
+            completion($0.map { $0.appId }.mapError { _ in .failedFetchAppId })
         }
     }
     
     internal func getRemoteToken(loader: RemoteClientTokenLoader, completion: @escaping CommandsCompletion) {
         loader.load { [weak self] in
             guard self != nil else { return }
-            completion($0.map { $0.accessToken }.mapError { _ in .failsFetchToken })
+            completion($0.map { $0.accessToken }.mapError { _ in .failedFetchToken })
         }
     }
     
@@ -43,7 +43,7 @@ extension Commands {
         }
     }
     
-    #warning("Method is too long")
+    #warning("Method is too long and doing too many things")
     internal func loginSDK(for sdk: (client: ChatClient, token: String?, userId: String?), completion: @escaping CommandsCompletion) {
         
         guard let userId = sdk.userId, let token = sdk.token else {

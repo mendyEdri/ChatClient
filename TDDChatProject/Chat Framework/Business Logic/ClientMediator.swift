@@ -35,15 +35,15 @@ public class ClientMediator {
         case invalidToken
         case sdkNotInitialized
         case logoutFails
-        case failsFetchAppId
-        case failsFetchToken
+        case failedFetchAppId
+        case failedFetchToken
         case failedRegisterIdentity
     }
     
     public enum ClientState: Equatable {
         case notReady
         case ready
-        case failed
+        case failed(Error)
     }
     
     public enum RefreshState {
@@ -191,21 +191,21 @@ extension ClientMediator {
      In Functions, the same behaviour of passing a spesific implementation of an Error to a generic Swift.Error parameter will work. :\--
      */
         
-    private func handle<T>(_ result: Swift.Result<String, T>) where T: Swift.Error {
+    private func handle(_ result: Swift.Result<String, Error>) {
         
         switch result {
         case .success:
             retries = 0
             self.startSDKPreparation(strategy)
             
-        case .failure:
+        case let .failure(error):
             guard retries > 0 else {
                 self.startSDKPreparation(strategy)
                 retries += 1
                 return
             }
             
-            self.clientState = .failed
+            self.clientState = .failed(error)
         }
     }
     
