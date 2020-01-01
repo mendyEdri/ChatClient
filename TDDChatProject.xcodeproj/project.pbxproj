@@ -13,7 +13,6 @@
 		F000671623B3A4530008B2C5 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F000671523B3A4530008B2C5 /* DictionaryExtension.swift */; };
 		F000671723B3A4560008B2C5 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F000671523B3A4530008B2C5 /* DictionaryExtension.swift */; };
 		F000671823BA3CF00008B2C5 /* IdentityStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */; };
-		F0071E05238FC95700563A9C /* ProcessStateHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0071E04238FC95700563A9C /* ProcessStateHelperTests.swift */; };
 		F0304EF723BA3E44002EDACA /* RemoteIdentityStoreLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */; };
 		F0304EF823BA3E55002EDACA /* IdentityStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */; };
 		F0304F0F23BBA5B6002EDACA /* AccessTokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0304F0E23BBA5B6002EDACA /* AccessTokenAdapter.swift */; };
@@ -83,7 +82,7 @@
 		F0E77A172374934C002AB76E /* ChatClientMediatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A102374934C002AB76E /* ChatClientMediatorTests.swift */; };
 		F0E77A182374934C002AB76E /* RemoteChatTokenLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A112374934C002AB76E /* RemoteChatTokenLoaderTests.swift */; };
 		F0E77A192374934C002AB76E /* BuilderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A132374934C002AB76E /* BuilderHelper.swift */; };
-		F0E77A1A2374934C002AB76E /* ChatHTTPClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A142374934C002AB76E /* ChatHTTPClientMock.swift */; };
+		F0E77A1A2374934C002AB76E /* HTTPClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A142374934C002AB76E /* HTTPClientMock.swift */; };
 		F0E77A2B23749377002AB76E /* ResponseMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A1E23749377002AB76E /* ResponseMetadata.swift */; };
 		F0E77A2C23749377002AB76E /* ChatVendorToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A1F23749377002AB76E /* ChatVendorToken.swift */; };
 		F0E77A2D23749377002AB76E /* ChatVendorAppId.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2023749377002AB76E /* ChatVendorAppId.swift */; };
@@ -121,7 +120,6 @@
 		771CED41378EF474964900F1 /* Pods-TDDChatProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDChatProject.release.xcconfig"; path = "Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject.release.xcconfig"; sourceTree = "<group>"; };
 		9E7E9E8392F4D3427F896A2E /* Pods-ChatEndToEndTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatEndToEndTests.release.xcconfig"; path = "Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests.release.xcconfig"; sourceTree = "<group>"; };
 		F000671523B3A4530008B2C5 /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
-		F0071E04238FC95700563A9C /* ProcessStateHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessStateHelperTests.swift; sourceTree = "<group>"; };
 		F0304F0E23BBA5B6002EDACA /* AccessTokenAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenAdapter.swift; sourceTree = "<group>"; };
 		F0304F1123BCAE3D002EDACA /* HTTPClientDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientDecorator.swift; sourceTree = "<group>"; };
 		F0304F1623BCAE95002EDACA /* HTTPClientAccessTokenDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientAccessTokenDecorator.swift; sourceTree = "<group>"; };
@@ -172,7 +170,7 @@
 		F0E77A102374934C002AB76E /* ChatClientMediatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatClientMediatorTests.swift; sourceTree = "<group>"; };
 		F0E77A112374934C002AB76E /* RemoteChatTokenLoaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteChatTokenLoaderTests.swift; sourceTree = "<group>"; };
 		F0E77A132374934C002AB76E /* BuilderHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderHelper.swift; sourceTree = "<group>"; };
-		F0E77A142374934C002AB76E /* ChatHTTPClientMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatHTTPClientMock.swift; sourceTree = "<group>"; };
+		F0E77A142374934C002AB76E /* HTTPClientMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientMock.swift; sourceTree = "<group>"; };
 		F0E77A1E23749377002AB76E /* ResponseMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseMetadata.swift; sourceTree = "<group>"; };
 		F0E77A1F23749377002AB76E /* ChatVendorToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVendorToken.swift; sourceTree = "<group>"; };
 		F0E77A2023749377002AB76E /* ChatVendorAppId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVendorAppId.swift; sourceTree = "<group>"; };
@@ -410,7 +408,6 @@
 				F0E77A112374934C002AB76E /* RemoteChatTokenLoaderTests.swift */,
 				F0E4F94C2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift */,
 				F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */,
-				F0071E04238FC95700563A9C /* ProcessStateHelperTests.swift */,
 				F07D76A7239CF1B600063190 /* ClientProcessStrategyTests.swift */,
 				F0C293F923AFA0C200470F45 /* RetryExecutorTests.swift */,
 			);
@@ -421,7 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				F0E77A132374934C002AB76E /* BuilderHelper.swift */,
-				F0E77A142374934C002AB76E /* ChatHTTPClientMock.swift */,
+				F0E77A142374934C002AB76E /* HTTPClientMock.swift */,
 				F0ACDF42238BE3A1003043E9 /* IdentityStoreResponseHelper.swift */,
 				F063F0A923954F3200F9E770 /* UserDefaultStorageMock.swift */,
 				F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */,
@@ -820,9 +817,8 @@
 				F07D76A8239CF1B600063190 /* ClientProcessStrategyTests.swift in Sources */,
 				F0D596D423A28CCE0005C76F /* JSONMockData.swift in Sources */,
 				F0ACDF3E238BD353003043E9 /* IdentityStoreControllerTests.swift in Sources */,
-				F0E77A1A2374934C002AB76E /* ChatHTTPClientMock.swift in Sources */,
+				F0E77A1A2374934C002AB76E /* HTTPClientMock.swift in Sources */,
 				F0E77A152374934C002AB76E /* RmoteAppIdLoaderTests.swift in Sources */,
-				F0071E05238FC95700563A9C /* ProcessStateHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
