@@ -63,7 +63,7 @@ extension ChatClientMediatorTests {
         
     // MARK: Helpers
     
-    private func makeSUT() -> (sut: ClientMediator?, httpClient: ChatHTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
+    private func makeSUT() -> (sut: ClientMediator?, httpClient: HTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
         let (managerClients, httpClient, chatClient, storage) = makeClients()
         let sut: ClientMediator? = ClientMediator(clients: managerClients)
         
@@ -72,9 +72,9 @@ extension ChatClientMediatorTests {
         return (sut, httpClient, chatClient, storage)
     }
     
-    private func makeClients() -> (managerClients: ClientMediatorClients, httpClient: ChatHTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
+    private func makeClients() -> (managerClients: ClientMediatorClients, httpClient: HTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
         let chatCliet = ChatClientSpy()
-        let httpClient = ChatHTTPClientMock()
+        let httpClient = HTTPClientMock()
         let jwt = Jwt()
         let storage = UserDefaultStorageMock()
         let strategy = TokenBasedClientStrategy(client: chatCliet, storage: storage, jwt: jwt)

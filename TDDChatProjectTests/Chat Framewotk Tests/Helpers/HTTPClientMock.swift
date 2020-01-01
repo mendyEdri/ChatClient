@@ -9,7 +9,7 @@
 import Foundation
 @testable import TDDChatProject
 
-internal class ChatHTTPClientMock: HTTPClient {
+internal class HTTPClientMock: HTTPClient {
     
     private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
     

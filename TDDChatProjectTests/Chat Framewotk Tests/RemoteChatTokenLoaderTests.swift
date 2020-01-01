@@ -81,8 +81,8 @@ class RemoteChatTokenLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (RemoteClientTokenLoader, ChatHTTPClientMock) {
-        let client = ChatHTTPClientMock()
+    private func makeSUT() -> (RemoteClientTokenLoader, HTTPClientMock) {
+        let client = HTTPClientMock()
         let url = URL(string: "https://a-url.com")!
         let sut = RemoteClientTokenLoader(url: url, client: client)
         

@@ -85,8 +85,8 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (RemoteIdentityStoreLoader, ChatHTTPClientMock) {
-        let client = ChatHTTPClientMock()
+    private func makeSUT() -> (RemoteIdentityStoreLoader, HTTPClientMock) {
+        let client = HTTPClientMock()
         let sut = RemoteIdentityStoreLoader(url: anyURL(), client: client)
         
         return (sut, client)

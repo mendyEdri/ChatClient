@@ -101,10 +101,10 @@ class IdentityStoreControllerTests: XCTestCase {
         assert()
     }
     
-    private func makeSUT() -> (sut: IdentityStoreController, client: ChatHTTPClientMock, storage: UserDefaultsStorage) {
+    private func makeSUT() -> (sut: IdentityStoreController, client: HTTPClientMock, storage: UserDefaultsStorage) {
         
         let storage = UserDefaultsStorage()
-        let client = ChatHTTPClientMock()
+        let client = HTTPClientMock()
         
         let sut = IdentityStoreController(url: anyURL(), httpClient: client, storage: storage, key: testSpecificUserIdKey)
         

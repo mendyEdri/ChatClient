@@ -11,10 +11,10 @@ import XCTest
 
 class RmoteAppIdLoaderTests: XCTestCase {
     
-    static let ValidAppId = "5c0176f943aea6002248a53b"
+    static let ValidAppId = "123-super-real-app-id"
     
     func test_apiAppIdLoader_emptyURL() {
-        let client = ChatHTTPClientMock()
+        let client = HTTPClientMock()
         
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
@@ -86,8 +86,8 @@ class RmoteAppIdLoaderTests: XCTestCase {
         XCTAssertEqual(capturedResult, [result], file: file, line: line)
     }
     
-    private func makeSUT() -> (RemoteAppIdLoader, ChatHTTPClientMock) {
-        let client = ChatHTTPClientMock()
+    private func makeSUT() -> (RemoteAppIdLoader, HTTPClientMock) {
+        let client = HTTPClientMock()
         let url = URL(string: "https://a-url.com")!
         let sut = RemoteAppIdLoader(url: url, client: client)
         
