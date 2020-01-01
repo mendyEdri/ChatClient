@@ -52,6 +52,32 @@ class RetryExecutorTests: XCTestCase {
         XCTAssertTrue(counter == 2)
     }
     
+    func test_retry_notCalledAfterObjectHasBeenDeallocated() {
+        var counter = 0
+        var sut = RetryExecutor(attempts: 5) {
+            counter += 1
+        }
+        
+        sut?.retry()
+        sut = nil
+        sut?.retry()
+        sut?.retry()
+        
+        XCTAssertTrue(counter == 1)
+    }
+    
+    func test_retry_retryReturnValueFalseAfterMaxAttempts() {
+        var counter = 0
+        let sut = RetryExecutor(attempts: 2) {
+            counter += 1
+        }!
+        
+        sut.retry()
+        XCTAssertTrue(sut.retry())
+        
+        XCTAssertFalse(sut.retry())
+    }
+    
     // MARK: Helpers
     
     private func anyError() -> Error {
