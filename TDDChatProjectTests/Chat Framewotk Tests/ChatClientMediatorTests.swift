@@ -60,7 +60,7 @@ extension ChatClientMediatorTests {
         
         XCTAssertTrue(capturedResult.isEmpty)
     }
-        
+    
     // MARK: Helpers
     
     private func makeSUT() -> (sut: ClientMediator?, httpClient: HTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {

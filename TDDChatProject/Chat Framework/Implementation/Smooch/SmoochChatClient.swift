@@ -68,7 +68,7 @@ public class SmoochChatClient: ChatClient {
     
     private func chatSettings(with appId: String) -> SKTSettings {
         let settings = SKTSettings(appId: appId)
-        settings.authenticationDelegate = authenticationDelegate
+        //settings.authenticationDelegate = authenticationDelegate
         return settings
     }
 }

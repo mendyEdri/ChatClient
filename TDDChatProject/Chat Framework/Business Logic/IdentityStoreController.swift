@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import lit_networking
 
 public final class IdentityStoreController {
     

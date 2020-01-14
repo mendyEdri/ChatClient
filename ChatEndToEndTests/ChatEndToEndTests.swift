@@ -44,6 +44,22 @@ class ChatEndToEndTests: XCTestCase {
         return expired ?? false
     }
     
+    func test_client_init() {
+        let exp = expectation(description: "Wait for smooch to be initialized")
+        var answer = false
+    
+        ChatDefaultComposition.manager.startSDK(for: (SmoochChatClient(), "5c0176f943aea6002248a53b")) { result in
+            if case .success = result {
+                answer = true
+            }
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 15.0)
+        
+        XCTAssertTrue(answer)
+    }
+    
     func test_prepareSDK_deliverReadyStateWhenNoAppIdOrTokenSaved() {
         expectState(toBe: .ready)
     }
@@ -125,6 +141,7 @@ extension ChatEndToEndTests {
     private func cleanUp() {
         deleteAppId()
         deleteUserToken()
+        clientLogout()
     }
     
     private func deleteAppId() {
@@ -135,6 +152,10 @@ extension ChatEndToEndTests {
     private func deleteUserToken() {
         let storage = UserDefaultsStorage()
         storage.delete(key: SmoochChatClient().userTokenKey)
+    }
+    
+    private func clientLogout() {
+        ChatDefaultComposition.manager.logout { _ in }
     }
 }
 

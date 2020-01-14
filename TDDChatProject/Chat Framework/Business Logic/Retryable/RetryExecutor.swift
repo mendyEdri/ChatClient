@@ -8,26 +8,31 @@
 
 import Foundation
 
-public class RetryExecutor {
-    private var retries = 0
+public class RetryExecutor: Retryable {
+        
+    private var attempts = 0
     var maxAttampts: Int
-    var action: () -> Void
+    var action: (() -> Void)?
     
-    public init?(attempts: Int, action: @escaping () -> Void) {
+    public required init?(attempts: Int, action: (() -> Void)? = nil) {
         guard attempts > 0 else { return nil }
         self.maxAttampts = attempts
         self.action = action
     }
     
+    public func setAction(_ action: @escaping () -> Void) {
+        self.action = action
+    }
+    
     public func reset() {
-        retries = 0
+        attempts = 0
     }
     
     @discardableResult
     public func retry() -> Bool {
         guard canRetry() == true else { return false }
         retried()
-        action()
+        action?()
         
         return true
     }
@@ -35,11 +40,11 @@ public class RetryExecutor {
     // Mark: Helpers
 
     private func canRetry() -> Bool {
-        return retries < maxAttampts
+        return attempts < maxAttampts
     }
     
     private func retried() {
-        retries += 1
+        attempts += 1
     }
 }
 

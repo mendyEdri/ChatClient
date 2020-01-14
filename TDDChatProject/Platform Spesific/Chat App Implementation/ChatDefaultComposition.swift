@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import lit_networking
 
 struct ChatDefaultComposition {
         
@@ -29,4 +30,6 @@ struct ChatDefaultComposition {
     
         return ClientMediator(clients: managerClients)
     }
+    
+    private init() {} 
 }

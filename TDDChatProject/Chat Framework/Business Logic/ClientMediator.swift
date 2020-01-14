@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import lit_networking
 
 /** Holds the data ClientMediator needs to be injected with
  ChatClient - Chat SDK or framework, call sdk-start, sdk-login & sdk-logout.
