@@ -92,7 +92,7 @@ class ChatEndToEndTests: XCTestCase {
         expectState(toBe: .ready)
     }
     
-    func test_prepareSDK_processMesure() {
+    func not_yet_test_prepareSDK_processMesure() {
         measure {
             let exp = expectation(description: "Wait for chat to be prepared")
             ChatDefaultComposition.manager.prepare { result in
