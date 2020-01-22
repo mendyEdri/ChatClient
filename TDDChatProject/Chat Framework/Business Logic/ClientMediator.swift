@@ -63,7 +63,7 @@ public class ClientMediator {
         
     private var prepareCompletion: (ClientState) -> Void = { _ in }
     
-    private var retries = 0
+    var sdkRetry = RetryExecutor(attempts: 2)
     
     private weak var commands: Commands?
     
@@ -146,9 +146,16 @@ extension ClientMediator {
         
         switch result {
         case .success:
+            //retries = 0
             self.startSDKPreparation(strategy)
             
         case let .failure(error):
+//            guard retries > 0 else {
+//                self.startSDKPreparation(strategy)
+//                retries += 1
+//                return
+//            }
+            
             self.clientState = .failed(error)
         }
     }
@@ -189,13 +196,20 @@ private extension ClientMediator {
     }
     
     private func startCommand() {
-        commands?.startSDK(for: (chatClient, appId)) { [weak self] result in
+        self.commands?.startSDK(for: (self.chatClient, self.appId)) { [weak self] result in
             guard let self = self else { return }
             result.failure {
                 self.delete(for: self.chatClient.appIdKey)
             }
-            self.handle(result)
+            if self.sdkRetry?.retry() == false {
+                self.handle(result)
+            }
         }
+        
+        sdkRetry?.setAction {
+            self.startSDKPreparation(self.strategy)
+        }
+        sdkRetry?.retry()
     }
     
     private func loginCommand() {

@@ -19,7 +19,7 @@
 		F060145323CF47FE00216AA0 /* JSONMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060145223CF47FE00216AA0 /* JSONMockData.swift */; };
 		F060145523CF486300216AA0 /* BuilderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060145423CF486300216AA0 /* BuilderHelper.swift */; };
 		F06211CE23CE14C600F36790 /* AccessTokenTempAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06835B023CDFABC008BD473 /* AccessTokenTempAdapter.swift */; };
-		F06211D123CE164B00F36790 /* lit-networking in Frameworks */ = {isa = PBXBuildFile; productRef = F06211D023CE164B00F36790 /* lit-networking */; };
+		F06211D123CE164B00F36790 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = F06211D023CE164B00F36790 /* SwiftPackageProductDependency */; };
 		F062120723CF346000F36790 /* IdentityStoreIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062120623CF346000F36790 /* IdentityStoreIntegrationTests.swift */; };
 		F062121023CF355900F36790 /* UserDefaultStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062120F23CF355900F36790 /* UserDefaultStorageMock.swift */; };
 		F062121223CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062121123CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift */; };
@@ -225,7 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F06211D123CE164B00F36790 /* lit-networking in Frameworks */,
+				F06211D123CE164B00F36790 /* BuildFile in Frameworks */,
 				406B701EAAA0474D5FD18E48 /* libPods-TDDChatProject.a in Frameworks */,
 				966377ABFB3D85CA2B2EE5A2 /* libPods-TDDChatProject.a in Frameworks */,
 			);
@@ -585,7 +585,6 @@
 				F0D596D523A297710005C76F /* Sources */,
 				F0D596D623A297710005C76F /* Frameworks */,
 				F0D596D723A297710005C76F /* Resources */,
-				CD1E5CD341BB3F1A7676713F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -613,7 +612,7 @@
 			);
 			name = TDDChatProject;
 			packageProductDependencies = (
-				F06211D023CE164B00F36790 /* lit-networking */,
+				F06211D023CE164B00F36790 /* SwiftPackageProductDependency */,
 			);
 			productName = TDDChatProject;
 			productReference = F0E779E82374932C002AB76E /* TDDChatProject.app */;
@@ -674,7 +673,7 @@
 			);
 			mainGroup = F0E779DF2374932C002AB76E;
 			packageReferences = (
-				F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */,
+				F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = F0E779E92374932C002AB76E /* Products */;
 			projectDirPath = "";
@@ -782,23 +781,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CD1E5CD341BB3F1A7676713F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1312,7 +1294,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */ = {
+		F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mendyEdri/lit-networking.git";
 			requirement = {
@@ -1323,9 +1305,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F06211D023CE164B00F36790 /* lit-networking */ = {
+		F06211D023CE164B00F36790 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */;
+			package = F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */;
 			productName = "lit-networking";
 		};
 /* End XCSwiftPackageProductDependency section */
