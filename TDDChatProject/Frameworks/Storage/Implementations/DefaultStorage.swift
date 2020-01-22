@@ -31,4 +31,8 @@ public struct UserDefaultsStorage: Storage {
     public func hasValue(for key: String) -> Bool {
         return defaults.value(forKey: key) != nil
     }
+    
+    public func keyValues() -> [String: Any] {
+        return defaults.dictionaryRepresentation()
+    }
 }

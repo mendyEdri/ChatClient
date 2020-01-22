@@ -13,4 +13,5 @@ public protocol Storage {
     func delete(key: String)
     func value(for key: String) -> Any?
     func hasValue(for key: String) -> Bool
+    func keyValues() -> [String: Any]
 }
