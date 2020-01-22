@@ -8,6 +8,7 @@
 
 import XCTest
 import TDDChatProject
+import lit_networking
 
 class RemoteIdentityStoreLoaderTests: XCTestCase {
     

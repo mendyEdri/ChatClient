@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import lit_networking
+import Smooch
 @testable import TDDChatProject
 
 class ChatEndToEndTests: XCTestCase {
@@ -45,9 +47,11 @@ class ChatEndToEndTests: XCTestCase {
     }
     
     func test_client_init() {
+        Smooch.destroy()
+        
         let exp = expectation(description: "Wait for smooch to be initialized")
         var answer = false
-    
+                
         ChatDefaultComposition.manager.startSDK(for: (SmoochChatClient(), "5c0176f943aea6002248a53b")) { result in
             if case .success = result {
                 answer = true

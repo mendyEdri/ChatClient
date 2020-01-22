@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import lit_networking
 @testable import TDDChatProject
 
 // MARK: - Client Prepare SDK Tests

@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import lit_networking
 @testable import TDDChatProject
 
 class RemoteChatTokenLoaderTests: XCTestCase {
@@ -43,7 +44,7 @@ class RemoteChatTokenLoaderTests: XCTestCase {
         let itemData = data(from: createSuccessJson())
         
         randomNotOKStatusCodes.forEach { code in
-        
+            
             let (sut, client) = makeSUT()
             expect(that: sut, be: .failure(.invalidData), when: {
                 client.complete(withSatus: code, data: itemData)
@@ -99,7 +100,9 @@ class RemoteChatTokenLoaderTests: XCTestCase {
         
         XCTAssertEqual(capturedResult, [result], file: file, line: line)
     }
-    
+}
+
+extension RemoteChatTokenLoaderTests {
     private func createSuccessJson() -> [String: Any] {
         let item = createVendorTokenItem()
         return createJsonItem(from: item)
@@ -139,7 +142,8 @@ class RemoteChatTokenLoaderTests: XCTestCase {
     }
     
     private func accessToken() -> String {
-        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFwcF81YzA2MWUyZmJlOWNjMDAwMjIwMDMwOWMifQ.eyJzY29wZSI6ImFwcFVzZXIiLCJpYXQiOjE1NzI5NDI2MzcsInVzZXJJZCI6Ijc3N2FlMDhiLTZhNmItNDJlOS05MDY4LTMxNGRlMDRiYzk4MiIsImV4cCI6MTU3Mjk1NzAzN30.PgxQE_PXPIVjFtngVgkvelvnIRkTPHwjSonzRxN5va4"
+        // Experation Date in 2032
+        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFwcF81YzA2MWUyZmJlOWNjMDAwMjIwMDMwOWMifQ.eyJzY29wZSI6ImFwcFVzZXIiLCJpYXQiOjE1Nzk2MjI5ODYsInVzZXJJZCI6Ijc3N2FlMDhiLTZhNmItNDJlOS05MDY4LTMxNGRlMDRiYzk4MiIsImV4cCI6MTk3OTYzNzM4Nn0.XvBz-bs3v0A9xyVAlKmBUPZktbuZxjWbcO4OBt5rbeY"
     }
     
     private func fourHoursExpiration() -> TimeInterval {
