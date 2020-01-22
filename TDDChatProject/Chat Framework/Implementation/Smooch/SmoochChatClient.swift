@@ -56,10 +56,12 @@ public class SmoochChatClient: ChatClient {
     }
     
     public func logout(completion: @escaping (LoginResult) -> Void) {
+        guard loggedIn() == true else { return }
         Smooch.logout { error, info in
             if error != nil {
                 return completion(.failure(.logoutFailed))
             }
+            Smooch.destroy()
             return completion(.success(""))
         }
     }
