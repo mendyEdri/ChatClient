@@ -18,7 +18,6 @@ public struct ClientMediatorClients {
     var jwtClient: Jwtable
     var storage: Storage
     var strategy: BasicProcessStrategy
-    var accessTokenWrapRequest: AccessTokenAdapter?
 }
 
 extension ClientMediator: Commands {}
@@ -63,7 +62,16 @@ public class ClientMediator {
         
     private var prepareCompletion: (ClientState) -> Void = { _ in }
     
-    var sdkRetry = RetryExecutor(attempts: 2)
+    static var sdkRetryAttempts: Int {
+        return 2
+    }
+     
+    static var httpRetryAttempts: Int {
+        return 3
+    }
+    
+    var sdkStartRetry = RetryExecutor(attempts: ClientMediator.sdkRetryAttempts)
+    var sdkLoginRetry = RetryExecutor(attempts: ClientMediator.sdkRetryAttempts)
     
     private weak var commands: Commands?
     
@@ -146,16 +154,9 @@ extension ClientMediator {
         
         switch result {
         case .success:
-            //retries = 0
             self.startSDKPreparation(strategy)
             
         case let .failure(error):
-//            guard retries > 0 else {
-//                self.startSDKPreparation(strategy)
-//                retries += 1
-//                return
-//            }
-            
             self.clientState = .failed(error)
         }
     }
@@ -201,21 +202,27 @@ private extension ClientMediator {
             result.failure {
                 self.delete(for: self.chatClient.appIdKey)
             }
-            if self.sdkRetry?.retry() == false {
+            if self.sdkStartRetry?.retry() == false {
                 self.handle(result)
             }
         }
         
-        sdkRetry?.setAction {
+        sdkStartRetry?.setAction {
             self.startSDKPreparation(self.strategy)
         }
-        sdkRetry?.retry()
     }
     
     private func loginCommand() {
         commands?.loginSDK(for: (chatClient, userToken, userId)) { [weak self] result in
             self?.registerIdentityStoreCommandWithoutCompletion()
-            self?.handle(result)
+            
+            if self?.sdkLoginRetry?.retry() == false {
+                self?.handle(result)
+            }
+        }
+        
+        sdkLoginRetry?.setAction {
+            self.startSDKPreparation(self.strategy)
         }
     }
     

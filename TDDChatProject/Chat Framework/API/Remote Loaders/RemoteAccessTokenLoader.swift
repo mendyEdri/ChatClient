@@ -32,7 +32,12 @@ public enum AccessTokenLoaderURL: String {
     }
 }
 
-public class RemoteAccessTokenLoader {
+public protocol RemoteTokenLoader {
+    typealias Result = Swift.Result<AccessToken, RemoteAccessTokenLoader.Error>
+    func load(completion: @escaping (Result) -> Void)
+}
+
+public class RemoteAccessTokenLoader: RemoteTokenLoader {
     
     private let url: URL
     private let client: HTTPClient
@@ -43,15 +48,13 @@ public class RemoteAccessTokenLoader {
         case authFailed
         case unknownVendor
     }
-    
-    public typealias Result = Swift.Result<AccessToken, Error>
-    
+        
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void) {
+    public func load(completion: @escaping (RemoteTokenLoader.Result) -> Void) {
         client.get(from: url, method: .POST, headers: Pairs.oauthHeaders, body: Pairs.oauthBody) { result in
             switch result {
             case let .success(data, response):

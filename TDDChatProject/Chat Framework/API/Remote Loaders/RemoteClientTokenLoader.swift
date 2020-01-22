@@ -31,7 +31,8 @@ public class RemoteClientTokenLoader {
     }
     
     func load(completion: @escaping (Result) -> Void) {
-        let decoratedAccessToken = HTTPClientAccessTokenDecorator(http: client, tokenAdapter: AccessTokenTempAdapter())
+        #warning("AccessTokenMockAdapter should be real for non-testing environment")
+        let decoratedAccessToken = HTTPClientAccessTokenDecorator(http: client, tokenAdapter: AccessTokenMockAdapter())
         decoratedAccessToken.get(from: url, method: .POST, headers: Headers.pairs()) { result in
             switch result {
             case let .success(data, response):
