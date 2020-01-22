@@ -12,12 +12,16 @@ import TDDChatProject
 
 class ClientMediatorIntegrationTests: XCTestCase {
     
-    static var retryAttempts: Int {
-        return 3
+    static var httpRetryAttempts: Int {
+        return ClientMediator.httpRetryAttempts
+    }
+    
+    static var sdkRetryAttempts: Int {
+        return ClientMediator.sdkRetryAttempts
     }
     
     func test_prepare_deliversReadyOnTokenValid() {
-        let (sut, clients, _) = sutSetup()
+        let (sut, clients, _, _) = sutSetup()
         
         expect(sut: sut, be: .ready, when: {
             completeRemoteAppIdWithSuccess(mock: clients.httpClient)
@@ -29,7 +33,7 @@ class ClientMediatorIntegrationTests: XCTestCase {
     }
     
     func test_prepare_deliversAppIdFailsOnRemoteAppIdRequestFails() {
-        let (sut, clients, attempts) = sutSetup()
+        let (sut, clients, attempts, _) = sutSetup()
         
         expect(sut: sut, be: .failed(.failedFetchAppId), when: {
             attempts.loop {
@@ -39,7 +43,7 @@ class ClientMediatorIntegrationTests: XCTestCase {
     }
     
     func test_prepare_deliversVendorTokenFailsWhenTokenRequestFails() {
-        let (sut, clients, attempts) = sutSetup()
+        let (sut, clients, attempts, _) = sutSetup()
 
         expect(sut: sut, be: .failed(.failedFetchToken), when: {
             completeRemoteAppIdWithSuccess(mock: clients.httpClient)
@@ -50,25 +54,29 @@ class ClientMediatorIntegrationTests: XCTestCase {
     }
     
     func test_prepare_deliversStartSDKFailsWhenClientSDKStartFails() {
-        let (sut, clients, _) = sutSetup()
+        let (sut, clients, _, sdkAttempts) = sutSetup()
         
         expect(sut: sut, be: .failed(.initFailed), when: {
             completeRemoteAppIdWithSuccess(mock: clients.httpClient)
             completeRemoteVendorTokenWithSuccess(mock: clients.httpClient, at: 1)
             
-            completeStartSDKWithError(clients.chatClient)
+            sdkAttempts.loop {
+                completeStartSDKWithError(clients.chatClient)
+            }
         })
     }
     
     func test_prepare_deliversLoginSDKFailsWhenClientSDKLoginFails() {
-        let (sut, clients, _) = sutSetup()
+        let (sut, clients, _, sdkAttempts) = sutSetup()
         
         expect(sut: sut, be: .failed(.loginFailed), when: {
             completeRemoteAppIdWithSuccess(mock: clients.httpClient)
             completeRemoteVendorTokenWithSuccess(mock: clients.httpClient, at: 1)
             completeStartSDKWithSuccess(clients.chatClient)
             
-            completeLoginSDKWithError(clients.chatClient)
+            sdkAttempts.loop {
+                completeLoginSDKWithError(clients.chatClient)
+            }
         })
     }
 }
@@ -99,8 +107,9 @@ extension ClientMediatorIntegrationTests {
         expect(sut: sut, be: .ready, when: {
             completeRemoteAppIdWithSuccess(mock: clients.httpClient, at: 0)
             
-            // Retry completions
+            // Intentially fails
             completeRemoteVendorTokenWithError(mock: clients.httpClient, at: 1)
+            // Now, let's try to retry and make it work
             completeRemoteVendorTokenWithSuccess(mock: clients.httpClient, at: 2)
             
             completeStartSDKWithSuccess(clients.chatClient)
@@ -128,10 +137,10 @@ extension ClientMediatorIntegrationTests {
         XCTAssertEqual(capturedResult, [expected], file: file, line: line)
     }
     
-    private func sutSetup() -> (sut: ClientMediator, clients: Clients, attempts: Int) {
+    private func sutSetup() -> (sut: ClientMediator, clients: Clients, httpRetryAttempts: Int, sdkRetryAttempts: Int) {
         let clients = Clients()
         let sut = clients.makeManager()
-        return (sut, clients, ClientMediatorIntegrationTests.retryAttempts)
+        return (sut, clients, ClientMediatorIntegrationTests.httpRetryAttempts, ClientMediatorIntegrationTests.sdkRetryAttempts)
     }
 }
 
@@ -180,7 +189,7 @@ private extension ClientMediatorIntegrationTests {
 private class Clients {
     let chatClient = ChatClientSpy()
     let httpClient = HTTPClientMock()
-    lazy var retryDecorator = HTTPClientRetryDecorator(http: self.httpClient, retryable: RetryExecutor(attempts: ClientMediatorIntegrationTests.retryAttempts)!)
+    lazy var retryDecorator = HTTPClientRetryDecorator(http: self.httpClient, retryable: RetryExecutor(attempts: ClientMediatorIntegrationTests.httpRetryAttempts)!)
     
     let storage = UserDefaultStorageMock()
     let jwt = Jwt()
