@@ -18,6 +18,7 @@ public protocol Initializable {
 
 /** Protocol for Login to a SDK. seperated from ChatClient to have more flexability for other SDK that might not need Initializable protocol */
 public protocol Loginable {
+    /** Result of login operation. Result.String is the user identifier or token returned from the Client SDK */
     typealias LoginResult = Result<String, ClientMediator.Error>
     
     func initialized() -> Bool
