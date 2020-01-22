@@ -7,7 +7,12 @@
 		<key>ChatEndToEndTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>1</integer>
+		</dict>
+		<key>Integration.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>TDDChatProject.xcscheme_^#shared#^_</key>
 		<dict>
@@ -17,6 +22,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>F06211F523CF325900F36790</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F062120323CF346000F36790</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>F0D596D823A297710005C76F</key>
 		<dict>
 			<key>primary</key>

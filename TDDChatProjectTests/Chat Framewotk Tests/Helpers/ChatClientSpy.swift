@@ -20,16 +20,11 @@ class ChatClientSpy: ChatClient {
     internal var isInitialize = false 
     private var isLoggedIn = false
     
-    private var appId: String!
-    private var userId: String!
-    
     func startSDK(_ appId: String?, completion: @escaping (StartResult) -> Void) {
-        self.appId = appId
         startCompletions.append(completion)
     }
     
     func login(userId: String, token: String, completion: @escaping (LoginResult) -> Void) {
-        self.userId = userId
         loginCompletions.append(completion)
     }
     
@@ -49,7 +44,7 @@ class ChatClientSpy: ChatClient {
     
     func completeStartSDKSuccessfuly(_ index: Int = 0) {
         isInitialize = true
-        startCompletions[index](.success(appId))
+        startCompletions[index](.success(anyAppId))
     }
     
     func completeStartSDKWithError(_ index: Int = 0) {
@@ -59,7 +54,7 @@ class ChatClientSpy: ChatClient {
     
     func completeLoginWithSuccess(_ index: Int = 0) {
         isLoggedIn = true
-        loginCompletions[index](.success(userId))
+        loginCompletions[index](.success(anyUserToken))
     }
     
     func completeLoginWithErrorInvalidToken(_ index: Int = 0) {
@@ -73,7 +68,11 @@ class ChatClientSpy: ChatClient {
 }
 
 extension ChatClientSpy {
-    var anyUserId: String {
+    var anyAppId: String {
+        return "1209381xxJJ"
+    }
+    
+    var anyUserToken: String {
         return "altj"
     }
 }

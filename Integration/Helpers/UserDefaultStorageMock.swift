@@ -1,9 +1,9 @@
 //
 //  UserDefaultStorageMock.swift
-//  TDDChatProjectTests
+//  Integration
 //
-//  Created by Mendy Edri on 02/12/2019.
-//  Copyright © 2019 CWT. All rights reserved.
+//  Created by Mendy Edri on 15/01/2020.
+//  Copyright © 2020 CWT. All rights reserved.
 //
 
 import Foundation
@@ -28,7 +28,7 @@ class UserDefaultStorageMock: Storage {
         return (value(for: key) != nil)
     }
     
-    func keyValues() -> [String: Any] {
+    func keyValues() -> [String : Any] {
         return storage
     }
 }

@@ -1,13 +1,12 @@
 //
 //  BuilderHelper.swift
-//  ChatHTTPLoaderTests
+//  Integration
 //
-//  Created by Mendy Edri on 05/11/2019.
-//  Copyright © 2019 CWT. All rights reserved.
+//  Created by Mendy Edri on 15/01/2020.
+//  Copyright © 2020 CWT. All rights reserved.
 //
 
 import Foundation
-@testable import TDDChatProject
 
 struct BuilderHelper {
     func buildSuccessHeaderAndMeta() -> (header: ResponseHeader, meta: ResponseMetadata) {

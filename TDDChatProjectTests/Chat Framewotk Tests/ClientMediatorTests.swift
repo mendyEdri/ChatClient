@@ -10,7 +10,7 @@ import XCTest
 
 // MARK: - Client Prepare SDK Tests
 
-class ChatClientMediatorTests: XCTestCase {
+class ClientMediatorTests: XCTestCase {
     
     private typealias Error = ClientMediator.Error
     private typealias Result = Swift.Result<String, ClientMediator.Error>
@@ -40,12 +40,11 @@ class ChatClientMediatorTests: XCTestCase {
         return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE4OTE0MzEwNTcsImlkIjoicGluZ0lkMTIzNCJ9.ALvokNaSsHcOw035a6895Z-1ptxIYVUuyXF-ZCwS2Oo"
     }
     
-    private lazy var anyAppId = "10203"
+    private var anyAppId = "10203"
 }
 
-extension ChatClientMediatorTests {
+extension ClientMediatorTests {
    
-    #warning("Should it be done via end-to-end tests?")
     func test_prepareSDK_notDeliveringWhenInstanceHasBeenDeallocated() {
         var (sut, client, _, _) = makeSUT()
     
