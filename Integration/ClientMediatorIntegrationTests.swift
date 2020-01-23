@@ -89,7 +89,7 @@ extension ClientMediatorIntegrationTests {
         let sut = clients.makeManager()
         
         expect(sut: sut, be: .ready, when: {
-            completeRemoteAppIdWithError(mock: clients.httpClient)
+            completeRemoteAppIdWithError(mock: clients.httpClient, at: 0)
             
             // Retry completions
             completeRemoteAppIdWithSuccess(mock: clients.httpClient, at: 1)

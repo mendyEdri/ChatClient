@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         //startChat()
     }
     
-    func startChat() {
+    func buttonSelected() {
         ChatDefaultComposition.manager.prepare { result in
             print("Done Prepare: \(result)")
             DispatchQueue.main.async {
