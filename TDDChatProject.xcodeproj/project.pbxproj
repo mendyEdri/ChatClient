@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F6E9B61A52BAD3D35BF5314 /* libPods-ChatEndToEndTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2204C20F6553B73BC0AFABF3 /* libPods-ChatEndToEndTests.a */; };
 		406B701EAAA0474D5FD18E48 /* libPods-TDDChatProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20036174A8DC5C34C1B980C3 /* libPods-TDDChatProject.a */; };
 		966377ABFB3D85CA2B2EE5A2 /* libPods-TDDChatProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D596EA23A2A2590005C76F /* libPods-TDDChatProject.a */; };
 		F000671623B3A4530008B2C5 /* Dictionary+toData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F000671523B3A4530008B2C5 /* Dictionary+toData.swift */; };
@@ -21,7 +20,7 @@
 		F060145323CF47FE00216AA0 /* JSONMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060145223CF47FE00216AA0 /* JSONMockData.swift */; };
 		F060145523CF486300216AA0 /* BuilderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060145423CF486300216AA0 /* BuilderHelper.swift */; };
 		F06211CE23CE14C600F36790 /* AccessTokenTempAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06835B023CDFABC008BD473 /* AccessTokenTempAdapter.swift */; };
-		F06211D123CE164B00F36790 /* lit-networking in Frameworks */ = {isa = PBXBuildFile; productRef = F06211D023CE164B00F36790 /* lit-networking */; };
+		F06211D123CE164B00F36790 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = F06211D023CE164B00F36790 /* SwiftPackageProductDependency */; };
 		F062120723CF346000F36790 /* IdentityStoreIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062120623CF346000F36790 /* IdentityStoreIntegrationTests.swift */; };
 		F062121023CF355900F36790 /* UserDefaultStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062120F23CF355900F36790 /* UserDefaultStorageMock.swift */; };
 		F062121223CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062121123CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift */; };
@@ -109,6 +108,7 @@
 		F0E77A3223749377002AB76E /* RemoteClientTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2723749377002AB76E /* RemoteClientTokenLoader.swift */; };
 		F0E77A3323749377002AB76E /* ChatClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2923749377002AB76E /* ChatClient.swift */; };
 		F0E77A3423749377002AB76E /* ClientMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2A23749377002AB76E /* ClientMediator.swift */; };
+		FBB4BC6808F62DC8820AFD5C /* libPods-ChatEndToEndTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B3054403D94956EE17372E /* libPods-ChatEndToEndTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,11 +137,11 @@
 
 /* Begin PBXFileReference section */
 		20036174A8DC5C34C1B980C3 /* libPods-TDDChatProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TDDChatProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2204C20F6553B73BC0AFABF3 /* libPods-ChatEndToEndTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChatEndToEndTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		47D0747548E59A4170795549 /* Pods-ChatEndToEndTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatEndToEndTests.debug.xcconfig"; path = "Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2512929E088E23D03FA3D872 /* Pods-ChatEndToEndTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatEndToEndTests.release.xcconfig"; path = "Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests.release.xcconfig"; sourceTree = "<group>"; };
 		4F20C3F7E5D2FCBE63A4F2CA /* Pods-TDDChatProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDChatProject.debug.xcconfig"; path = "Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject.debug.xcconfig"; sourceTree = "<group>"; };
 		771CED41378EF474964900F1 /* Pods-TDDChatProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDChatProject.release.xcconfig"; path = "Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject.release.xcconfig"; sourceTree = "<group>"; };
-		9E7E9E8392F4D3427F896A2E /* Pods-ChatEndToEndTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatEndToEndTests.release.xcconfig"; path = "Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests.release.xcconfig"; sourceTree = "<group>"; };
+		7BC882221C0B36BD3267C456 /* Pods-ChatEndToEndTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatEndToEndTests.debug.xcconfig"; path = "Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D0B3054403D94956EE17372E /* libPods-ChatEndToEndTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChatEndToEndTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F000671523B3A4530008B2C5 /* Dictionary+toData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+toData.swift"; sourceTree = "<group>"; };
 		F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatClientSpy.swift; sourceTree = "<group>"; };
 		F060145223CF47FE00216AA0 /* JSONMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMockData.swift; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F6E9B61A52BAD3D35BF5314 /* libPods-ChatEndToEndTests.a in Frameworks */,
+				FBB4BC6808F62DC8820AFD5C /* libPods-ChatEndToEndTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F06211D123CE164B00F36790 /* lit-networking in Frameworks */,
+				F06211D123CE164B00F36790 /* BuildFile in Frameworks */,
 				406B701EAAA0474D5FD18E48 /* libPods-TDDChatProject.a in Frameworks */,
 				966377ABFB3D85CA2B2EE5A2 /* libPods-TDDChatProject.a in Frameworks */,
 			);
@@ -248,7 +248,7 @@
 			children = (
 				F0D596EA23A2A2590005C76F /* libPods-TDDChatProject.a */,
 				20036174A8DC5C34C1B980C3 /* libPods-TDDChatProject.a */,
-				2204C20F6553B73BC0AFABF3 /* libPods-ChatEndToEndTests.a */,
+				D0B3054403D94956EE17372E /* libPods-ChatEndToEndTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -552,8 +552,8 @@
 			children = (
 				4F20C3F7E5D2FCBE63A4F2CA /* Pods-TDDChatProject.debug.xcconfig */,
 				771CED41378EF474964900F1 /* Pods-TDDChatProject.release.xcconfig */,
-				47D0747548E59A4170795549 /* Pods-ChatEndToEndTests.debug.xcconfig */,
-				9E7E9E8392F4D3427F896A2E /* Pods-ChatEndToEndTests.release.xcconfig */,
+				7BC882221C0B36BD3267C456 /* Pods-ChatEndToEndTests.debug.xcconfig */,
+				2512929E088E23D03FA3D872 /* Pods-ChatEndToEndTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -583,11 +583,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0D596E023A297710005C76F /* Build configuration list for PBXNativeTarget "ChatEndToEndTests" */;
 			buildPhases = (
-				102FF815BFE4332F122D4ECD /* [CP] Check Pods Manifest.lock */,
+				B71CDD3152AF4ACE0FBFFFB8 /* [CP] Check Pods Manifest.lock */,
 				F0D596D523A297710005C76F /* Sources */,
 				F0D596D623A297710005C76F /* Frameworks */,
 				F0D596D723A297710005C76F /* Resources */,
-				815C1B488B0CE4FB12768C18 /* [CP] Embed Pods Frameworks */,
+				9FA954CB82A971EC00C4A256 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -615,7 +615,7 @@
 			);
 			name = TDDChatProject;
 			packageProductDependencies = (
-				F06211D023CE164B00F36790 /* lit-networking */,
+				F06211D023CE164B00F36790 /* SwiftPackageProductDependency */,
 			);
 			productName = TDDChatProject;
 			productReference = F0E779E82374932C002AB76E /* TDDChatProject.app */;
@@ -676,7 +676,7 @@
 			);
 			mainGroup = F0E779DF2374932C002AB76E;
 			packageReferences = (
-				F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */,
+				F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = F0E779E92374932C002AB76E /* Products */;
 			projectDirPath = "";
@@ -725,45 +725,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		102FF815BFE4332F122D4ECD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ChatEndToEndTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		815C1B488B0CE4FB12768C18 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8EB5C81E83375CC61BD6D81B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -779,6 +740,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FA954CB82A971EC00C4A256 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AB065C9C7FB72535DDD470B5 /* [CP] Check Pods Manifest.lock */ = {
@@ -797,6 +775,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-TDDChatProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B71CDD3152AF4ACE0FBFFFB8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChatEndToEndTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1009,7 +1009,7 @@
 		};
 		F0D596E123A297710005C76F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47D0747548E59A4170795549 /* Pods-ChatEndToEndTests.debug.xcconfig */;
+			baseConfigurationReference = 7BC882221C0B36BD3267C456 /* Pods-ChatEndToEndTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
@@ -1036,7 +1036,7 @@
 		};
 		F0D596E223A297710005C76F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E7E9E8392F4D3427F896A2E /* Pods-ChatEndToEndTests.release.xcconfig */;
+			baseConfigurationReference = 2512929E088E23D03FA3D872 /* Pods-ChatEndToEndTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
@@ -1316,7 +1316,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */ = {
+		F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mendyEdri/lit-networking.git";
 			requirement = {
@@ -1327,9 +1327,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F06211D023CE164B00F36790 /* lit-networking */ = {
+		F06211D023CE164B00F36790 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */;
+			package = F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */;
 			productName = "lit-networking";
 		};
 /* End XCSwiftPackageProductDependency section */
