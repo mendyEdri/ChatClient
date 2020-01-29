@@ -46,10 +46,6 @@ public class ClientMediator {
         case failed(Error)
     }
     
-    public enum RefreshState {
-        case start, end
-    }
-    
     private var clientState: ClientState = .notReady {
         didSet {
             prepareCompletion(clientState)
