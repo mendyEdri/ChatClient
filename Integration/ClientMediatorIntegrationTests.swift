@@ -82,7 +82,7 @@ class ClientMediatorIntegrationTests: XCTestCase {
 }
 
 extension ClientMediatorIntegrationTests {
-    // MARK: Testing Prepare function with fails and retry to verify integration between HTTPClientRetryDecorator and other components
+    // MARK: - Testing Prepare function with fails and retry to verify integration between HTTPClientRetryDecorator and other components
     
     func test_prepare_deliversReadyOnAppIdFetchFailsAndRetryWithSuccess() {
         let clients = Clients()
@@ -119,7 +119,41 @@ extension ClientMediatorIntegrationTests {
 }
 
 extension ClientMediatorIntegrationTests {
-    // MARK: Helpers
+    // MARK: - Renew Token Tests
+    
+    func test_renewToken_deliversSuccessAfterExpiredTokenWasSaved() {
+        let clients = Clients()
+        let sut = clients.makeManager()
+        
+        expectRenew(sut: sut, be: .success(JSONMockData.validChatVendorToken.accessToken), when: {
+            completeRemoteVendorTokenWithSuccess(mock: clients.httpClient)
+        })
+    }
+    
+    func test_renewToken_deliversFailureAfterExceededMaxAttempts() {
+        let (sut, clients, httpAttempts, _) = sutSetup()
+        
+        expectRenew(sut: sut, be: .failure(.failedFetchToken), when: {
+            (httpAttempts).loop {
+                completeRemoteVendorTokenWithError(mock: clients.httpClient)
+            }
+        })
+    }
+    
+    func test_renewToken_deliversSuccessAfterRetryLessThenMaxAttempts() {
+        let (sut, clients, httpAttempts, _) = sutSetup()
+        
+        expectRenew(sut: sut, be: .success(JSONMockData.validChatVendorToken.accessToken), when: {
+            (httpAttempts - 1 as Int).loop {
+                completeRemoteVendorTokenWithError(mock: clients.httpClient)
+            }
+            completeRemoteVendorTokenWithSuccess(mock: clients.httpClient)
+        })
+    }
+}
+
+extension ClientMediatorIntegrationTests {
+    // MARK: - Helpers
     
     private func expect(sut: ClientMediator, be expected: ClientMediator.ClientState, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for prepare to complete")
@@ -132,8 +166,23 @@ extension ClientMediatorIntegrationTests {
         
         action()
         
-        wait(for: [exp], timeout: 10.0)
+        wait(for: [exp], timeout: 3.0)
         
+        XCTAssertEqual(capturedResult, [expected], file: file, line: line)
+    }
+    
+    private func expectRenew(sut: ClientMediator, be expected: ClientMediator.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+        
+        let exp = expectation(description: "Wait for renew token to complete")
+        var capturedResult = [ClientMediator.Result]()
+        sut.renewUserToken { result in
+            capturedResult.append(result)
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 3.0)
         XCTAssertEqual(capturedResult, [expected], file: file, line: line)
     }
     
@@ -145,7 +194,7 @@ extension ClientMediatorIntegrationTests {
 }
 
 private extension ClientMediatorIntegrationTests {
-    // MAKR: Helpers methods to ease the complete HTTPClient requests
+    // MAKR: - Helpers methods to ease the complete HTTPClient requests
     func completeRemoteAppIdWithSuccess(mock: HTTPClientMock, at index: Int = 0) {
         mock.complete(withSatus: 200, data: JSONMockData.appIdRemoteApiData().toData(), at: index)
     }
@@ -168,7 +217,7 @@ private extension ClientMediatorIntegrationTests {
 }
 
 private extension ClientMediatorIntegrationTests {
-    // MAKR: Helpers methods to ease the complete ChatClient methods
+    // MAKR: - Helpers methods to ease the complete ChatClient methods
     func completeStartSDKWithSuccess(_ spy: ChatClientSpy) {
         spy.completeStartSDKSuccessfuly()
     }

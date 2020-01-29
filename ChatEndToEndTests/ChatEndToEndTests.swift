@@ -92,6 +92,22 @@ class ChatEndToEndTests: XCTestCase {
         expectState(toBe: .ready)
     }
     
+    func test_renewUserToken_deliversReady() {
+        saveRealAppId()
+        saveExpiredToken()
+        
+        let exp = expectation(description: "Wait for chat to be prepared")
+        var capturedResult: ClientMediator.Result = .failure(.failedFetchToken)
+        
+        ChatDefaultComposition.manager.renewUserToken { result in
+            capturedResult = result
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 10.0)
+        XCTAssertTrue(capturedResult.succeeded)
+    }
+    
     func not_yet_test_prepareSDK_processMesure() {
         measure {
             let exp = expectation(description: "Wait for chat to be prepared")
@@ -168,5 +184,4 @@ extension ChatEndToEndTests {
         return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjExNzI2MTExNzcsImlkIjoicGluZ0lkMTIzNCIsInVzZXJJZCI6InVzZXJJZDk4NzYifQ.PHdCsv40vXi56McA3084aDkVeuIkOlAK5Jm2_IU8Io8"
     }
 }
-
 

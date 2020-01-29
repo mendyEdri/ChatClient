@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="lz6-dO-Ywk">
-                                <rect key="frame" x="188" y="235" width="38" height="45"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="lz6-dO-Ywk">
+                                <rect key="frame" x="188.5" y="235" width="37" height="45"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sz8-se-BWT">
                                 <rect key="frame" x="170" y="438" width="74" height="30"/>
@@ -32,7 +32,6 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="lz6-dO-Ywk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="188" id="7Il-jT-Kg2"/>
                             <constraint firstItem="lz6-dO-Ywk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="191" id="fa0-kb-0NP"/>
                             <constraint firstItem="lz6-dO-Ywk" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="giv-TZ-doI"/>
                             <constraint firstItem="Sz8-se-BWT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lSR-eD-ClG"/>

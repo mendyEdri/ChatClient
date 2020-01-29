@@ -14,16 +14,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.activityIndicator.isHidden = true
-        self.activityIndicator.hidesWhenStopped = true
-        //startChat()
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        buttonSelected()
     }
     
     func buttonSelected() {
-        ChatDefaultComposition.manager.prepare { result in
+        ChatDefaultComposition.manager.prepare { [weak self] result in
             print("Done Prepare: \(result)")
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
+                self?.activityIndicator.stopAnimating()
             }
         }
     }

@@ -96,8 +96,11 @@ extension ClientMediator {
     }
     
     public func renewUserToken(completion: @escaping (Result) -> Void) {
-        userTokenCommand { result in
-            completion(result)
+        commands?.getRemoteToken(loader: loaders.userToken) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.save(result: result, for: self.userTokenKey)
+            return completion(result)
         }
     }
     

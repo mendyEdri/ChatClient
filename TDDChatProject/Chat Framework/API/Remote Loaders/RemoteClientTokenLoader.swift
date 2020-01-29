@@ -33,7 +33,11 @@ public class RemoteClientTokenLoader {
     func load(completion: @escaping (Result) -> Void) {
         #warning("AccessTokenMockAdapter should be real for non-testing environment")
         let decoratedAccessToken = HTTPClientAccessTokenDecorator(http: client, tokenAdapter: AccessTokenMockAdapter())
-        decoratedAccessToken.get(from: url, method: .POST, headers: Headers.pairs()) { result in
+        load(with: decoratedAccessToken, completion: completion)
+    }
+    
+    func load(with decorator: HTTPClient, completion: @escaping (Result) -> Void) {
+        decorator.get(from: url, method: .POST, headers: Headers.pairs()) { result in
             switch result {
             case let .success(data, response):
                 completion(ChatVendorTokenMapper.map(data: data, from: response))

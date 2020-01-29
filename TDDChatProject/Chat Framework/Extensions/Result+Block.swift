@@ -23,3 +23,19 @@ extension Result {
         }
     }
 }
+
+extension Result {
+    public var succeeded: Bool {
+        if case .success = self {
+            return true
+        }
+        return false
+    }
+    
+    public var failed: Bool {
+        if case .success = self {
+            return true
+        }
+        return false
+    }
+}

@@ -38,7 +38,7 @@ extension JSONMockData {
     // Experation Date in 2032
     private static let validVendorToken =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFwcF81YzA2MWUyZmJlOWNjMDAwMjIwMDMwOWMifQ.eyJzY29wZSI6ImFwcFVzZXIiLCJpYXQiOjE1Nzk2MjI5ODYsInVzZXJJZCI6Ijc3N2FlMDhiLTZhNmItNDJlOS05MDY4LTMxNGRlMDRiYzk4MiIsImV4cCI6MTk3OTYzNzM4Nn0.XvBz-bs3v0A9xyVAlKmBUPZktbuZxjWbcO4OBt5rbeY"
     
-    private static let validChatVendorToken = ChatVendorToken(header: JSONMockData.headerAndMeta.header, tokenType: JSONMockData.tokenType, accessToken: JSONMockData.validVendorToken, expiration: JSONMockData.fourHoursExpiration, cwtToken: JSONMockData.anyCWTToken, metadata: JSONMockData.headerAndMeta.meta)
+    static let validChatVendorToken = ChatVendorToken(header: JSONMockData.headerAndMeta.header, tokenType: JSONMockData.tokenType, accessToken: JSONMockData.validVendorToken, expiration: JSONMockData.fourHoursExpiration, cwtToken: JSONMockData.anyCWTToken, metadata: JSONMockData.headerAndMeta.meta)
     
     static func vendorTokenRemoteApiData(from item: ChatVendorToken = validChatVendorToken) -> [String: AnyHashable] {
         return ["responseHeader": ["statusMessage": item.header.statusMessage],
