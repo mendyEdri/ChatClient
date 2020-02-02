@@ -75,12 +75,13 @@ extension ClientMediatorTests {
     private func makeClients() -> (managerClients: ClientMediatorClients, httpClient: HTTPClientMock, chatClient: ChatClientSpy, storage: Storage) {
         let chatCliet = ChatClientSpy()
         let httpClient = HTTPClientMock()
+        let tokenAdapter = AccessTokenMockAdapter()
         let jwt = Jwt()
         let storage = UserDefaultStorageMock()
         let strategy = TokenBasedClientStrategy(client: chatCliet, storage: storage, jwt: jwt)
         
     
-        let clients = ClientMediatorClients(chatClient: chatCliet, httpClient: httpClient, jwtClient: jwt, storage: storage, strategy: strategy)
+        let clients = ClientMediatorClients(chatClient: chatCliet, httpClient: httpClient, tokenAdapter: tokenAdapter, jwtClient: jwt, storage: storage, strategy: strategy)
         
         trackMemoryLeaks(chatCliet)
         trackMemoryLeaks(httpClient)

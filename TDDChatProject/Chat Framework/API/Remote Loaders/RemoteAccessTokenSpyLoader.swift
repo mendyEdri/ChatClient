@@ -9,35 +9,16 @@
 import Foundation
 import lit_networking
 
-public struct AccessToken: Codable {
-    var accessToken: String
-    var refreshToken: String
-    var type: String
-    var expiration: TimeInterval
-    
-    enum CodingKeys: String, CodingKey {
-        case accessToken = "access_token"
-        case refreshToken = "refresh_token"
-        case type = "token_type"
-        case expiration = "expires_in"
-    }
-}
+/*
+ 
+ This class uses a hard-coded user so it can request an access-token in order to make the STS request.
+ 
+ !! NOTE:This class should not be used in production. !!
+ !! That's why only the end-to-end tests target uses it. !!
+ */
 
-public enum AccessTokenLoaderURL: String {
-    case stage = "https://test.mytravel.carlsonwagonlit.com/as/token.oauth2"
-    case prod = "https://accounts.mycwt.com/as/token.oauth2"
-    
-    public var url: URL {
-        return URL(string: self.rawValue)!
-    }
-}
-
-public protocol RemoteTokenLoader {
-    typealias Result = Swift.Result<AccessToken, RemoteAccessTokenLoader.Error>
-    func load(completion: @escaping (Result) -> Void)
-}
-
-public class RemoteAccessTokenLoader: RemoteTokenLoader {
+public class RemoteAccessTokenSpyLoader {
+    public typealias Result = Swift.Result<AccessToken, RemoteAccessTokenSpyLoader.Error>
     
     private let url: URL
     private let client: HTTPClient
@@ -54,7 +35,7 @@ public class RemoteAccessTokenLoader: RemoteTokenLoader {
         self.client = client
     }
     
-    public func load(completion: @escaping (RemoteTokenLoader.Result) -> Void) {
+    public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url, method: .POST, headers: Pairs.oauthHeaders, body: Pairs.oauthBody) { result in
             switch result {
             case let .success(data, response):
@@ -73,16 +54,17 @@ struct RemoteAccessTokenMapper {
     
     private static var BAD_400: Int { 400 }
     
-    internal static func map(data: Data, from response: HTTPURLResponse) -> RemoteAccessTokenLoader.Result {
+    internal static func map(data: Data, from response: HTTPURLResponse) -> RemoteAccessTokenSpyLoader.Result {
         guard response.statusCode == OK_200,
         let accessToken = try? JSONDecoder().decode(AccessToken.self, from: data) else {
             return .failure(.invalidData)
         }
-        return .success(accessToken)
+        let otherToken = accessToken
+        return .success(otherToken)
     }
 }
 
-private extension RemoteAccessTokenLoader {
+private extension RemoteAccessTokenSpyLoader {
         
     enum Pairs: String {
         case clientId = "client_id"

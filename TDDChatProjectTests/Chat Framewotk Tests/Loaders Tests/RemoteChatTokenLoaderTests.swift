@@ -90,11 +90,11 @@ class RemoteChatTokenLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func expect(that sut: RemoteClientTokenLoader, be result: RemoteClientTokenLoader.Result, when action: () -> Void,  file: StaticString = #file, line: UInt = #line) {
+    private func expect(that sut: RemoteClientTokenLoader, be result: RemoteClientTokenLoader.Result, when action: @escaping () -> Void,  file: StaticString = #file, line: UInt = #line) {
         
         var capturedResult = [RemoteClientTokenLoader.Result]()
         
-        sut.load { capturedResult.append($0) }
+        sut.load(with: AccessTokenMockAdapter()) { capturedResult.append($0) }
         
         action()
         

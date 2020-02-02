@@ -16,7 +16,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
-        buttonSelected()
+        
+        //buttonSelected()
     }
     
     func buttonSelected() {

@@ -34,7 +34,7 @@ class ClientMediatorIntegrationTests: XCTestCase {
     
     func test_prepare_deliversAppIdFailsOnRemoteAppIdRequestFails() {
         let (sut, clients, attempts, _) = sutSetup()
-        
+                
         expect(sut: sut, be: .failed(.failedFetchAppId), when: {
             attempts.loop {
                 completeRemoteAppIdWithError(mock: clients.httpClient)
@@ -116,6 +116,36 @@ extension ClientMediatorIntegrationTests {
             completeLoginSDKWithSuccess(clients.chatClient)
         })
     }
+    
+    func test_prepare_deliversRemoteTokenFailedAfterRetryAndFailed() {
+        let (sut, clients, httpAttempts, _) = sutSetup()
+
+        expect(sut: sut, be: .failed(.failedFetchToken), when: {
+            completeRemoteAppIdWithSuccess(mock: clients.httpClient)
+            
+            httpAttempts.loop { index in
+                completeRemoteVendorTokenWithError(mock: clients.httpClient, at: index + 1)
+            }
+        })
+    }
+    
+    func test_prepare_deliversRemoteTokenSuccessAfterRetryAndSuccess() {
+        let (sut, clients, httpAttempts, _) = sutSetup()
+        
+        expect(sut: sut, be: .ready, when: {
+            completeRemoteAppIdWithSuccess(mock: clients.httpClient)
+            
+            var count = 0
+            (httpAttempts - 1).loop { index in
+                count += 1
+                completeRemoteVendorTokenWithError(mock: clients.httpClient, at: index + 1)
+            }
+            completeRemoteVendorTokenWithSuccess(mock: clients.httpClient, at: count)
+            
+            completeStartSDKWithSuccess(clients.chatClient)
+            completeLoginSDKWithSuccess(clients.chatClient)
+        })
+    }
 }
 
 extension ClientMediatorIntegrationTests {
@@ -134,7 +164,7 @@ extension ClientMediatorIntegrationTests {
         let (sut, clients, httpAttempts, _) = sutSetup()
         
         expectRenew(sut: sut, be: .failure(.failedFetchToken), when: {
-            (httpAttempts).loop {
+            httpAttempts.loop {
                 completeRemoteVendorTokenWithError(mock: clients.httpClient)
             }
         })
@@ -166,7 +196,7 @@ extension ClientMediatorIntegrationTests {
         
         action()
         
-        wait(for: [exp], timeout: 3.0)
+        wait(for: [exp], timeout: 5.0)
         
         XCTAssertEqual(capturedResult, [expected], file: file, line: line)
     }
@@ -238,17 +268,21 @@ private extension ClientMediatorIntegrationTests {
 private class Clients {
     let chatClient = ChatClientSpy()
     let httpClient = HTTPClientMock()
-    lazy var retryDecorator = HTTPClientRetryDecorator(http: self.httpClient, retryable: RetryExecutor(attempts: ClientMediatorIntegrationTests.httpRetryAttempts)!)
+    
+    //lazy var retryDecorator = HTTPClientRetryDecorator(http: self.httpClient, retryable: RetryExecutor(attempts: ClientMediatorIntegrationTests.httpRetryAttempts)!)
+    
+    let tokenAdapter = AccessTokenMockAdapter()
     
     let storage = UserDefaultStorageMock()
     let jwt = Jwt()
     
     func makeManager() -> ClientMediator {
         let strategy = TokenBasedClientStrategy(client: chatClient, storage: storage, jwt: jwt)
-        
+                
         let managerClients = ClientMediatorClients(
             chatClient: chatClient,
-            httpClient: retryDecorator,
+            httpClient: httpClient,
+            tokenAdapter: tokenAdapter,
             jwtClient: jwt,
             storage: storage,
             strategy: strategy)
@@ -256,12 +290,3 @@ private class Clients {
         return ClientMediator(clients: managerClients)
     }
 }
-
-extension Int {
-    func loop(_ action: () -> Void) {
-        for _ in 0...self {
-            action()
-        }
-    }
-}
-

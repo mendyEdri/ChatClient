@@ -15,6 +15,7 @@ import lit_networking
 public struct ClientMediatorClients {
     var chatClient: ChatClient
     var httpClient: HTTPClient
+    var tokenAdapter: AccessTokenAdapter
     var jwtClient: Jwtable
     var storage: Storage
     var strategy: BasicProcessStrategy
@@ -96,7 +97,7 @@ extension ClientMediator {
     }
     
     public func renewUserToken(completion: @escaping (Result) -> Void) {
-        commands?.getRemoteToken(loader: loaders.userToken) { [weak self] result in
+        commands?.getRemoteToken(tokenAdapter: clients.tokenAdapter, loader: loaders.userToken) { [weak self] result in
             guard let self = self else { return }
             
             self.save(result: result, for: self.userTokenKey)
@@ -184,6 +185,7 @@ extension ClientMediator {
 }
 
 private extension ClientMediator {
+    // MARK: - Requests Commands
     private func appIdCommand() {
         commands?.getRemoteAppId(loader: loaders.appId, completion: { [weak self] result in
             guard let self = self else { return }
@@ -193,7 +195,7 @@ private extension ClientMediator {
     }
     
     private func userTokenCommand(_ completion: ((Result) -> Void)? = nil) {
-        commands?.getRemoteToken(loader: loaders.userToken) { result in
+        commands?.getRemoteToken(tokenAdapter: clients.tokenAdapter, loader: loaders.userToken) { result in
             self.save(result: result, for: self.userTokenKey)
             self.handle(result)
         }
@@ -202,6 +204,9 @@ private extension ClientMediator {
     private func startCommand() {
         self.commands?.startSDK(for: (self.chatClient, self.appId)) { [weak self] result in
             guard let self = self else { return }
+            if result.succeeded {
+                return self.handle(result)
+            }
             result.failure {
                 self.delete(for: self.chatClient.appIdKey)
             }
@@ -217,10 +222,14 @@ private extension ClientMediator {
     
     private func loginCommand() {
         commands?.loginSDK(for: (chatClient, userToken, userId)) { [weak self] result in
-            self?.registerIdentityStoreCommandWithoutCompletion()
+            guard let self = self else { return }
+            self.registerIdentityStoreCommandWithoutCompletion()
             
-            if self?.sdkLoginRetry?.retry() == false {
-                self?.handle(result)
+            if result.succeeded {
+                return self.handle(result)
+            }
+            if self.sdkLoginRetry?.retry() == false {
+                self.handle(result)
             }
         }
         

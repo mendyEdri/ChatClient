@@ -15,6 +15,8 @@ class ChatEndToEndTests: XCTestCase {
     
     var accessToken: String? = nil
     
+    private let timeout = 20.0
+    
     override func setUp() {
         super.setUp()
         cleanUp()
@@ -23,27 +25,6 @@ class ChatEndToEndTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
         cleanUp()
-    }
-    
-    private func wrapWithToken(_ action: @escaping (String?) -> Void) {
-        guard isTokenValid() == true else { return action(accessToken) }
-            
-        let loader = RemoteAccessTokenLoader(url: AccessTokenLoaderURL.prod.url, client: URLSessionHTTPClient())
-        loader.load { [weak self] result in
-            if case let .success(token) = result {
-                self?.accessToken = token.accessToken
-                action(token.accessToken)
-            }
-        }
-    }
-    
-    private func isTokenValid() -> Bool {
-        var expired: Bool?
-        if let token = accessToken {
-            let jwt = Jwt(string: token, parser: JwtDefaultParser())
-            expired = try? jwt.isJwtExp()
-        }
-        return expired ?? false
     }
     
     func test_client_init() {
@@ -99,12 +80,12 @@ class ChatEndToEndTests: XCTestCase {
         let exp = expectation(description: "Wait for chat to be prepared")
         var capturedResult: ClientMediator.Result = .failure(.failedFetchToken)
         
-        ChatDefaultComposition.manager.renewUserToken { result in
+        ChatDefaultComposition.managerWithHardCodedUser.renewUserToken { result in
             capturedResult = result
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 10.0)
+        wait(for: [exp], timeout: timeout)
         XCTAssertTrue(capturedResult.succeeded)
     }
     
@@ -114,8 +95,24 @@ class ChatEndToEndTests: XCTestCase {
             ChatDefaultComposition.manager.prepare { result in
                 exp.fulfill()
             }
-            wait(for: [exp], timeout: 10.0)
+            wait(for: [exp], timeout: timeout)
         }
+    }
+    
+    func test_tokenForTestingOnlyWithHardCodedUser() {
+        /** If this is breaks, could be the hard-coded user
+         has and issue such as password got change or user has being blocked */
+        let loader = AccessTokenSpyRemoteAdapter()
+        let exp = expectation(description: "accessToken")
+
+        var capturedResult = [Result<String, Error>]()
+        loader.requestAccessToken { (result) in
+            capturedResult.append(result)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: timeout)
+        XCTAssertTrue(capturedResult.first!.succeeded)
     }
     
     // MARK - Helpers
@@ -123,13 +120,13 @@ class ChatEndToEndTests: XCTestCase {
     private func expectState(toBe state: ClientMediator.ClientState, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for chat to be prepared")
         var capturedResult = [ClientMediator.ClientState]()
-                
-        ChatDefaultComposition.manager.prepare { result in
+        
+        ChatDefaultComposition.managerWithHardCodedUser.prepare { result in
             capturedResult.append(result)
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 10.0)
+        wait(for: [exp], timeout: timeout)
         XCTAssertEqual(capturedResult, [state], file: file, line: line)
     }
 }
@@ -185,3 +182,26 @@ extension ChatEndToEndTests {
     }
 }
 
+extension ChatDefaultComposition {
+    
+    fileprivate static let managerWithHardCodedUser = makeManager(tokenAdapter: AccessTokenSpyRemoteAdapter())
+    
+    fileprivate static func makeManager(tokenAdapter: AccessTokenAdapter = AccessTokenSpyRemoteAdapter()) -> ClientMediator {
+        let smoochClient = SmoochChatClient()
+        let httpClient = URLSessionHTTPClient()
+        let storage = UserDefaultsStorage()
+        let jwt = Jwt()
+        
+        let strategy = TokenBasedClientStrategy(client: smoochClient, storage: storage, jwt: jwt)
+        
+        let managerClients = ClientMediatorClients(
+            chatClient: smoochClient,
+            httpClient: httpClient,
+            tokenAdapter: tokenAdapter,
+            jwtClient: jwt,
+            storage: storage,
+            strategy: strategy)
+        
+        return ClientMediator(clients: managerClients)
+    }
+}

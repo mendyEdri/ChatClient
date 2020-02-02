@@ -14,13 +14,10 @@
 		F000671823BA3CF00008B2C5 /* IdentityStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */; };
 		F0304EF723BA3E44002EDACA /* RemoteIdentityStoreLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */; };
 		F0304EF823BA3E55002EDACA /* IdentityStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */; };
-		F034D92023D8742000A8F65E /* RemoteAccessTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BEDAE23B0CB100034F527 /* RemoteAccessTokenLoader.swift */; };
-		F034D92123D8742500A8F65E /* RemoteAccessTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BEDAE23B0CB100034F527 /* RemoteAccessTokenLoader.swift */; };
 		F05E7EE823990E6C00389F76 /* ChatClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */; };
 		F060145323CF47FE00216AA0 /* JSONMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060145223CF47FE00216AA0 /* JSONMockData.swift */; };
 		F060145523CF486300216AA0 /* BuilderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060145423CF486300216AA0 /* BuilderHelper.swift */; };
-		F06211CE23CE14C600F36790 /* AccessTokenTempAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06835B023CDFABC008BD473 /* AccessTokenTempAdapter.swift */; };
-		F06211D123CE164B00F36790 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = F06211D023CE164B00F36790 /* SwiftPackageProductDependency */; };
+		F06211D123CE164B00F36790 /* lit-networking in Frameworks */ = {isa = PBXBuildFile; productRef = F06211D023CE164B00F36790 /* lit-networking */; };
 		F062120723CF346000F36790 /* IdentityStoreIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062120623CF346000F36790 /* IdentityStoreIntegrationTests.swift */; };
 		F062121023CF355900F36790 /* UserDefaultStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062120F23CF355900F36790 /* UserDefaultStorageMock.swift */; };
 		F062121223CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062121123CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift */; };
@@ -44,10 +41,8 @@
 		F062122623CF43DB00F36790 /* IdentityStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */; };
 		F062122723CF43E500F36790 /* RemoteIdentityStoreLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */; };
 		F062122823CF43F200F36790 /* IdentityStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */; };
-		F062122923CF43FB00F36790 /* AccessTokenTempAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06835B023CDFABC008BD473 /* AccessTokenTempAdapter.swift */; };
 		F062122A23CF440400F36790 /* ChatVendorToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A1F23749377002AB76E /* ChatVendorToken.swift */; };
 		F063F0AA23954F3200F9E770 /* UserDefaultStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063F0A923954F3200F9E770 /* UserDefaultStorageMock.swift */; };
-		F06835B123CDFABC008BD473 /* AccessTokenTempAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06835B023CDFABC008BD473 /* AccessTokenTempAdapter.swift */; };
 		F07D76A6239CF19A00063190 /* TokenBasedClientStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76A5239CF19A00063190 /* TokenBasedClientStrategy.swift */; };
 		F07D76A8239CF1B600063190 /* ClientProcessStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76A7239CF1B600063190 /* ClientProcessStrategyTests.swift */; };
 		F07D76BC239D089500063190 /* Jwt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76B8239D089500063190 /* Jwt.swift */; };
@@ -56,8 +51,19 @@
 		F07D76C8239D18A800063190 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76C7239D18A800063190 /* Storage.swift */; };
 		F07D76CA239D2DF900063190 /* DefaultStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76C9239D2DF900063190 /* DefaultStorageTests.swift */; };
 		F07D76CC239D367C00063190 /* ClientProcessStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D76CB239D367C00063190 /* ClientProcessStrategy.swift */; };
-		F09BEDAF23B0CB100034F527 /* RemoteAccessTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BEDAE23B0CB100034F527 /* RemoteAccessTokenLoader.swift */; };
-		F09BEDB023B0CB100034F527 /* RemoteAccessTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09BEDAE23B0CB100034F527 /* RemoteAccessTokenLoader.swift */; };
+		F09B0B0523E1E227001C1DAB /* AccessTokenSpyRemoteAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B0323E1E225001C1DAB /* AccessTokenSpyRemoteAdapter.swift */; };
+		F09B0B0623E1E237001C1DAB /* AccessTokenMockAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06835B023CDFABC008BD473 /* AccessTokenMockAdapter.swift */; };
+		F09B0B0723E1E239001C1DAB /* AccessTokenMockAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06835B023CDFABC008BD473 /* AccessTokenMockAdapter.swift */; };
+		F09B0B0B23E1E28C001C1DAB /* AccessTokenPingAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B0A23E1E28C001C1DAB /* AccessTokenPingAdapter.swift */; };
+		F09B0B0D23E1E3E2001C1DAB /* AccessTokenPingAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B0A23E1E28C001C1DAB /* AccessTokenPingAdapter.swift */; };
+		F09B0B0F23E1E73D001C1DAB /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B0E23E1E73D001C1DAB /* AccessToken.swift */; };
+		F09B0B1023E1E73D001C1DAB /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B0E23E1E73D001C1DAB /* AccessToken.swift */; };
+		F09B0B1123E1E73D001C1DAB /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B0E23E1E73D001C1DAB /* AccessToken.swift */; };
+		F09B0B1223E1E73D001C1DAB /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B0E23E1E73D001C1DAB /* AccessToken.swift */; };
+		F09B0B2B23E1EA2E001C1DAB /* RemoteAccessTokenSpyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B2A23E1EA2E001C1DAB /* RemoteAccessTokenSpyLoader.swift */; };
+		F0A3C9D123E1F36F000CD5FC /* Int+Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */; };
+		F0A3C9D223E1F36F000CD5FC /* Int+Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */; };
+		F0A3C9D323E1F36F000CD5FC /* Int+Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */; };
 		F0ACDF30238AC178003043E9 /* IdentityStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */; };
 		F0ACDF3E238BD353003043E9 /* IdentityStoreControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */; };
 		F0ACDF41238BD43C003043E9 /* DefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */; };
@@ -154,7 +160,7 @@
 		F062121323CF3B7400F36790 /* Loaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loaders.swift; sourceTree = "<group>"; };
 		F062121523CF3C9700F36790 /* ChatClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatClientSpy.swift; sourceTree = "<group>"; };
 		F063F0A923954F3200F9E770 /* UserDefaultStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultStorageMock.swift; sourceTree = "<group>"; };
-		F06835B023CDFABC008BD473 /* AccessTokenTempAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenTempAdapter.swift; sourceTree = "<group>"; };
+		F06835B023CDFABC008BD473 /* AccessTokenMockAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenMockAdapter.swift; sourceTree = "<group>"; };
 		F07D76A5239CF19A00063190 /* TokenBasedClientStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBasedClientStrategy.swift; sourceTree = "<group>"; };
 		F07D76A7239CF1B600063190 /* ClientProcessStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProcessStrategyTests.swift; sourceTree = "<group>"; };
 		F07D76B8239D089500063190 /* Jwt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jwt.swift; sourceTree = "<group>"; };
@@ -164,7 +170,11 @@
 		F07D76C7239D18A800063190 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		F07D76C9239D2DF900063190 /* DefaultStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultStorageTests.swift; sourceTree = "<group>"; };
 		F07D76CB239D367C00063190 /* ClientProcessStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProcessStrategy.swift; sourceTree = "<group>"; };
-		F09BEDAE23B0CB100034F527 /* RemoteAccessTokenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAccessTokenLoader.swift; sourceTree = "<group>"; };
+		F09B0B0323E1E225001C1DAB /* AccessTokenSpyRemoteAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenSpyRemoteAdapter.swift; sourceTree = "<group>"; };
+		F09B0B0A23E1E28C001C1DAB /* AccessTokenPingAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenPingAdapter.swift; sourceTree = "<group>"; };
+		F09B0B0E23E1E73D001C1DAB /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		F09B0B2A23E1EA2E001C1DAB /* RemoteAccessTokenSpyLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteAccessTokenSpyLoader.swift; sourceTree = "<group>"; };
+		F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Loop.swift"; sourceTree = "<group>"; };
 		F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreController.swift; sourceTree = "<group>"; };
 		F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreControllerTests.swift; sourceTree = "<group>"; };
 		F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorage.swift; sourceTree = "<group>"; };
@@ -227,7 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F06211D123CE164B00F36790 /* BuildFile in Frameworks */,
+				F06211D123CE164B00F36790 /* lit-networking in Frameworks */,
 				406B701EAAA0474D5FD18E48 /* libPods-TDDChatProject.a in Frameworks */,
 				966377ABFB3D85CA2B2EE5A2 /* libPods-TDDChatProject.a in Frameworks */,
 			);
@@ -256,10 +266,10 @@
 		F0304F1523BCAE71002EDACA /* Remote Loaders */ = {
 			isa = PBXGroup;
 			children = (
+				F09B0B2A23E1EA2E001C1DAB /* RemoteAccessTokenSpyLoader.swift */,
 				F0E77A2523749377002AB76E /* RemoteAppIdLoader.swift */,
 				F0E77A2723749377002AB76E /* RemoteClientTokenLoader.swift */,
 				F0E4F94A2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift */,
-				F09BEDAE23B0CB100034F527 /* RemoteAccessTokenLoader.swift */,
 			);
 			path = "Remote Loaders";
 			sourceTree = "<group>";
@@ -320,6 +330,24 @@
 				F0ACDF34238BD09F003043E9 /* Storage Tests */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		F09B0B0823E1E258001C1DAB /* Client Medietor Strategies */ = {
+			isa = PBXGroup;
+			children = (
+				F07D76A5239CF19A00063190 /* TokenBasedClientStrategy.swift */,
+			);
+			path = "Client Medietor Strategies";
+			sourceTree = "<group>";
+		};
+		F09B0B0923E1E269001C1DAB /* Access Token Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				F06835B023CDFABC008BD473 /* AccessTokenMockAdapter.swift */,
+				F09B0B0323E1E225001C1DAB /* AccessTokenSpyRemoteAdapter.swift */,
+				F09B0B0A23E1E28C001C1DAB /* AccessTokenPingAdapter.swift */,
+			);
+			path = "Access Token Adapters";
 			sourceTree = "<group>";
 		};
 		F0ACDF31238BD05D003043E9 /* Storage */ = {
@@ -395,6 +423,7 @@
 			children = (
 				F0D596FB23A66AEE0005C76F /* Result+Block.swift */,
 				F000671523B3A4530008B2C5 /* Dictionary+toData.swift */,
+				F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -511,6 +540,7 @@
 				F0E77A2023749377002AB76E /* ChatVendorAppId.swift */,
 				F0E77A2123749377002AB76E /* ResponseHeader.swift */,
 				F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */,
+				F09B0B0E23E1E73D001C1DAB /* AccessToken.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -519,8 +549,8 @@
 			isa = PBXGroup;
 			children = (
 				F0D5970023A682450005C76F /* Smooch */,
-				F07D76A5239CF19A00063190 /* TokenBasedClientStrategy.swift */,
-				F06835B023CDFABC008BD473 /* AccessTokenTempAdapter.swift */,
+				F09B0B0823E1E258001C1DAB /* Client Medietor Strategies */,
+				F09B0B0923E1E269001C1DAB /* Access Token Adapters */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -615,7 +645,7 @@
 			);
 			name = TDDChatProject;
 			packageProductDependencies = (
-				F06211D023CE164B00F36790 /* SwiftPackageProductDependency */,
+				F06211D023CE164B00F36790 /* lit-networking */,
 			);
 			productName = TDDChatProject;
 			productReference = F0E779E82374932C002AB76E /* TDDChatProject.app */;
@@ -676,7 +706,7 @@
 			);
 			mainGroup = F0E779DF2374932C002AB76E;
 			packageReferences = (
-				F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */,
+				F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */,
 			);
 			productRefGroup = F0E779E92374932C002AB76E /* Products */;
 			projectDirPath = "";
@@ -817,6 +847,7 @@
 				F062122123CF43A000F36790 /* ChatVendorAppId.swift in Sources */,
 				F062122823CF43F200F36790 /* IdentityStoreModel.swift in Sources */,
 				F062122A23CF440400F36790 /* ChatVendorToken.swift in Sources */,
+				F09B0B0723E1E239001C1DAB /* AccessTokenMockAdapter.swift in Sources */,
 				F062121923CF436F00F36790 /* ClientProcessStrategy.swift in Sources */,
 				F062121023CF355900F36790 /* UserDefaultStorageMock.swift in Sources */,
 				F062122223CF43B300F36790 /* ResponseHeader.swift in Sources */,
@@ -827,15 +858,15 @@
 				F062120723CF346000F36790 /* IdentityStoreIntegrationTests.swift in Sources */,
 				F062121723CF431E00F36790 /* Jwt.swift in Sources */,
 				F062122723CF43E500F36790 /* RemoteIdentityStoreLoader.swift in Sources */,
+				F0A3C9D323E1F36F000CD5FC /* Int+Loop.swift in Sources */,
 				F062122423CF43D100F36790 /* Loaders.swift in Sources */,
 				F062121F23CF439000F36790 /* RemoteClientTokenLoader.swift in Sources */,
+				F09B0B1223E1E73D001C1DAB /* AccessToken.swift in Sources */,
 				F062122323CF43B600F36790 /* ResponseMetadata.swift in Sources */,
-				F034D92123D8742500A8F65E /* RemoteAccessTokenLoader.swift in Sources */,
 				F062122623CF43DB00F36790 /* IdentityStoreController.swift in Sources */,
 				F062121C23CF438100F36790 /* Storage.swift in Sources */,
 				F062122023CF439C00F36790 /* JwtDefaultParser.swift in Sources */,
 				F062121E23CF438D00F36790 /* RemoteAppIdLoader.swift in Sources */,
-				F062122923CF43FB00F36790 /* AccessTokenTempAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,14 +876,15 @@
 			files = (
 				F0D596EE23A2A49B0005C76F /* RemoteAppIdLoader.swift in Sources */,
 				F0D596E323A2A1C60005C76F /* ChatDefaultComposition.swift in Sources */,
+				F09B0B2B23E1EA2E001C1DAB /* RemoteAccessTokenSpyLoader.swift in Sources */,
 				F0D596E823A2A1DF0005C76F /* Jwt.swift in Sources */,
 				F0D596FA23A662080005C76F /* Commands.swift in Sources */,
 				F0D596E723A2A1DB0005C76F /* DefaultStorage.swift in Sources */,
 				F0D596F223A2A4B70005C76F /* ChatVendorAppId.swift in Sources */,
-				F06211CE23CE14C600F36790 /* AccessTokenTempAdapter.swift in Sources */,
 				F0D596EC23A2A4740005C76F /* ChatClient.swift in Sources */,
 				F000671723B3A4560008B2C5 /* Dictionary+toData.swift in Sources */,
 				F0D596F523A2A4D00005C76F /* JwtDefaultParser.swift in Sources */,
+				F09B0B0523E1E227001C1DAB /* AccessTokenSpyRemoteAdapter.swift in Sources */,
 				F0D596E923A2A1E40005C76F /* TokenBasedClientStrategy.swift in Sources */,
 				F000671823BA3CF00008B2C5 /* IdentityStoreController.swift in Sources */,
 				F0D596F623A2A4D50005C76F /* ChatVendorToken.swift in Sources */,
@@ -863,10 +895,11 @@
 				F0D596F123A2A4B00005C76F /* ClientProcessStrategy.swift in Sources */,
 				F0D596DC23A297710005C76F /* ChatEndToEndTests.swift in Sources */,
 				F0D596F423A2A4C80005C76F /* ResponseMetadata.swift in Sources */,
+				F09B0B1123E1E73D001C1DAB /* AccessToken.swift in Sources */,
 				F0D596EF23A2A49E0005C76F /* RemoteClientTokenLoader.swift in Sources */,
+				F09B0B0D23E1E3E2001C1DAB /* AccessTokenPingAdapter.swift in Sources */,
 				F0D596E423A2A1CF0005C76F /* ClientMediator.swift in Sources */,
 				F0304EF723BA3E44002EDACA /* RemoteIdentityStoreLoader.swift in Sources */,
-				F09BEDB023B0CB100034F527 /* RemoteAccessTokenLoader.swift in Sources */,
 				F0D596F023A2A4A90005C76F /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -891,19 +924,20 @@
 				F0E77A3223749377002AB76E /* RemoteClientTokenLoader.swift in Sources */,
 				F07D76BD239D089500063190 /* JwtDefaultParser.swift in Sources */,
 				F062121423CF3B7400F36790 /* Loaders.swift in Sources */,
-				F06835B123CDFABC008BD473 /* AccessTokenTempAdapter.swift in Sources */,
 				F0D5969D23A0011F0005C76F /* ChatDefaultComposition.swift in Sources */,
-				F09BEDAF23B0CB100034F527 /* RemoteAccessTokenLoader.swift in Sources */,
 				F07D76CC239D367C00063190 /* ClientProcessStrategy.swift in Sources */,
 				F0E4F94B2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift in Sources */,
 				F0D596F923A6619D0005C76F /* Commands.swift in Sources */,
 				F0E4F96223867FC90024E427 /* IdentityStoreModel.swift in Sources */,
 				F0D596FF23A66DF10005C76F /* ClientUI.swift in Sources */,
+				F09B0B0B23E1E28C001C1DAB /* AccessTokenPingAdapter.swift in Sources */,
 				F0E77A2E23749377002AB76E /* ResponseHeader.swift in Sources */,
 				F0ACDF41238BD43C003043E9 /* DefaultStorage.swift in Sources */,
 				F000671623B3A4530008B2C5 /* Dictionary+toData.swift in Sources */,
 				F0E77A2D23749377002AB76E /* ChatVendorAppId.swift in Sources */,
+				F0A3C9D123E1F36F000CD5FC /* Int+Loop.swift in Sources */,
 				F0E77A2C23749377002AB76E /* ChatVendorToken.swift in Sources */,
+				F09B0B0F23E1E73D001C1DAB /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,16 +945,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0A3C9D223E1F36F000CD5FC /* Int+Loop.swift in Sources */,
 				F05E7EE823990E6C00389F76 /* ChatClientSpy.swift in Sources */,
 				F07D76CA239D2DF900063190 /* DefaultStorageTests.swift in Sources */,
 				F07D76C2239D08A800063190 /* JwtTests.swift in Sources */,
-				F034D92023D8742000A8F65E /* RemoteAccessTokenLoader.swift in Sources */,
 				F0E77A172374934C002AB76E /* ClientMediatorTests.swift in Sources */,
+				F09B0B0623E1E237001C1DAB /* AccessTokenMockAdapter.swift in Sources */,
 				F0ACDF43238BE3A1003043E9 /* IdentityStoreResponseHelper.swift in Sources */,
 				F0E77A192374934C002AB76E /* BuilderHelper.swift in Sources */,
 				F0E77A032374932D002AB76E /* Helper.swift in Sources */,
 				F0E77A182374934C002AB76E /* RemoteChatTokenLoaderTests.swift in Sources */,
 				F063F0AA23954F3200F9E770 /* UserDefaultStorageMock.swift in Sources */,
+				F09B0B1023E1E73D001C1DAB /* AccessToken.swift in Sources */,
 				F0E4F94D2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift in Sources */,
 				F07D76A8239CF1B600063190 /* ClientProcessStrategyTests.swift in Sources */,
 				F0D596D423A28CCE0005C76F /* JSONMockData.swift in Sources */,
@@ -1316,7 +1352,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */ = {
+		F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mendyEdri/lit-networking.git";
 			requirement = {
@@ -1327,9 +1363,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F06211D023CE164B00F36790 /* SwiftPackageProductDependency */ = {
+		F06211D023CE164B00F36790 /* lit-networking */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */;
+			package = F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */;
 			productName = "lit-networking";
 		};
 /* End XCSwiftPackageProductDependency section */

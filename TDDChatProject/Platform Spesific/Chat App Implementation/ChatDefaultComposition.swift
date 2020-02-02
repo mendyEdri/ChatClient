@@ -18,12 +18,14 @@ struct ChatDefaultComposition {
         let httpClient = URLSessionHTTPClient()
         let storage = UserDefaultsStorage()
         let jwt = Jwt()
+        let tokenAdapter = AccessTokenPingAdapter()
         
         let strategy = TokenBasedClientStrategy(client: smoochClient, storage: storage, jwt: jwt)
         
         let managerClients = ClientMediatorClients(
             chatClient: smoochClient,
             httpClient: httpClient,
+            tokenAdapter: tokenAdapter,
             jwtClient: jwt,
             storage: storage,
             strategy: strategy)
