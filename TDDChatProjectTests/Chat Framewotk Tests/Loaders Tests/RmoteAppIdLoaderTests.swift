@@ -14,6 +14,8 @@ class RmoteAppIdLoaderTests: XCTestCase {
     
     static let ValidAppId = "123-super-real-app-id"
     
+    private let requestAttempts = ClientMediator.httpRetryAttempts
+    
     func test_apiAppIdLoader_emptyURL() {
         let client = HTTPClientMock()
         
@@ -56,10 +58,37 @@ class RmoteAppIdLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
+        let clientError = NSError(domain: "test", code: 200, userInfo: nil)
+
+        expect(sut: sut, toCompleteWith: .failure(.connectivity), when: {
+            requestAttempts.loop {
+                client.complete(with: clientError as Error)
+            }
+        })
+    }
+    
+    func test_loadDeliversSuccessAfterRetry() {
+        let (sut, client) = makeSUT()
+        let item = makeItem(id: RmoteAppIdLoaderTests.ValidAppId)
+        
+        let clientError = NSError(domain: "test", code: 200, userInfo: nil)
+        
+        expect(sut: sut, toCompleteWith: .success(item.asObject), when: {
+            (requestAttempts - 1 as Int).loop {
+                client.complete(with: clientError, at: 0)
+            }
+            client.complete(withSatus: 200, data: makeItemJSON(item: item.asJson), at: 1)
+        })
+    }
+    
+    func test_loadDeliversFailureAfterRetryMaxAttempts() {
+        let (sut, client) = makeSUT()
+        let clientError = NSError(domain: "test", code: 200, userInfo: nil)
         
         expect(sut: sut, toCompleteWith: .failure(.connectivity), when: {
-            let clientError = NSError(domain: "test", code: 200, userInfo: nil)
-            client.complete(with: clientError as Error)
+            requestAttempts.loop {
+                client.complete(with: clientError, at: 0)
+            }
         })
     }
     
@@ -80,7 +109,9 @@ class RmoteAppIdLoaderTests: XCTestCase {
         
         var capturedResult = [RemoteAppIdLoader.Result]()
         
-        sut.load { capturedResult.append($0) }
+        sut.load {
+            capturedResult.append($0)
+        }
         
         action()
         
@@ -118,3 +149,4 @@ private extension ChatVendorAppId {
             ]] as [String : Any]
     }
 }
+

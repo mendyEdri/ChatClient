@@ -12,7 +12,7 @@ import lit_networking
 
 class IdentityStoreIntegrationTests: XCTestCase {
     
-    func NOtest_identityStoreIsSavedOnSuccess() {
+    func NO_test_identityStoreIsSavedOnSuccess() {
         let (manager, clients) = makeManager()
         
         let exp = expectation(description: "Wait for chat prepare to complete")
@@ -20,7 +20,7 @@ class IdentityStoreIntegrationTests: XCTestCase {
             exp.fulfill()
         }
         
-        clients.chatClient.toMockClient()?.completeStartSDKSuccessfuly()
+        clients.chatClient.mockClient()?.completeStartSDKSuccessfuly()
         
         wait(for: [exp], timeout: 10.0)
 
@@ -32,6 +32,7 @@ class IdentityStoreIntegrationTests: XCTestCase {
     private func makeManager() -> (ClientMediator, ClientMediatorClients) {
         let chatClient = ChatClientSpy()
         let httpClient = HTTPClientMock()
+        let tokenAdapter = AccessTokenMockAdapter()
         let storage = UserDefaultStorageMock()
         let jwt = Jwt()
         
@@ -40,6 +41,7 @@ class IdentityStoreIntegrationTests: XCTestCase {
         let managerClients = ClientMediatorClients(
             chatClient: chatClient,
             httpClient: httpClient,
+            tokenAdapter: tokenAdapter,
             jwtClient: jwt,
             storage: storage,
             strategy: strategy)
@@ -49,13 +51,13 @@ class IdentityStoreIntegrationTests: XCTestCase {
 }
 
 extension HTTPClient {
-    func toMockClient() -> HTTPClientMock? {
+    func mockClient() -> HTTPClientMock? {
         return self as? HTTPClientMock
     }
 }
 
 extension ChatClient {
-    func toMockClient() -> ChatClientSpy? {
+    func mockClient() -> ChatClientSpy? {
         return self as? ChatClientSpy
     }
 }

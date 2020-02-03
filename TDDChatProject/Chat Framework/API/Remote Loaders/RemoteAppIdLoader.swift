@@ -14,6 +14,8 @@ import lit_networking
 public class RemoteAppIdLoader {
     private let url: URL
     private let client: HTTPClient
+    private let retry = RetryExecutor(attempts: 3)!
+    private var decorator: HTTPClientRetryDecorator?
     
     public enum Error: Swift.Error {
         case connectivity
@@ -25,10 +27,12 @@ public class RemoteAppIdLoader {
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
+        self.decorator = nil
     }
         
     public func load(completion: @escaping (Result) -> Void) {
-        client.get(from: url, method: .GET) { result in
+        decorator = HTTPClientRetryDecorator(http: client, retryable: retry)
+        decorator?.get(from: url, method: .GET) { result in
             switch result {
             case let .success(data, response):
                 completion(ChatVendorAppIdMapper.map(data: data, from: response))

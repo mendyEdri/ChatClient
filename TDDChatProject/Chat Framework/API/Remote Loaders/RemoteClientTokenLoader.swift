@@ -15,6 +15,9 @@ public class RemoteClientTokenLoader {
     
     private let url: URL
     private let client: HTTPClient
+    private var tokenDecorator: HTTPClientAccessTokenDecorator?
+    private var retryDecorator: HTTPClientRetryDecorator
+    private var retry = RetryExecutor(attempts: 3)!
     
     public enum Error: Swift.Error {
         case connectivity
@@ -28,16 +31,13 @@ public class RemoteClientTokenLoader {
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
+        self.tokenDecorator = nil
+        self.retryDecorator = HTTPClientRetryDecorator(http: client, retryable: retry)
     }
     
-    func load(completion: @escaping (Result) -> Void) {
-        #warning("AccessTokenMockAdapter should be real for non-testing environment")
-        let decoratedAccessToken = HTTPClientAccessTokenDecorator(http: client, tokenAdapter: AccessTokenMockAdapter())
-        load(with: decoratedAccessToken, completion: completion)
-    }
-    
-    func load(with decorator: HTTPClient, completion: @escaping (Result) -> Void) {
-        decorator.get(from: url, method: .POST, headers: Headers.pairs()) { result in
+    func load(with tokenAdapter: AccessTokenAdapter, completion: @escaping (Result) -> Void) {
+        tokenDecorator = HTTPClientAccessTokenDecorator(http: retryDecorator, tokenAdapter: tokenAdapter)
+        tokenDecorator?.get(from: url, method: .POST, headers: Headers.pairs()) { result in
             switch result {
             case let .success(data, response):
                 completion(ChatVendorTokenMapper.map(data: data, from: response))
