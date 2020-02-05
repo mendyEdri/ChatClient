@@ -11,12 +11,23 @@ import Smooch
 
 final class SmoochConversation: NSObject, ChatConversation, SKTConversationDelegate {
     
+    var unreadMessages: Int {
+        return Int(conversation?.unreadCount ?? 0)
+    }
+    
+    private var conversation: SKTConversation?
+    
     override init() {
         super.init()
         Smooch.conversation()?.delegate = self
+        conversation = Smooch.conversation()
     }
     
     func showConversation() {
         Smooch.show()
+    }
+    
+    func unreadMessagesCountDidChange(_ onChange: (Int) -> Void) {
+        onChange(unreadMessages)
     }
 }

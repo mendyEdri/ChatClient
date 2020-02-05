@@ -8,6 +8,11 @@
 
 import Foundation
 
-protocol ChatConversation {
+protocol ConversationMessages {
+    var unreadMessages: Int { get }
+    func unreadMessagesCountDidChange(_ onChange: (Int) -> Void)
+}
+
+protocol ChatConversation: ConversationMessages {
     func showConversation()
 }
