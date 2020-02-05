@@ -29,9 +29,20 @@
                                     <action selector="didTouchOpenChat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Igo-bg-XD3"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McY-Hm-wBc">
+                                <rect key="frame" x="186" y="498" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="64s-t7-iCG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="McY-Hm-wBc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bTG-sn-Jen"/>
+                            <constraint firstItem="McY-Hm-wBc" firstAttribute="top" secondItem="Sz8-se-BWT" secondAttribute="bottom" constant="30" id="fEw-pc-oF0"/>
                             <constraint firstItem="lz6-dO-Ywk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="191" id="fa0-kb-0NP"/>
                             <constraint firstItem="lz6-dO-Ywk" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="giv-TZ-doI"/>
                             <constraint firstItem="Sz8-se-BWT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lSR-eD-ClG"/>
@@ -42,6 +53,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="lz6-dO-Ywk" id="hHI-wJ-36C"/>
+                        <outlet property="statusLabel" destination="McY-Hm-wBc" id="NFy-oK-WPs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
