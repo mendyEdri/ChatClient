@@ -14,13 +14,9 @@ internal struct Loaders {
     var userToken: RemoteClientTokenLoader
     var identityStore: IdentityStoreController
     
-    private let appIdEndpointURL = URL(string: "https://api.worldmate.com/tokens/vendors/smooch/metadata")!
-    private let userTokenEndpointURL = URL(string: "https://api.worldmate.com/tokens/vendors/smooch")!
-    private let identityStoreURL = URL(string: "https://api.worldmate.com/identity-store/api/v1/register")!
-    
     init(client: HTTPClient, storage: Storage) {
-        appId = RemoteAppIdLoader(url: appIdEndpointURL, client: client)
-        userToken = RemoteClientTokenLoader(url: userTokenEndpointURL, client: client)
-        identityStore = IdentityStoreController(url: identityStoreURL, httpClient: client, storage: storage)
+        appId = RemoteAppIdLoader(url: URLS.env.smoochVendorAppId, client: client)
+        userToken = RemoteClientTokenLoader(url: URLS.env.smoochVendorToken, client: client)
+        identityStore = IdentityStoreController(url: URLS.env.identityStore, httpClient: client, storage: storage)
     }
 }

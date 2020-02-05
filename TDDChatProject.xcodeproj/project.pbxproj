@@ -68,6 +68,26 @@
 		F0A3C9D123E1F36F000CD5FC /* Int+Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */; };
 		F0A3C9D223E1F36F000CD5FC /* Int+Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */; };
 		F0A3C9D323E1F36F000CD5FC /* Int+Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */; };
+		F0A457B123EAC1D20076A777 /* URLS+Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B023EAC1D20076A777 /* URLS+Base.swift */; };
+		F0A457B423EAC3AF0076A777 /* URLS+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B323EAC3AF0076A777 /* URLS+Auth.swift */; };
+		F0A457B623EAC3F20076A777 /* URLS+STS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B523EAC3F20076A777 /* URLS+STS.swift */; };
+		F0A457B823EAC4670076A777 /* URLS+IdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B723EAC4670076A777 /* URLS+IdentityStore.swift */; };
+		F0A457BB23EACEB70076A777 /* Configuration+Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457BA23EACEB70076A777 /* Configuration+Env.swift */; };
+		F0A457BC23EAE0C60076A777 /* Configuration+Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457BA23EACEB70076A777 /* Configuration+Env.swift */; };
+		F0A457BD23EAE0C70076A777 /* Configuration+Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457BA23EACEB70076A777 /* Configuration+Env.swift */; };
+		F0A457BE23EAE0C70076A777 /* Configuration+Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457BA23EACEB70076A777 /* Configuration+Env.swift */; };
+		F0A457BF23EAE0CC0076A777 /* URLS+Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B023EAC1D20076A777 /* URLS+Base.swift */; };
+		F0A457C023EAE0CD0076A777 /* URLS+Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B023EAC1D20076A777 /* URLS+Base.swift */; };
+		F0A457C123EAE0CD0076A777 /* URLS+Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B023EAC1D20076A777 /* URLS+Base.swift */; };
+		F0A457C223EAE0CF0076A777 /* URLS+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B323EAC3AF0076A777 /* URLS+Auth.swift */; };
+		F0A457C323EAE0CF0076A777 /* URLS+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B323EAC3AF0076A777 /* URLS+Auth.swift */; };
+		F0A457C423EAE0D00076A777 /* URLS+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B323EAC3AF0076A777 /* URLS+Auth.swift */; };
+		F0A457C523EAE0D20076A777 /* URLS+STS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B523EAC3F20076A777 /* URLS+STS.swift */; };
+		F0A457C623EAE0D20076A777 /* URLS+STS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B523EAC3F20076A777 /* URLS+STS.swift */; };
+		F0A457C723EAE0D20076A777 /* URLS+STS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B523EAC3F20076A777 /* URLS+STS.swift */; };
+		F0A457C823EAE0D40076A777 /* URLS+IdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B723EAC4670076A777 /* URLS+IdentityStore.swift */; };
+		F0A457C923EAE0D50076A777 /* URLS+IdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B723EAC4670076A777 /* URLS+IdentityStore.swift */; };
+		F0A457CA23EAE0D50076A777 /* URLS+IdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B723EAC4670076A777 /* URLS+IdentityStore.swift */; };
 		F0ACDF30238AC178003043E9 /* IdentityStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */; };
 		F0ACDF3E238BD353003043E9 /* IdentityStoreControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */; };
 		F0ACDF41238BD43C003043E9 /* DefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */; };
@@ -183,6 +203,11 @@
 		F0A2A62F23EA9B380004A1C1 /* ObserversCombainAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserversCombainAdapterTests.swift; sourceTree = "<group>"; };
 		F0A2A63123EA9C340004A1C1 /* ObserversCombainAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserversCombainAdapter.swift; sourceTree = "<group>"; };
 		F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Loop.swift"; sourceTree = "<group>"; };
+		F0A457B023EAC1D20076A777 /* URLS+Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLS+Base.swift"; sourceTree = "<group>"; };
+		F0A457B323EAC3AF0076A777 /* URLS+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLS+Auth.swift"; sourceTree = "<group>"; };
+		F0A457B523EAC3F20076A777 /* URLS+STS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLS+STS.swift"; sourceTree = "<group>"; };
+		F0A457B723EAC4670076A777 /* URLS+IdentityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLS+IdentityStore.swift"; sourceTree = "<group>"; };
+		F0A457BA23EACEB70076A777 /* Configuration+Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+Env.swift"; sourceTree = "<group>"; };
 		F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreController.swift; sourceTree = "<group>"; };
 		F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreControllerTests.swift; sourceTree = "<group>"; };
 		F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorage.swift; sourceTree = "<group>"; };
@@ -383,6 +408,25 @@
 			path = ObserversCombainAdapter;
 			sourceTree = "<group>";
 		};
+		F0A457B223EAC3940076A777 /* URLS */ = {
+			isa = PBXGroup;
+			children = (
+				F0A457B023EAC1D20076A777 /* URLS+Base.swift */,
+				F0A457B323EAC3AF0076A777 /* URLS+Auth.swift */,
+				F0A457B523EAC3F20076A777 /* URLS+STS.swift */,
+				F0A457B723EAC4670076A777 /* URLS+IdentityStore.swift */,
+			);
+			path = URLS;
+			sourceTree = "<group>";
+		};
+		F0A457B923EACE220076A777 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				F0A457BA23EACEB70076A777 /* Configuration+Env.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		F0ACDF31238BD05D003043E9 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,6 +602,7 @@
 		F0E77A1C23749377002AB76E /* Chat Framework */ = {
 			isa = PBXGroup;
 			children = (
+				F0A457B923EACE220076A777 /* Configuration */,
 				F0E77A1D23749377002AB76E /* Models */,
 				F0E77A2423749377002AB76E /* API */,
 				F0E77A2823749377002AB76E /* Business Logic */,
@@ -594,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				F0304F1523BCAE71002EDACA /* Remote Loaders */,
+				F0A457B223EAC3940076A777 /* URLS */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -877,11 +923,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F062121623CF3C9700F36790 /* ChatClientSpy.swift in Sources */,
+				F0A457C723EAE0D20076A777 /* URLS+STS.swift in Sources */,
 				F062121223CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift in Sources */,
 				F062121A23CF437300F36790 /* ChatClient.swift in Sources */,
+				F0A457C123EAE0CD0076A777 /* URLS+Base.swift in Sources */,
 				F062121B23CF437900F36790 /* ClientMediator.swift in Sources */,
 				F062122123CF43A000F36790 /* ChatVendorAppId.swift in Sources */,
 				F062122823CF43F200F36790 /* IdentityStoreModel.swift in Sources */,
+				F0A457BE23EAE0C70076A777 /* Configuration+Env.swift in Sources */,
 				F062122A23CF440400F36790 /* ChatVendorToken.swift in Sources */,
 				F09B0B0723E1E239001C1DAB /* AccessTokenMockAdapter.swift in Sources */,
 				F062121923CF436F00F36790 /* ClientProcessStrategy.swift in Sources */,
@@ -895,10 +944,12 @@
 				F062121723CF431E00F36790 /* Jwt.swift in Sources */,
 				F062122723CF43E500F36790 /* RemoteIdentityStoreLoader.swift in Sources */,
 				F0A3C9D323E1F36F000CD5FC /* Int+Loop.swift in Sources */,
+				F0A457C423EAE0D00076A777 /* URLS+Auth.swift in Sources */,
 				F062122423CF43D100F36790 /* Loaders.swift in Sources */,
 				F062121F23CF439000F36790 /* RemoteClientTokenLoader.swift in Sources */,
 				F09B0B1223E1E73D001C1DAB /* AccessToken.swift in Sources */,
 				F062122323CF43B600F36790 /* ResponseMetadata.swift in Sources */,
+				F0A457CA23EAE0D50076A777 /* URLS+IdentityStore.swift in Sources */,
 				F062122623CF43DB00F36790 /* IdentityStoreController.swift in Sources */,
 				F062121C23CF438100F36790 /* Storage.swift in Sources */,
 				F062122023CF439C00F36790 /* JwtDefaultParser.swift in Sources */,
@@ -911,11 +962,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D596EE23A2A49B0005C76F /* RemoteAppIdLoader.swift in Sources */,
+				F0A457C623EAE0D20076A777 /* URLS+STS.swift in Sources */,
 				F0D596E323A2A1C60005C76F /* ChatDefaultComposition.swift in Sources */,
 				F09B0B2B23E1EA2E001C1DAB /* RemoteAccessTokenSpyLoader.swift in Sources */,
+				F0A457C023EAE0CD0076A777 /* URLS+Base.swift in Sources */,
 				F0D596E823A2A1DF0005C76F /* Jwt.swift in Sources */,
 				F0D596FA23A662080005C76F /* Commands.swift in Sources */,
 				F0D596E723A2A1DB0005C76F /* DefaultStorage.swift in Sources */,
+				F0A457BD23EAE0C70076A777 /* Configuration+Env.swift in Sources */,
 				F0D596F223A2A4B70005C76F /* ChatVendorAppId.swift in Sources */,
 				F0D596EC23A2A4740005C76F /* ChatClient.swift in Sources */,
 				F000671723B3A4560008B2C5 /* Dictionary+toData.swift in Sources */,
@@ -929,10 +983,12 @@
 				F0D596E523A2A1D40005C76F /* SmoochChatClient.swift in Sources */,
 				F0304EF823BA3E55002EDACA /* IdentityStoreModel.swift in Sources */,
 				F0D596F123A2A4B00005C76F /* ClientProcessStrategy.swift in Sources */,
+				F0A457C323EAE0CF0076A777 /* URLS+Auth.swift in Sources */,
 				F0D596DC23A297710005C76F /* ChatEndToEndTests.swift in Sources */,
 				F0D596F423A2A4C80005C76F /* ResponseMetadata.swift in Sources */,
 				F09B0B1123E1E73D001C1DAB /* AccessToken.swift in Sources */,
 				F0D596EF23A2A49E0005C76F /* RemoteClientTokenLoader.swift in Sources */,
+				F0A457C923EAE0D50076A777 /* URLS+IdentityStore.swift in Sources */,
 				F09B0B0D23E1E3E2001C1DAB /* AccessTokenPingAdapter.swift in Sources */,
 				F0D596E423A2A1CF0005C76F /* ClientMediator.swift in Sources */,
 				F0304EF723BA3E44002EDACA /* RemoteIdentityStoreLoader.swift in Sources */,
@@ -944,6 +1000,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0A457BB23EACEB70076A777 /* Configuration+Env.swift in Sources */,
 				F0D596FC23A66AEE0005C76F /* Result+Block.swift in Sources */,
 				F0E779F02374932C002AB76E /* ViewController.swift in Sources */,
 				F0A2A62223E82F670004A1C1 /* ChatConversation.swift in Sources */,
@@ -955,6 +1012,7 @@
 				F07D76A6239CF19A00063190 /* TokenBasedClientStrategy.swift in Sources */,
 				F07D76C8239D18A800063190 /* Storage.swift in Sources */,
 				F0E77A3423749377002AB76E /* ClientMediator.swift in Sources */,
+				F0A457B423EAC3AF0076A777 /* URLS+Auth.swift in Sources */,
 				F07D76BC239D089500063190 /* Jwt.swift in Sources */,
 				F0D5970223A682630005C76F /* SmoochChatUI.swift in Sources */,
 				F0E77A3323749377002AB76E /* ChatClient.swift in Sources */,
@@ -967,8 +1025,10 @@
 				F0D596F923A6619D0005C76F /* Commands.swift in Sources */,
 				F0E4F96223867FC90024E427 /* IdentityStoreModel.swift in Sources */,
 				F0D596FF23A66DF10005C76F /* ClientUI.swift in Sources */,
+				F0A457B623EAC3F20076A777 /* URLS+STS.swift in Sources */,
 				F0A2A62423E849BD0004A1C1 /* SmoochConversation.swift in Sources */,
 				F09B0B0B23E1E28C001C1DAB /* AccessTokenPingAdapter.swift in Sources */,
+				F0A457B123EAC1D20076A777 /* URLS+Base.swift in Sources */,
 				F0E77A2E23749377002AB76E /* ResponseHeader.swift in Sources */,
 				F0A2A63223EA9C340004A1C1 /* ObserversCombainAdapter.swift in Sources */,
 				F0ACDF41238BD43C003043E9 /* DefaultStorage.swift in Sources */,
@@ -976,6 +1036,7 @@
 				F0E77A2D23749377002AB76E /* ChatVendorAppId.swift in Sources */,
 				F0A3C9D123E1F36F000CD5FC /* Int+Loop.swift in Sources */,
 				F0E77A2C23749377002AB76E /* ChatVendorToken.swift in Sources */,
+				F0A457B823EAC4670076A777 /* URLS+IdentityStore.swift in Sources */,
 				F09B0B0F23E1E73D001C1DAB /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -984,6 +1045,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0A457BC23EAE0C60076A777 /* Configuration+Env.swift in Sources */,
 				F0A3C9D223E1F36F000CD5FC /* Int+Loop.swift in Sources */,
 				F05E7EE823990E6C00389F76 /* ChatClientSpy.swift in Sources */,
 				F07D76CA239D2DF900063190 /* DefaultStorageTests.swift in Sources */,
@@ -995,12 +1057,16 @@
 				F0E77A032374932D002AB76E /* Helper.swift in Sources */,
 				F0A2A63023EA9B380004A1C1 /* ObserversCombainAdapterTests.swift in Sources */,
 				F0E77A182374934C002AB76E /* RemoteChatTokenLoaderTests.swift in Sources */,
+				F0A457C523EAE0D20076A777 /* URLS+STS.swift in Sources */,
 				F063F0AA23954F3200F9E770 /* UserDefaultStorageMock.swift in Sources */,
 				F09B0B1023E1E73D001C1DAB /* AccessToken.swift in Sources */,
 				F0E4F94D2382EE760024E427 /* RemoteIdentityStoreLoaderTests.swift in Sources */,
 				F07D76A8239CF1B600063190 /* ClientProcessStrategyTests.swift in Sources */,
 				F0D596D423A28CCE0005C76F /* JSONMockData.swift in Sources */,
 				F0ACDF3E238BD353003043E9 /* IdentityStoreControllerTests.swift in Sources */,
+				F0A457C823EAE0D40076A777 /* URLS+IdentityStore.swift in Sources */,
+				F0A457C223EAE0CF0076A777 /* URLS+Auth.swift in Sources */,
+				F0A457BF23EAE0CC0076A777 /* URLS+Base.swift in Sources */,
 				F0E77A152374934C002AB76E /* RmoteAppIdLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,12 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController : UIViewController = storyboard.instantiateInitialViewController()!
         
+        Configuration.env = .stage
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
 
         return true
     }
-
 }
 
