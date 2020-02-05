@@ -12,11 +12,14 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var switcher: UISwitch!
         
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.hidesWhenStopped = true
         statusLabel.text = ""
+        switcher.addTarget(self, action: #selector(switchValueDidChange(_:)), for: .valueChanged)
+        switcher.isOn = Configuration.env == .production
     }
 
     @IBAction func didTouchOpenChat(_ sender: Any) {
@@ -24,6 +27,19 @@ class ViewController: UIViewController {
         Chat.shared.showWhenReady { [weak self] result in
             self?.stopAnimating()
             self?.statusLabel(from: result)
+        }
+    }
+    
+    @IBAction func logout() {
+        Chat.shared.logout()
+        statusLabel.text = ""
+    }
+    
+    @objc func switchValueDidChange(_ switch: UISwitch) {
+        if switcher.isOn {
+            Configuration.env = .production
+        } else {
+            Configuration.env = .stage
         }
     }
     
@@ -63,7 +79,12 @@ final class Chat {
     }
     
     func prepare(_ completion: @escaping (ClientMediator.ClientState) -> Void) {
+        mediator = ChatDefaultComposition.manager
         mediator.prepare(completion)
+    }
+    
+    func logout() {
+        mediator.logout { _ in }
     }
     
     func showWhenReady(_ completion: ((ClientMediator.ClientState) -> Void)? = nil) {
@@ -72,6 +93,12 @@ final class Chat {
                 self?.showConversation()
             }
             completion?(result)
+        }
+    }
+    
+    func unread() {
+        conversation.unreadMessagesCountDidChange { count in
+            // UPDATE UI
         }
     }
 }

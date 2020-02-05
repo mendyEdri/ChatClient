@@ -59,7 +59,7 @@ final public class ClientMediator {
     
     private var clients: ClientMediatorClients
         
-    private lazy var loaders = Loaders(client: self.clients.httpClient, storage: self.clients.storage)
+    private var loaders: Loaders
         
     private var prepareCompletion: (ClientState) -> Void = { _ in }
     
@@ -78,6 +78,7 @@ final public class ClientMediator {
     
     public init(clients: ClientMediatorClients) {
         self.clients = clients
+        loaders = Loaders(client: self.clients.httpClient, storage: self.clients.storage)
         commands = self
     }
     
@@ -91,6 +92,9 @@ extension ClientMediator {
     /** Instantiate Chat SDK and Login */
     
     public func prepare(_ completion: @escaping (ClientState) -> Void) {
+        // To support switching between enviroments
+        loaders = Loaders(client: self.clients.httpClient, storage: self.clients.storage)
+        
         prepareCompletion = completion
         
         startSDKPreparation(strategy)
