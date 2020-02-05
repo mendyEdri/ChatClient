@@ -61,6 +61,10 @@
 		F09B0B1123E1E73D001C1DAB /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B0E23E1E73D001C1DAB /* AccessToken.swift */; };
 		F09B0B1223E1E73D001C1DAB /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B0E23E1E73D001C1DAB /* AccessToken.swift */; };
 		F09B0B2B23E1EA2E001C1DAB /* RemoteAccessTokenSpyLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B0B2A23E1EA2E001C1DAB /* RemoteAccessTokenSpyLoader.swift */; };
+		F0A2A62223E82F670004A1C1 /* ChatConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A2A62123E82F670004A1C1 /* ChatConversation.swift */; };
+		F0A2A62423E849BD0004A1C1 /* SmoochConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A2A62323E849BD0004A1C1 /* SmoochConversation.swift */; };
+		F0A2A63023EA9B380004A1C1 /* ObserversCombainAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A2A62F23EA9B380004A1C1 /* ObserversCombainAdapterTests.swift */; };
+		F0A2A63223EA9C340004A1C1 /* ObserversCombainAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A2A63123EA9C340004A1C1 /* ObserversCombainAdapter.swift */; };
 		F0A3C9D123E1F36F000CD5FC /* Int+Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */; };
 		F0A3C9D223E1F36F000CD5FC /* Int+Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */; };
 		F0A3C9D323E1F36F000CD5FC /* Int+Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */; };
@@ -174,6 +178,10 @@
 		F09B0B0A23E1E28C001C1DAB /* AccessTokenPingAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenPingAdapter.swift; sourceTree = "<group>"; };
 		F09B0B0E23E1E73D001C1DAB /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		F09B0B2A23E1EA2E001C1DAB /* RemoteAccessTokenSpyLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteAccessTokenSpyLoader.swift; sourceTree = "<group>"; };
+		F0A2A62123E82F670004A1C1 /* ChatConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConversation.swift; sourceTree = "<group>"; };
+		F0A2A62323E849BD0004A1C1 /* SmoochConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoochConversation.swift; sourceTree = "<group>"; };
+		F0A2A62F23EA9B380004A1C1 /* ObserversCombainAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserversCombainAdapterTests.swift; sourceTree = "<group>"; };
+		F0A2A63123EA9C340004A1C1 /* ObserversCombainAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserversCombainAdapter.swift; sourceTree = "<group>"; };
 		F0A3C9D023E1F36F000CD5FC /* Int+Loop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Loop.swift"; sourceTree = "<group>"; };
 		F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreController.swift; sourceTree = "<group>"; };
 		F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreControllerTests.swift; sourceTree = "<group>"; };
@@ -319,6 +327,7 @@
 			children = (
 				F07D76B7239D089500063190 /* Jwt */,
 				F0ACDF31238BD05D003043E9 /* Storage */,
+				F0A2A63323EA9ED20004A1C1 /* ObserversCombainAdapter */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -348,6 +357,30 @@
 				F09B0B0A23E1E28C001C1DAB /* AccessTokenPingAdapter.swift */,
 			);
 			path = "Access Token Adapters";
+			sourceTree = "<group>";
+		};
+		F0A2A62023E82F550004A1C1 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				F0A2A62123E82F670004A1C1 /* ChatConversation.swift */,
+			);
+			path = Conversation;
+			sourceTree = "<group>";
+		};
+		F0A2A62E23EA9ACF0004A1C1 /* ObservationAdapter Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F0A2A62F23EA9B380004A1C1 /* ObserversCombainAdapterTests.swift */,
+			);
+			path = "ObservationAdapter Tests";
+			sourceTree = "<group>";
+		};
+		F0A2A63323EA9ED20004A1C1 /* ObserversCombainAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				F0A2A63123EA9C340004A1C1 /* ObserversCombainAdapter.swift */,
+			);
+			path = ObserversCombainAdapter;
 			sourceTree = "<group>";
 		};
 		F0ACDF31238BD05D003043E9 /* Storage */ = {
@@ -433,6 +466,7 @@
 			children = (
 				F0E77A2323749377002AB76E /* SmoochChatClient.swift */,
 				F0D5970123A682630005C76F /* SmoochChatUI.swift */,
+				F0A2A62323E849BD0004A1C1 /* SmoochConversation.swift */,
 			);
 			path = Smooch;
 			sourceTree = "<group>";
@@ -486,6 +520,7 @@
 		F0E77A0D2374934C002AB76E /* Chat Framewotk Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F0A2A62E23EA9ACF0004A1C1 /* ObservationAdapter Tests */,
 				F0E77A122374934C002AB76E /* Helpers */,
 				F0CEBFB323CC2F25005CF540 /* Loaders Tests */,
 				F0E77A102374934C002AB76E /* ClientMediatorTests.swift */,
@@ -566,6 +601,7 @@
 		F0E77A2823749377002AB76E /* Business Logic */ = {
 			isa = PBXGroup;
 			children = (
+				F0A2A62023E82F550004A1C1 /* Conversation */,
 				F0E77A2923749377002AB76E /* ChatClient.swift */,
 				F07D76CB239D367C00063190 /* ClientProcessStrategy.swift */,
 				F0E77A2A23749377002AB76E /* ClientMediator.swift */,
@@ -910,6 +946,7 @@
 			files = (
 				F0D596FC23A66AEE0005C76F /* Result+Block.swift in Sources */,
 				F0E779F02374932C002AB76E /* ViewController.swift in Sources */,
+				F0A2A62223E82F670004A1C1 /* ChatConversation.swift in Sources */,
 				F0E77A2F23749377002AB76E /* SmoochChatClient.swift in Sources */,
 				F0E77A3023749377002AB76E /* RemoteAppIdLoader.swift in Sources */,
 				F0ACDF30238AC178003043E9 /* IdentityStoreController.swift in Sources */,
@@ -930,8 +967,10 @@
 				F0D596F923A6619D0005C76F /* Commands.swift in Sources */,
 				F0E4F96223867FC90024E427 /* IdentityStoreModel.swift in Sources */,
 				F0D596FF23A66DF10005C76F /* ClientUI.swift in Sources */,
+				F0A2A62423E849BD0004A1C1 /* SmoochConversation.swift in Sources */,
 				F09B0B0B23E1E28C001C1DAB /* AccessTokenPingAdapter.swift in Sources */,
 				F0E77A2E23749377002AB76E /* ResponseHeader.swift in Sources */,
+				F0A2A63223EA9C340004A1C1 /* ObserversCombainAdapter.swift in Sources */,
 				F0ACDF41238BD43C003043E9 /* DefaultStorage.swift in Sources */,
 				F000671623B3A4530008B2C5 /* Dictionary+toData.swift in Sources */,
 				F0E77A2D23749377002AB76E /* ChatVendorAppId.swift in Sources */,
@@ -954,6 +993,7 @@
 				F0ACDF43238BE3A1003043E9 /* IdentityStoreResponseHelper.swift in Sources */,
 				F0E77A192374934C002AB76E /* BuilderHelper.swift in Sources */,
 				F0E77A032374932D002AB76E /* Helper.swift in Sources */,
+				F0A2A63023EA9B380004A1C1 /* ObserversCombainAdapterTests.swift in Sources */,
 				F0E77A182374934C002AB76E /* RemoteChatTokenLoaderTests.swift in Sources */,
 				F063F0AA23954F3200F9E770 /* UserDefaultStorageMock.swift in Sources */,
 				F09B0B1023E1E73D001C1DAB /* AccessToken.swift in Sources */,
