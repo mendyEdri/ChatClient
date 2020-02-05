@@ -9,7 +9,7 @@
 import Foundation
 import lit_networking
 
-public class RemoteIdentityStoreLoader {
+final public class RemoteIdentityStoreLoader {
     
     var client: HTTPClient
     private let url: URL

@@ -9,7 +9,7 @@
 import Foundation
 import Smooch
 
-class SmoochChatUI: ClientUI {
+final class SmoochChatUI: ClientUI {
     
     var unreadMessages: Int = 0
     

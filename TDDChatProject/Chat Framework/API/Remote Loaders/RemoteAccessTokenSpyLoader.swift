@@ -17,7 +17,7 @@ import lit_networking
  !! That's why only the end-to-end tests target uses it. !!
  */
 
-public class RemoteAccessTokenSpyLoader {
+final public class RemoteAccessTokenSpyLoader {
     public typealias Result = Swift.Result<AccessToken, RemoteAccessTokenSpyLoader.Error>
     
     private let url: URL

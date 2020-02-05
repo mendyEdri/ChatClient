@@ -7,9 +7,9 @@
 //
 
 import Foundation
-@testable import TDDChatProject
+import TDDChatProject
 
-class ChatClientSpy: ChatClient {    
+final class ChatClientSpy: ChatClient {    
     
     typealias Error = ClientMediator.Error
     typealias Result = ClientMediator.Result

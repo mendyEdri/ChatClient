@@ -11,7 +11,7 @@ import lit_networking
 
 /** Loads the STS Metadata request */
 
-public class RemoteAppIdLoader {
+final public class RemoteAppIdLoader {
     private let url: URL
     private let client: HTTPClient
     private let retry = RetryExecutor(attempts: 3)!

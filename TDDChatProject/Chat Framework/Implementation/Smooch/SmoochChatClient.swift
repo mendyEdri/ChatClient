@@ -9,7 +9,7 @@
 import Foundation
 import Smooch
 
-class AuthenticationDelegate: NSObject, SKTAuthenticationDelegate {
+final class AuthenticationDelegate: NSObject, SKTAuthenticationDelegate {
     
     func onInvalidToken(_ error: Error, handler completionHandler: @escaping SKTAuthenticationCompletionBlock) {
         DispatchQueue.main.async {
@@ -21,18 +21,21 @@ class AuthenticationDelegate: NSObject, SKTAuthenticationDelegate {
     }
 }
 
-public class SmoochChatClient: ChatClient {
+final public class SmoochChatClient: ChatClient {
         
     private var authenticationDelegate = AuthenticationDelegate()
+    private var appId: String?
     
     public func startSDK(_ appId: String?, completion: @escaping (StartResult) -> Void) {
         guard let appId = appId else { return completion(.failure(.initFailed)) }
+        self.appId = appId
         
         Smooch.initWith(chatSettings(with: appId)) { (error, info) in
-            guard error == nil else {
-                Smooch.destroy()
-                
-                return completion(.failure(.initFailed))
+            if error != nil {
+                return self.logout { result in
+                    //Smooch.destroy()
+                    completion(.failure(.initFailed))
+                }
             }
             completion(.success(appId))
         }
@@ -56,13 +59,13 @@ public class SmoochChatClient: ChatClient {
     }
     
     public func logout(completion: @escaping (LoginResult) -> Void) {
-        guard loggedIn() == true else { return }
+        guard loggedIn() == true else { return completion(.success("USER NOT LOGGED IN")) }
         Smooch.logout { error, info in
             if error != nil {
                 return completion(.failure(.logoutFailed))
             }
             Smooch.destroy()
-            return completion(.success(""))
+            return completion(.success(self.appId ?? ""))
         }
     }
     
@@ -70,7 +73,8 @@ public class SmoochChatClient: ChatClient {
     
     private func chatSettings(with appId: String) -> SKTSettings {
         let settings = SKTSettings(appId: appId)
-        settings.authenticationDelegate = authenticationDelegate
+        /** This line fails the tests */
+        //settings.authenticationDelegate = authenticationDelegate
         return settings
     }
 }

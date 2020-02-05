@@ -25,7 +25,7 @@ extension ClientMediator: Commands {}
 
 /** Holds application specific business logic, interact with ChatClient and run the right client request via ChatHTTPClient, according to it state. */
 
-public class ClientMediator {
+final public class ClientMediator {
     public typealias Result = Swift.Result<String, ClientMediator.Error>
     public typealias APIResult = Swift.Result<String, Error>
     

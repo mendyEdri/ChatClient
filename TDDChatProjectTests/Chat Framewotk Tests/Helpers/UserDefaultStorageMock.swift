@@ -9,7 +9,7 @@
 import Foundation
 import TDDChatProject
 
-class UserDefaultStorageMock: Storage {
+final class UserDefaultStorageMock: Storage {
     private var storage = [String: Any]()
     
     func save(value: Any?, for key: String) {

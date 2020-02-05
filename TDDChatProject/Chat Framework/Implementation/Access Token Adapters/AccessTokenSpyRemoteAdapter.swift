@@ -9,7 +9,7 @@
 import Foundation
 import lit_networking
 
-class AccessTokenSpyRemoteAdapter: AccessTokenAdapter {
+final class AccessTokenSpyRemoteAdapter: AccessTokenAdapter {
     
     func requestAccessToken(_ completion: @escaping (Result<String, Error>) -> Void) {
         let loader = RemoteAccessTokenSpyLoader(url: URL(string: "https://accounts.mycwt.com/as/token.oauth2")!, client: URLSessionHTTPClient())

@@ -11,7 +11,7 @@ import lit_networking
 
 /** STS - request, Loads token uses to login into chat vendor sdk */
 
-public class RemoteClientTokenLoader {
+final public class RemoteClientTokenLoader {
     
     private let url: URL
     private let client: HTTPClient

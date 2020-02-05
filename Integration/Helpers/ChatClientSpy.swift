@@ -9,7 +9,7 @@
 import Foundation
 import TDDChatProject
 
-class ChatClientSpy: ChatClient {
+final class ChatClientSpy: ChatClient {
     
     var startCompletions = [(StartResult) -> Void]()
     var loginCompletions = [(LoginResult) -> Void]()
