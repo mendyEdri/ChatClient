@@ -114,6 +114,7 @@ extension ClientMediator {
             result.success { [weak self] in
                 self?.cleanChatStorage()
             }
+            completion(result)
         }
     }
     
@@ -289,7 +290,7 @@ extension ClientMediator {
     private var userId: String? {
         if let token = self.clients.storage.value(for: userTokenKey) as? String {
             self.clients.jwtClient.jwtString = token
-            return self.self.clients.jwtClient.value(for: Jwt.CommonKeys.userId.rawValue)
+            return self.clients.jwtClient.value(for: Jwt.CommonKeys.userId.rawValue)
         }
         return nil
     }
