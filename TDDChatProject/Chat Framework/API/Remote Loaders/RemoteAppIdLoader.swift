@@ -27,11 +27,10 @@ final public class RemoteAppIdLoader {
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
-        self.decorator = nil
+        decorator = HTTPClientRetryDecorator(http: client, retryable: retry)
     }
         
     public func load(completion: @escaping (Result) -> Void) {
-        decorator = HTTPClientRetryDecorator(http: client, retryable: retry)
         decorator?.get(from: url, method: .GET) { result in
             switch result {
             case let .success(data, response):
