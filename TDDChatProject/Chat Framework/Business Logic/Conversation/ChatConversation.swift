@@ -10,7 +10,7 @@ import Foundation
 
 protocol ConversationMessages {
     var unreadMessages: Int { get }
-    func unreadMessagesCountDidChange(_ onChange: (Int) -> Void)
+    func unreadMessagesCountDidChange(_ onChange: @escaping (Int) -> Void)
 }
 
 protocol ChatConversation: ConversationMessages {
