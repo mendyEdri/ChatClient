@@ -28,7 +28,7 @@ class RmoteAppIdLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         expect(sut: sut, toCompleteWith: .success(item.asObject), when: {
-            client.complete(withSatus: 200, data: makeItemJSON(item: item.asJson), at: 0)
+            client.complete(withSatus: 200, data: item.asData, at: 0)
         })
     }
     
@@ -41,8 +41,7 @@ class RmoteAppIdLoaderTests: XCTestCase {
             expect(sut: sut, toCompleteWith: .failure(.invalidData), when: {
                 
                 let item = makeItem(id: RmoteAppIdLoaderTests.ValidAppId)
-                let json = makeItemJSON(item: item.asJson)
-                client.complete(withSatus: code, data: json, at: index)
+                client.complete(withSatus: code, data: item.asData, at: index)
             })
         }
     }
@@ -77,7 +76,7 @@ class RmoteAppIdLoaderTests: XCTestCase {
             (requestAttempts - 1 as Int).loop {
                 client.complete(with: clientError, at: 0)
             }
-            client.complete(withSatus: 200, data: makeItemJSON(item: item.asJson), at: 1)
+            client.complete(withSatus: 200, data: item.asData, at: 1)
         })
     }
     
@@ -94,15 +93,9 @@ class RmoteAppIdLoaderTests: XCTestCase {
     
     // MARK: Helpers
     
-    private func makeItem(id: String) -> (asObject: ChatVendorAppId, asJson: [String: Any]) {
-        
+    private func makeItem(id: String) -> (asObject: ChatVendorAppId, asData: Data) {
         let item = ChatVendorAppId.createItem(with: RmoteAppIdLoaderTests.ValidAppId)
-        let json = ChatVendorAppId.createJson(from: item)
-        return (item, json)
-    }
-    
-    private func makeItemJSON(item: [String: Any]) -> Data {
-        return try! JSONSerialization.data(withJSONObject: item)
+        return (item, try! JSONEncoder().encode(item))
     }
     
     private func expect(sut: RemoteAppIdLoader, toCompleteWith result: RemoteAppIdLoader.Result, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
@@ -137,16 +130,8 @@ private extension ChatVendorAppId {
         return ChatVendorAppId(responseHeader: header, meta: meta, appId: appId)
     }
     
-    static func createJson(from item: ChatVendorAppId) -> [String: Any] {
-        return ["responseHeader": [
-                    "statusMessage": item.responseHeader.statusMessage
-               ],
-                "appId": item.appId,
-                "responseMeta": [
-                    "trxId": item.meta.trxId,
-                    "reqId": item.meta.reqId,
-                    "status": item.meta.status
-            ]] as [String : Any]
+    static func createJson(from item: ChatVendorAppId) -> Data {
+        return try! JSONEncoder().encode(item)
     }
 }
 

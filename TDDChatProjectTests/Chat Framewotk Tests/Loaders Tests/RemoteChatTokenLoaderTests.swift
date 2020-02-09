@@ -21,7 +21,7 @@ class RemoteChatTokenLoaderTests: XCTestCase {
     func test_apiChatTokenLoader_authFailed() {
         let (sut, client) = makeSUT()
         
-        let authFailedJSON = data(from: authFailedResponseJSON())
+        let authFailedJSON = authFailedResponseJSON()
         
         expect(that: sut, be: .failure(.authFailed), when: {
             client.complete(withSatus: 401, data: authFailedJSON)
@@ -31,7 +31,7 @@ class RemoteChatTokenLoaderTests: XCTestCase {
     func test_apiChatTokenLoader_authTokenUnknownVendor() {
         let (sut, client) = makeSUT()
         
-        let unknownVendorJSON = data(from: unknownVendorResponseJSON())
+        let unknownVendorJSON = unknownVendorResponseJSON()
         
         expect(that: sut, be: .failure(.unknownVendor), when: {
             client.complete(withSatus: 404, data: unknownVendorJSON)
@@ -41,7 +41,7 @@ class RemoteChatTokenLoaderTests: XCTestCase {
     func test_apiChatTokenLoader_successJSONWithBadStatusCode() {
         
         let randomNotOKStatusCodes = [201, 99, 402, 400, 300, 190]
-        let itemData = data(from: createSuccessJson())
+        let itemData = createSuccessJson()
         
         randomNotOKStatusCodes.forEach { code in
             
@@ -54,7 +54,7 @@ class RemoteChatTokenLoaderTests: XCTestCase {
     
     func test_apiChatTokenLoader_badJSONWithGoodStatusCode() {
         let (sut, client) = makeSUT()
-        let authFailedJSON = data(from: authFailedResponseJSON())
+        let authFailedJSON = authFailedResponseJSON()
         
         expect(that: sut, be: .failure(.invalidData), when: {
             client.complete(withSatus: 200, data: authFailedJSON)
@@ -65,7 +65,7 @@ class RemoteChatTokenLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         let item = createVendorTokenItem()
-        let successJSON = data(from: createJsonItem(from: item))
+        let successJSON = createJsonItem(from: item)
         
         expect(that: sut, be: .success(item), when: {
             client.complete(withSatus: 200, data: successJSON)
@@ -103,27 +103,13 @@ class RemoteChatTokenLoaderTests: XCTestCase {
 }
 
 extension RemoteChatTokenLoaderTests {
-    private func createSuccessJson() -> [String: Any] {
+    private func createSuccessJson() -> Data {
         let item = createVendorTokenItem()
         return createJsonItem(from: item)
     }
     
-    private func createJsonItem(from item: ChatVendorToken) -> [String: Any] {
-        return ["responseHeader":
-            ["statusMessage": item.header.statusMessage],
-                "token_type": item.tokenType,
-                "access_token": item.accessToken,
-                "expires_in": item.expiration,
-                "cwtToken": item.cwtToken,
-                "responseMeta": [
-                    "trxId": item.metadata.trxId,
-                    "reqId": item.metadata.reqId,
-                    "status": item.metadata.status ]
-            ] as [String: Any]
-    }
-    
-    private func data(from json: [String: Any]) -> Data {
-        return try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+    private func createJsonItem(from item: ChatVendorToken) -> Data {
+        return try! JSONEncoder().encode(item)
     }
     
     private func createVendorTokenItem() -> ChatVendorToken {
@@ -133,12 +119,12 @@ extension RemoteChatTokenLoaderTests {
         return ChatVendorToken(header: header, tokenType: type, accessToken: accessToken(), expiration: fourHoursExpiration(), cwtToken: cwtToken(), metadata: meta)
     }
     
-    private func authFailedResponseJSON() -> [String: Any] {
-        return ["responseHeader": ["statusMessage": "Authentication failed"]]
+    private func authFailedResponseJSON() -> Data {
+        return try! JSONEncoder().encode(["responseHeader": ["statusMessage": "Authentication failed"]])
     }
     
-    private func unknownVendorResponseJSON() -> [String: Any] {
-        return ["responseHeader": ["statusMessage": "Unknown vendor SOME_VENDOR"]]
+    private func unknownVendorResponseJSON() -> Data {
+        return try! JSONEncoder().encode(["responseHeader": ["statusMessage": "Unknown vendor SOME_VENDOR"]])
     }
     
     private func accessToken() -> String {

@@ -10,34 +10,8 @@ import Foundation
 
 internal struct IdentityStoreResponseHelper {
         
-    static func makeJsonItem(_ id: String) -> [String: Any] {
-        return [
-            "responseHeader" : [
-                "statusMessage": "Identity created successfully",
-                "res": [
-                    "result": [
-                        "ok": 1,
-                        "n": 1,
-                        "opTime": "6761667679536283849"
-                    ],
-                    "ops": [[
-                        "type": "SMOOCH",
-                        "travelerGUID": "A:40775EE7xx",
-                        "externalID": id,
-                        "_id": "5dd644ee76a2e50c285c7540"
-                        ]],
-                    "insertedCount": 1,
-                    "insertedIds": [
-                        "0": "5dd644ee76a2e50c285c7540"
-                    ]
-                ]
-            ],
-            "responseMeta": [
-                "trxId": "27bd641b-fd7f-4c79-a4f1-c90ddac77b7d",
-                "reqId": "27bd641b-fd7f-4c79-a4f1-c90ddac77b7d",
-                "status": "success"
-            ]
-        ]
+    static func makeJsonItem(_ id: String) -> Data {
+        return JSONMockData.identityStoreRemoteApiData(id: id)
     }
     
     static func makeAuthFailedJSON() -> [String: Any] {

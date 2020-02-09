@@ -47,18 +47,17 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         let expectedJSON = IdentityStoreResponseHelper.makeJsonItem(testSpecificUserValue)
-        let item = identityStore(from: expectedJSON.toData())
+        let item = identityStore(from: expectedJSON)
         
         expect(sut, toCompleteWith: .success(item), when: {
-            client.complete(withSatus: 200, data: expectedJSON.toData())
+            client.complete(withSatus: 200, data: expectedJSON)
         })
     }
     
     func test_load_deliversSucessOnSuccessJSONItem() {
         let (sut, client) = makeSUT()
         
-        let JSON = IdentityStoreResponseHelper.makeJsonItem(testSpecificUserValue)
-        let data = JSON.toData()
+        let data = IdentityStoreResponseHelper.makeJsonItem(testSpecificUserValue)
         let item = identityStore(from: data)
         
         expect(sut, toCompleteWith: .success(item), when: {

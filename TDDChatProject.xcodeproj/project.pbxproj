@@ -88,6 +88,8 @@
 		F0A457C823EAE0D40076A777 /* URLS+IdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B723EAC4670076A777 /* URLS+IdentityStore.swift */; };
 		F0A457C923EAE0D50076A777 /* URLS+IdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B723EAC4670076A777 /* URLS+IdentityStore.swift */; };
 		F0A457CA23EAE0D50076A777 /* URLS+IdentityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457B723EAC4670076A777 /* URLS+IdentityStore.swift */; };
+		F0A457CC23EC76960076A777 /* XCTestCase+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457CB23EC76960076A777 /* XCTestCase+Helper.swift */; };
+		F0A457CE23EC77020076A777 /* Clients+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A457CD23EC77020076A777 /* Clients+Helper.swift */; };
 		F0ACDF30238AC178003043E9 /* IdentityStoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */; };
 		F0ACDF3E238BD353003043E9 /* IdentityStoreControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */; };
 		F0ACDF41238BD43C003043E9 /* DefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */; };
@@ -208,6 +210,8 @@
 		F0A457B523EAC3F20076A777 /* URLS+STS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLS+STS.swift"; sourceTree = "<group>"; };
 		F0A457B723EAC4670076A777 /* URLS+IdentityStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLS+IdentityStore.swift"; sourceTree = "<group>"; };
 		F0A457BA23EACEB70076A777 /* Configuration+Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+Env.swift"; sourceTree = "<group>"; };
+		F0A457CB23EC76960076A777 /* XCTestCase+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helper.swift"; sourceTree = "<group>"; };
+		F0A457CD23EC77020076A777 /* Clients+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Clients+Helper.swift"; sourceTree = "<group>"; };
 		F0ACDF2F238AC178003043E9 /* IdentityStoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreController.swift; sourceTree = "<group>"; };
 		F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityStoreControllerTests.swift; sourceTree = "<group>"; };
 		F0ACDF40238BD43C003043E9 /* DefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorage.swift; sourceTree = "<group>"; };
@@ -325,6 +329,8 @@
 				F062121523CF3C9700F36790 /* ChatClientSpy.swift */,
 				F060145223CF47FE00216AA0 /* JSONMockData.swift */,
 				F060145423CF486300216AA0 /* BuilderHelper.swift */,
+				F0A457CB23EC76960076A777 /* XCTestCase+Helper.swift */,
+				F0A457CD23EC77020076A777 /* Clients+Helper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -940,11 +946,13 @@
 				F060145323CF47FE00216AA0 /* JSONMockData.swift in Sources */,
 				F060145523CF486300216AA0 /* BuilderHelper.swift in Sources */,
 				F062121823CF433100F36790 /* TokenBasedClientStrategy.swift in Sources */,
+				F0A457CC23EC76960076A777 /* XCTestCase+Helper.swift in Sources */,
 				F062120723CF346000F36790 /* IdentityStoreIntegrationTests.swift in Sources */,
 				F062121723CF431E00F36790 /* Jwt.swift in Sources */,
 				F062122723CF43E500F36790 /* RemoteIdentityStoreLoader.swift in Sources */,
 				F0A3C9D323E1F36F000CD5FC /* Int+Loop.swift in Sources */,
 				F0A457C423EAE0D00076A777 /* URLS+Auth.swift in Sources */,
+				F0A457CE23EC77020076A777 /* Clients+Helper.swift in Sources */,
 				F062122423CF43D100F36790 /* Loaders.swift in Sources */,
 				F062121F23CF439000F36790 /* RemoteClientTokenLoader.swift in Sources */,
 				F09B0B1223E1E73D001C1DAB /* AccessToken.swift in Sources */,

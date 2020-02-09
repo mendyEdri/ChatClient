@@ -30,7 +30,7 @@ class IdentityStoreControllerTests: XCTestCase {
     func test_start_saveIdOnSuccessResponse() {
         let (sut, client, storage) = makeSUT()
         
-        let expectedData = IdentityStoreResponseHelper.makeJsonItem(testSpecificUserIdValue).toData()
+        let expectedData = IdentityStoreResponseHelper.makeJsonItem(testSpecificUserIdValue)
         
         start(sut, when: {
             client.complete(withSatus: 200, data: expectedData)
@@ -113,7 +113,7 @@ class IdentityStoreControllerTests: XCTestCase {
     }
     
     private func anyData() -> Data {
-        return IdentityStoreResponseHelper.makeJsonItem(testSpecificUserIdValue).toData()
+        return IdentityStoreResponseHelper.makeJsonItem(testSpecificUserIdValue)
     }
     
     private func anyNSError() -> NSError {

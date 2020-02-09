@@ -9,7 +9,7 @@
 import Foundation
 /** Response model, subtype of IdentityStoreModel.
     Holds data about servers' operation/insetion time and if it succeeded */
-public struct IdentityResult: Decodable, Equatable {
+public struct IdentityResult: Codable, Equatable {
     var ok: Int
     var n: Int
     var opTime: String
@@ -17,7 +17,7 @@ public struct IdentityResult: Decodable, Equatable {
 
 /** Response model, subtype of IdentityStoreModel.
     Holds information about servers' type of operation and what information inserted by the API call */
-public struct IdentityOps: Decodable, Equatable {
+public struct IdentityOps: Codable, Equatable {
     var type: String
     var travelerGUID: String
     var externalID: String
@@ -33,7 +33,7 @@ public struct IdentityOps: Decodable, Equatable {
 
 /** Response model, subtype of IdentityStoreModel.
     Holds count of how many insertions the the server made by this API call. */
-public struct IdentityInserted: Decodable, Equatable {
+public struct IdentityInserted: Codable, Equatable {
     var key: String
     
     enum CodingKeys: String, CodingKey {
@@ -43,7 +43,7 @@ public struct IdentityInserted: Decodable, Equatable {
 
 /** Response model, subtype of IdentityStoreModel.
     Structure holds IdentityResult, IdentityOps, IdentityInserted and IdentityInserted */
-public struct ResultWrapper: Decodable, Equatable {
+public struct ResultWrapper: Codable, Equatable {
     var result: IdentityResult
     var ops: [IdentityOps]
     var insertedCount: Int
@@ -51,7 +51,7 @@ public struct ResultWrapper: Decodable, Equatable {
 }
 
 /** Response model, holds body response. */
-public struct IdentityStoreHeader: Decodable, Equatable {
+public struct IdentityStoreHeader: Codable, Equatable {
     var statusMessage: String
     var isRegister: Bool?
     var record: IdentityOps?
@@ -59,7 +59,7 @@ public struct IdentityStoreHeader: Decodable, Equatable {
 }
 
 /** Response model - Top level */
-public struct IdentityStoreModel: Equatable, Decodable {
+public struct IdentityStoreModel: Equatable, Codable {
     var responseHeader: IdentityStoreHeader
     var responseMeta: ResponseMetadata
 }

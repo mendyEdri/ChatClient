@@ -56,7 +56,7 @@ extension ClientMediatorTests {
         }
         
         sut = nil
-        client.complete(withSatus: 200, data: JSONMockData.appIdRemoteApiData().toData())
+        client.complete(withSatus: 200, data: JSONMockData.appIdRemoteApiData())
         
         XCTAssertTrue(capturedResult.isEmpty)
     }
