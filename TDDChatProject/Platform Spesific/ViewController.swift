@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var switcher: UISwitch!
+    @IBOutlet weak var unreadLabel: UILabel!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,8 @@ class ViewController: UIViewController {
         statusLabel.text = ""
         switcher.addTarget(self, action: #selector(switchValueDidChange(_:)), for: .valueChanged)
         switcher.isOn = Configuration.env == .production
+        unreadLabel.text = "\(Chat.shared.unreadMessagesCount) Unread messages in your inbox"
+        onUnreadChangeUpdateLabel()
     }
 
     @IBAction func didTouchOpenChat(_ sender: Any) {
@@ -31,15 +34,27 @@ class ViewController: UIViewController {
     }
     
     @IBAction func logout() {
-        Chat.shared.logout()
-        statusLabel.text = ""
+        statusLabel.text = "Logging out.."
+        startAnimating()
+        
+        Chat.shared.logout {
+            self.statusLabel.text = ""
+            self.stopAnimating()
+        }
     }
     
     @objc func switchValueDidChange(_ switch: UISwitch) {
+        logout()
         if switcher.isOn {
             Configuration.env = .production
         } else {
             Configuration.env = .stage
+        }
+    }
+    
+    private func onUnreadChangeUpdateLabel() {
+        Chat.shared.unreadMessagesCountDidChange { count in
+            self.unreadLabel.text = "\(count) Unread messages in your inbox"
         }
     }
     
@@ -70,7 +85,7 @@ final class Chat {
     public static let shared = Chat()
     
     private var mediator: ClientMediator = ChatDefaultComposition.manager
-    private var conversation: ChatConversation = SmoochConversation()
+    private var conversation: ChatConversation = SmoochConversation(email: "de@yopmail.com", userId: "87e4f53d-a284-489a-bffd-e15f4282d90a", cwtJWT: "Bearer eyJhbGciOiJSUzUxMiIsImtpZCI6InRva2VuQ2VydCJ9.eyJzY29wZSI6WyJvcGVuaWQiLCJwcm9maWxlIl0sImNsaWVudF9pZCI6IkN3dFRvR29PYXV0aENsaWVudCIsImp3dE9BdXRoIjoiQjZRWVE5OU10VG9PR2NTdExtZTJPcnRuQVl5b3RwRkIiLCJpZG1FbWFpbCI6ImRlQHlvcG1haWwuY29tIiwibGFzdE5hbWUiOiJJRE0iLCJ0b3BJZCI6IkE6NUEyQTUiLCJyb2xlcyI6WyJ0cmF2ZWxlciIsImFycmFuZ2VyIl0sInRyYXZlbGVyRW1haWwiOiJkZUB5b3BtYWlsLmNvbSIsInRyYXZlbGVyVHlwZUdVSUQiOiJBOjQwNEVBIiwic3ViSWQiOiJBOjVBMkI2IiwiZmlyc3ROYW1lIjoiREUiLCJpZCI6Ijg3ZTRmNTNkLWEyODQtNDg5YS1iZmZkLWUxNWY0MjgyZDkwYSIsIjNyZFBhcnR5U3luY0lkIjoiVEE2MzlOWkxOSyIsInRyYXZlbGVyR1VJRCI6IkE6NDA0RkQ2MDgiLCJ1c2VybmFtZSI6ImRlQHlvcG1haWwuY29tIiwiZXhwIjoxNTgxMDA2MDUyfQ.ODWFzyUD6LVSKHwOq-i1ipMXpybdVMBmDLz7EbygrkMllkkLMU3QcnAtltxw85InHiOh2Xpkc1W9CPwLJw6ccfQ_gblxHz6AlImhoN9NIqt-m2zirhPVbOB7IzKO92_ZZ9sf0U3Fw2SyAIKdoeaebgNEvPTRH2lE63HEeN4FGwZh5go-qvCdCJCBVG6yTBwpigOj4XkarGvVCsmchyv8t8TAHxJnKD_r1RuMVUKgg9YW4TuQNxD7dOA5s91mvrSmmBDg0H-Jq_a9DzsA0TTaTQGX6YU3RhORGFBOsvTtYOURHdEm9TDsQcnwjj0a3D1VC59h73CexmFa_5xddxLehw")
     
     private init() {}
     
@@ -83,8 +98,8 @@ final class Chat {
         mediator.prepare(completion)
     }
     
-    func logout() {
-        mediator.logout { _ in }
+    func logout(_ done: @escaping () -> Void) {
+        mediator.logout { _ in done() }
     }
     
     func showWhenReady(_ completion: ((ClientMediator.ClientState) -> Void)? = nil) {
@@ -96,9 +111,19 @@ final class Chat {
         }
     }
     
-    func unread() {
+    var unreadMessagesCount: Int {
+        return conversation.unreadMessages
+    }
+    
+    func unreadMessagesCountDidChange(_ completion: @escaping (Int) -> Void) {
         conversation.unreadMessagesCountDidChange { count in
-            // UPDATE UI
+            completion(count)
         }
     }
+}
+
+protocol UserData {
+    var email: String { get }
+    var userId: String { get }
+    var cwtToken: String { get }
 }
