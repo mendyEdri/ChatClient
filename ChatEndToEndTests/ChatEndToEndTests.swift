@@ -15,7 +15,7 @@ class ChatEndToEndTests: XCTestCase {
     
     var accessToken: String? = nil
     
-    private let timeout = 20.0
+    private let timeout = 16.0
     
     override func setUp() {
         super.setUp()
