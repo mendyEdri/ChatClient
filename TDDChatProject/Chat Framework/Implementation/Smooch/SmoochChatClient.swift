@@ -48,6 +48,7 @@ final public class SmoochChatClient: ChatClient {
     public func login(userId: String, token: String, completion: @escaping (LoginResult) -> Void) {
         Smooch.login(userId, jwt: token) { (error, info) in
             if error != nil {
+                Smooch.destroy()
                 return completion(.failure(.invalidToken))
             }
             completion(.success(token))
