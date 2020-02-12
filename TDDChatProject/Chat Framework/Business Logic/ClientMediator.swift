@@ -60,26 +60,27 @@ final public class ClientMediator {
     private var clients: ClientMediatorClients
         
     private var loaders: Loaders
-        
+    
+    private var mediatorRetry = MediatorsRetry()
+    
     private var prepareCompletion: (ClientState) -> Void = { _ in }
     
-    static var sdkRetryAttempts: Int {
-        return 2
-    }
-     
-    static var httpRetryAttempts: Int {
-        return 3
-    }
-    
-    var sdkStartRetry = RetryExecutor(attempts: ClientMediator.sdkRetryAttempts)
-    var sdkLoginRetry = RetryExecutor(attempts: ClientMediator.sdkRetryAttempts)
+    private var vendorTokenCompletion: ((String) -> Void)? = nil
     
     private weak var commands: Commands?
-    
+        
     public init(clients: ClientMediatorClients) {
         self.clients = clients
         loaders = Loaders(client: self.clients.httpClient, storage: self.clients.storage)
         commands = self
+    }
+    
+    private func updateObeservers(_ token: String) {
+        vendorTokenCompletion?(token)
+    }
+    
+    public func onVendorTokenUpdated(_ completion: @escaping (String) -> Void) {
+        vendorTokenCompletion = completion
     }
     
     deinit {
@@ -200,8 +201,12 @@ private extension ClientMediator {
     }
     
     private func userTokenCommand(_ completion: ((Result) -> Void)? = nil) {
-        commands?.getRemoteToken(tokenAdapter: clients.tokenAdapter, loader: loaders.userToken) { result in
+        commands?.getRemoteToken(tokenAdapter: clients.tokenAdapter, loader: loaders.userToken) { [weak self] result in
+            guard let self = self else { return }
             self.save(result: result, for: self.userTokenKey)
+            result.success { token in
+                self.updateObeservers(token)
+            }
             self.handle(result)
         }
     }
@@ -215,12 +220,12 @@ private extension ClientMediator {
             result.failure {
                 self.delete(for: self.chatClient.appIdKey)
             }
-            if self.sdkStartRetry?.retry() == false {
+            if self.mediatorRetry.sdkStartRetry?.retry() == false {
                 self.handle(result)
             }
         }
         
-        sdkStartRetry?.setAction {
+        self.mediatorRetry.sdkStartRetry?.setAction {
             self.startSDKPreparation(self.strategy)
         }
     }
@@ -233,12 +238,12 @@ private extension ClientMediator {
             if result.succeeded {
                 return self.handle(result)
             }
-            if self.sdkLoginRetry?.retry() == false {
+            if self.mediatorRetry.sdkLoginRetry?.retry() == false {
                 self.handle(result)
             }
         }
         
-        sdkLoginRetry?.setAction {
+        self.mediatorRetry.sdkLoginRetry?.setAction {
             self.startSDKPreparation(self.strategy)
         }
     }
@@ -283,7 +288,7 @@ extension ClientMediator {
         return clients.storage.value(for: clients.chatClient.appIdKey) as? String
     }
     
-    private var userToken: String? {
+    var userToken: String? {
         return clients.storage.value(for: clients.chatClient.userTokenKey) as? String
     }
     
@@ -294,4 +299,17 @@ extension ClientMediator {
         }
         return nil
     }
+}
+
+struct MediatorsRetry {
+    static var sdkRetryAttempts: Int {
+        return 2
+    }
+     
+    static var httpRetryAttempts: Int {
+        return 3
+    }
+    
+    lazy var sdkStartRetry = RetryExecutor(attempts: MediatorsRetry.sdkRetryAttempts)
+    lazy var sdkLoginRetry = RetryExecutor(attempts: MediatorsRetry.sdkRetryAttempts)
 }

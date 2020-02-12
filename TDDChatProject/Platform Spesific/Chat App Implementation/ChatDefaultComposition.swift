@@ -33,5 +33,12 @@ struct ChatDefaultComposition {
         return ClientMediator(clients: managerClients)
     }
     
+    
+    static let facade: ChatFacade = ChatFacade(mediator: ChatDefaultComposition.manager, conversation: SmoochConversation())
+    
+    static func config(email: String, tokenAdapter: AccessTokenAdapter) {
+        ChatDefaultComposition.facade.settings(email: email, tokenAdapter: tokenAdapter)
+    }
+    
     private init() {} 
 }
