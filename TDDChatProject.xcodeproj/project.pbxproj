@@ -140,7 +140,13 @@
 		F0E77A3223749377002AB76E /* RemoteClientTokenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2723749377002AB76E /* RemoteClientTokenLoader.swift */; };
 		F0E77A3323749377002AB76E /* ChatClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2923749377002AB76E /* ChatClient.swift */; };
 		F0E77A3423749377002AB76E /* ClientMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E77A2A23749377002AB76E /* ClientMediator.swift */; };
-		FBB4BC6808F62DC8820AFD5C /* libPods-ChatEndToEndTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B3054403D94956EE17372E /* libPods-ChatEndToEndTests.a */; };
+		F0F5851A23F2FAC400339905 /* ChatFacadeIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5851923F2FAC400339905 /* ChatFacadeIntegrationTests.swift */; };
+		F0F5851C23F2FB6500339905 /* ChatFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5851B23F2FB6500339905 /* ChatFacade.swift */; };
+		F0F5851F23F2FC8C00339905 /* ChatConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A2A62123E82F670004A1C1 /* ChatConversation.swift */; };
+		F0F5852223F2FCAC00339905 /* ConversationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5852123F2FCAC00339905 /* ConversationSettings.swift */; };
+		F0F5852323F2FCAC00339905 /* ConversationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5852123F2FCAC00339905 /* ConversationSettings.swift */; };
+		F0F5852423F30AE300339905 /* ChatFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5851B23F2FB6500339905 /* ChatFacade.swift */; };
+		F0F5852623F3FB2200339905 /* ChatConversationMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5852523F3FB2200339905 /* ChatConversationMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,11 +175,8 @@
 
 /* Begin PBXFileReference section */
 		20036174A8DC5C34C1B980C3 /* libPods-TDDChatProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TDDChatProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2512929E088E23D03FA3D872 /* Pods-ChatEndToEndTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatEndToEndTests.release.xcconfig"; path = "Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests.release.xcconfig"; sourceTree = "<group>"; };
 		4F20C3F7E5D2FCBE63A4F2CA /* Pods-TDDChatProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDChatProject.debug.xcconfig"; path = "Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject.debug.xcconfig"; sourceTree = "<group>"; };
 		771CED41378EF474964900F1 /* Pods-TDDChatProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TDDChatProject.release.xcconfig"; path = "Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject.release.xcconfig"; sourceTree = "<group>"; };
-		7BC882221C0B36BD3267C456 /* Pods-ChatEndToEndTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatEndToEndTests.debug.xcconfig"; path = "Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D0B3054403D94956EE17372E /* libPods-ChatEndToEndTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChatEndToEndTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F000671523B3A4530008B2C5 /* Dictionary+toData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+toData.swift"; sourceTree = "<group>"; };
 		F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatClientSpy.swift; sourceTree = "<group>"; };
 		F060145223CF47FE00216AA0 /* JSONMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMockData.swift; sourceTree = "<group>"; };
@@ -252,6 +255,10 @@
 		F0E77A2723749377002AB76E /* RemoteClientTokenLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteClientTokenLoader.swift; sourceTree = "<group>"; };
 		F0E77A2923749377002AB76E /* ChatClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatClient.swift; sourceTree = "<group>"; };
 		F0E77A2A23749377002AB76E /* ClientMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientMediator.swift; sourceTree = "<group>"; };
+		F0F5851923F2FAC400339905 /* ChatFacadeIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFacadeIntegrationTests.swift; sourceTree = "<group>"; };
+		F0F5851B23F2FB6500339905 /* ChatFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFacade.swift; sourceTree = "<group>"; };
+		F0F5852123F2FCAC00339905 /* ConversationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationSettings.swift; sourceTree = "<group>"; };
+		F0F5852523F3FB2200339905 /* ChatConversationMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConversationMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,7 +273,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBB4BC6808F62DC8820AFD5C /* libPods-ChatEndToEndTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +301,6 @@
 			children = (
 				F0D596EA23A2A2590005C76F /* libPods-TDDChatProject.a */,
 				20036174A8DC5C34C1B980C3 /* libPods-TDDChatProject.a */,
-				D0B3054403D94956EE17372E /* libPods-ChatEndToEndTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -318,6 +323,7 @@
 				F062121123CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift */,
 				F062120623CF346000F36790 /* IdentityStoreIntegrationTests.swift */,
 				F062120823CF346000F36790 /* Info.plist */,
+				F0F5851923F2FAC400339905 /* ChatFacadeIntegrationTests.swift */,
 			);
 			path = Integration;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 				F060145423CF486300216AA0 /* BuilderHelper.swift */,
 				F0A457CB23EC76960076A777 /* XCTestCase+Helper.swift */,
 				F0A457CD23EC77020076A777 /* Clients+Helper.swift */,
+				F0F5852523F3FB2200339905 /* ChatConversationMock.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -627,6 +634,7 @@
 				F0E77A2123749377002AB76E /* ResponseHeader.swift */,
 				F0E4F96123867FC90024E427 /* IdentityStoreModel.swift */,
 				F09B0B0E23E1E73D001C1DAB /* AccessToken.swift */,
+				F0F5852123F2FCAC00339905 /* ConversationSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -661,6 +669,7 @@
 				F0D596F823A6619D0005C76F /* Commands.swift */,
 				F0D596FE23A66DF10005C76F /* ClientUI.swift */,
 				F062121323CF3B7400F36790 /* Loaders.swift */,
+				F0F5851B23F2FB6500339905 /* ChatFacade.swift */,
 			);
 			path = "Business Logic";
 			sourceTree = "<group>";
@@ -670,8 +679,6 @@
 			children = (
 				4F20C3F7E5D2FCBE63A4F2CA /* Pods-TDDChatProject.debug.xcconfig */,
 				771CED41378EF474964900F1 /* Pods-TDDChatProject.release.xcconfig */,
-				7BC882221C0B36BD3267C456 /* Pods-ChatEndToEndTests.debug.xcconfig */,
-				2512929E088E23D03FA3D872 /* Pods-ChatEndToEndTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -701,11 +708,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0D596E023A297710005C76F /* Build configuration list for PBXNativeTarget "ChatEndToEndTests" */;
 			buildPhases = (
-				B71CDD3152AF4ACE0FBFFFB8 /* [CP] Check Pods Manifest.lock */,
 				F0D596D523A297710005C76F /* Sources */,
 				F0D596D623A297710005C76F /* Frameworks */,
 				F0D596D723A297710005C76F /* Resources */,
-				9FA954CB82A971EC00C4A256 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -860,23 +865,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TDDChatProject/Pods-TDDChatProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9FA954CB82A971EC00C4A256 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChatEndToEndTests/Pods-ChatEndToEndTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AB065C9C7FB72535DDD470B5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -899,28 +887,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B71CDD3152AF4ACE0FBFFFB8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ChatEndToEndTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -928,11 +894,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F5851A23F2FAC400339905 /* ChatFacadeIntegrationTests.swift in Sources */,
 				F062121623CF3C9700F36790 /* ChatClientSpy.swift in Sources */,
 				F0A457C723EAE0D20076A777 /* URLS+STS.swift in Sources */,
 				F062121223CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift in Sources */,
 				F062121A23CF437300F36790 /* ChatClient.swift in Sources */,
+				F0F5852323F2FCAC00339905 /* ConversationSettings.swift in Sources */,
 				F0A457C123EAE0CD0076A777 /* URLS+Base.swift in Sources */,
+				F0F5851F23F2FC8C00339905 /* ChatConversation.swift in Sources */,
 				F062121B23CF437900F36790 /* ClientMediator.swift in Sources */,
 				F062122123CF43A000F36790 /* ChatVendorAppId.swift in Sources */,
 				F062122823CF43F200F36790 /* IdentityStoreModel.swift in Sources */,
@@ -945,6 +914,7 @@
 				F062121D23CF438500F36790 /* Commands.swift in Sources */,
 				F060145323CF47FE00216AA0 /* JSONMockData.swift in Sources */,
 				F060145523CF486300216AA0 /* BuilderHelper.swift in Sources */,
+				F0F5852423F30AE300339905 /* ChatFacade.swift in Sources */,
 				F062121823CF433100F36790 /* TokenBasedClientStrategy.swift in Sources */,
 				F0A457CC23EC76960076A777 /* XCTestCase+Helper.swift in Sources */,
 				F062120723CF346000F36790 /* IdentityStoreIntegrationTests.swift in Sources */,
@@ -957,6 +927,7 @@
 				F062121F23CF439000F36790 /* RemoteClientTokenLoader.swift in Sources */,
 				F09B0B1223E1E73D001C1DAB /* AccessToken.swift in Sources */,
 				F062122323CF43B600F36790 /* ResponseMetadata.swift in Sources */,
+				F0F5852623F3FB2200339905 /* ChatConversationMock.swift in Sources */,
 				F0A457CA23EAE0D50076A777 /* URLS+IdentityStore.swift in Sources */,
 				F062122623CF43DB00F36790 /* IdentityStoreController.swift in Sources */,
 				F062121C23CF438100F36790 /* Storage.swift in Sources */,
@@ -1009,6 +980,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0A457BB23EACEB70076A777 /* Configuration+Env.swift in Sources */,
+				F0F5852223F2FCAC00339905 /* ConversationSettings.swift in Sources */,
 				F0D596FC23A66AEE0005C76F /* Result+Block.swift in Sources */,
 				F0E779F02374932C002AB76E /* ViewController.swift in Sources */,
 				F0A2A62223E82F670004A1C1 /* ChatConversation.swift in Sources */,
@@ -1028,6 +1000,7 @@
 				F07D76BD239D089500063190 /* JwtDefaultParser.swift in Sources */,
 				F062121423CF3B7400F36790 /* Loaders.swift in Sources */,
 				F0D5969D23A0011F0005C76F /* ChatDefaultComposition.swift in Sources */,
+				F0F5851C23F2FB6500339905 /* ChatFacade.swift in Sources */,
 				F07D76CC239D367C00063190 /* ClientProcessStrategy.swift in Sources */,
 				F0E4F94B2382ED3C0024E427 /* RemoteIdentityStoreLoader.swift in Sources */,
 				F0D596F923A6619D0005C76F /* Commands.swift in Sources */,
@@ -1159,7 +1132,6 @@
 		};
 		F0D596E123A297710005C76F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BC882221C0B36BD3267C456 /* Pods-ChatEndToEndTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
@@ -1186,7 +1158,6 @@
 		};
 		F0D596E223A297710005C76F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2512929E088E23D03FA3D872 /* Pods-ChatEndToEndTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;

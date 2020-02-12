@@ -18,6 +18,8 @@ class Clients {
     let storage = UserDefaultStorageMock()
     let jwt = Jwt()
     
+    let mockConversation = ChatConversationMock()
+    
     func makeManager() -> ClientMediator {
         let strategy = TokenBasedClientStrategy(client: chatClient, storage: storage, jwt: jwt)
                 
@@ -30,5 +32,11 @@ class Clients {
             strategy: strategy)
         
         return ClientMediator(clients: managerClients)
+    }
+    
+    lazy var facade: ChatFacade = ChatFacade(mediator: self.makeManager(), conversation: self.mockConversation)
+    
+    func config(email: String, tokenAdapter: AccessTokenAdapter = AccessTokenMockAdapter()) {
+        facade.settings(email: email, tokenAdapter: tokenAdapter)
     }
 }
