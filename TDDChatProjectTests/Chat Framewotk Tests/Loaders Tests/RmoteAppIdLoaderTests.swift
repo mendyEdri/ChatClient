@@ -14,7 +14,7 @@ class RmoteAppIdLoaderTests: XCTestCase {
     
     static let ValidAppId = "123-super-real-app-id"
     
-    private let requestAttempts = ClientMediator.httpRetryAttempts
+    private let requestAttempts = MediatorsRetry.httpRetryAttempts
     
     func test_apiAppIdLoader_emptyURL() {
         let client = HTTPClientMock()

@@ -13,11 +13,11 @@ import TDDChatProject
 class ClientMediatorIntegrationTests: XCTestCase {
     
     static var httpRetryAttempts: Int {
-        return ClientMediator.httpRetryAttempts
+        return MediatorsRetry.httpRetryAttempts
     }
     
     static var sdkRetryAttempts: Int {
-        return ClientMediator.sdkRetryAttempts
+        return MediatorsRetry.sdkRetryAttempts
     }
     
     func test_prepare_deliversReadyOnTokenValid() {
