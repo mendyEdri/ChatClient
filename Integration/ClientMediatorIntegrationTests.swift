@@ -183,6 +183,30 @@ extension ClientMediatorIntegrationTests {
 }
 
 extension ClientMediatorIntegrationTests {
+    func test_onVendorTokenUpdated_deliversToken() {
+        let (sut, clients, _, _) = sutSetup()
+        
+        let exp = expectation(description: "Wait for mediator to notify when vendor token is updated")
+        var captureResult = [String]()
+        
+        sut.onVendorTokenUpdated { result in
+            captureResult.append(result)
+            exp.fulfill()
+        }
+        
+        sut.prepare { _ in }
+        completeRemoteAppIdWithSuccess(mock: clients.httpClient)
+        completeRemoteVendorTokenWithSuccess(mock: clients.httpClient, at: 1)
+        
+        completeStartSDKWithSuccess(clients.chatClient)
+        completeLoginSDKWithSuccess(clients.chatClient)
+        
+        wait(for: [exp], timeout: 2.0)
+        XCTAssertEqual(captureResult, [JSONMockData.validChatVendorToken.accessToken])
+    }
+}
+
+extension ClientMediatorIntegrationTests {
     // MARK: - Helpers
     
     private func expect(sut: ClientMediator, be expected: ClientMediator.ClientState, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
