@@ -15,4 +15,5 @@ protocol ConversationMessages {
 
 protocol ChatConversation: ConversationMessages {
     func showConversation()
+    var settings: ConversationSettings { get set }
 }

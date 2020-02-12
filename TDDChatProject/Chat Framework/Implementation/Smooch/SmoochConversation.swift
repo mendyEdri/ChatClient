@@ -13,7 +13,31 @@ final class SmoochConversation: NSObject, ChatConversation, SKTConversationDeleg
     
     private var conversation: SKTConversation?
     private var unreadChanged: ((Int) -> Void)?
-    private var metadata: Metadata
+    private var metadata: Metadata?
+    
+    var settings: ConversationSettings {
+        didSet {
+            metadata = Metadata(email: settings.email, userId: settings.userId, cwtJWT: settings.cwtJWT)
+        }
+    }
+    
+    var userId: String {
+        didSet {
+            settings.userId = self.userId
+        }
+    }
+    
+    var email: String {
+        didSet {
+            settings.email = self.email
+        }
+    }
+    
+    var cwtToken: String {
+        didSet {
+            settings.cwtJWT = self.cwtToken
+        }
+    }
     
     private struct Metadata {
         var email: String
@@ -33,9 +57,13 @@ final class SmoochConversation: NSObject, ChatConversation, SKTConversationDeleg
         return Int(conversation?.unreadCount ?? 0)
     }
     
-    init(email: String, userId: String, cwtJWT: String) {
+    override init() {
+        userId = ""
+        email = ""
+        cwtToken = ""
+        
+        settings = ConversationSettings(email: email, userId: userId, cwtJWT: cwtToken)
         conversation = Smooch.conversation()
-        metadata = Metadata(email: email, userId: userId, cwtJWT: cwtJWT)
     }
     
     func showConversation() {
@@ -54,7 +82,9 @@ final class SmoochConversation: NSObject, ChatConversation, SKTConversationDeleg
     }
     
     func conversation(_ conversation: SKTConversation, willSend message: SKTMessage) -> SKTMessage {
-        return SKTMessage.init(text: message.text ?? "", payload: message.payload, metadata: metadata.keyValues())
+        guard let metadata = metadata?.keyValues() else { return message }
+        
+        return SKTMessage(text: message.text ?? "", payload: message.payload, metadata: metadata)
     }
    
 }
