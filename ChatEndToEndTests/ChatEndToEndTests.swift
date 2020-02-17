@@ -20,11 +20,13 @@ class ChatEndToEndTests: XCTestCase {
     override func setUp() {
         super.setUp()
         cleanUp()
+        Smooch.destroy()
     }
     
     override func tearDown() {
         super.tearDown()
         cleanUp()
+        Smooch.destroy()
     }
     
     func test_client_init() {
@@ -32,7 +34,7 @@ class ChatEndToEndTests: XCTestCase {
         
         let exp = expectation(description: "Wait for smooch to be initialized")
         var answer = false
-                
+        
         ChatDefaultComposition.manager.startSDK(for: (SmoochChatClient(), "5c0176f943aea6002248a53b")) { result in
             if case .success = result {
                 answer = true
@@ -89,6 +91,20 @@ class ChatEndToEndTests: XCTestCase {
         XCTAssertTrue(capturedResult.succeeded)
     }
     
+    func test_identityStore_deliverSuccess() {
+        let controller = IdentityStoreController(url: URLS.env.identityStore, httpClient: URLSessionHTTPClient(), identityInfo: IdentityStoreDataHelper.defaultIndetityInfo(), storage: UserDefaultStorageMock())
+        
+        let exp = expectation(description: "wait for identity store")
+        var capturedResult = [IdentityStoreController.Result]()
+        controller.registerIfNeeded(tokenAdapter: AccessTokenSpyRemoteAdapter()) { result in
+            capturedResult.append(result)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 10.0)
+        XCTAssertEqual(capturedResult, [.success("SMOOCH138x-1")])
+    }
+    
     func not_yet_test_prepareSDK_processMesure() {
         measure {
             let exp = expectation(description: "Wait for chat to be prepared")
@@ -104,7 +120,7 @@ class ChatEndToEndTests: XCTestCase {
          has and issue such as password got change or user has being blocked */
         let loader = AccessTokenSpyRemoteAdapter()
         let exp = expectation(description: "accessToken")
-
+        
         var capturedResult = [Result<String, Error>]()
         loader.requestAccessToken { (result) in
             capturedResult.append(result)
@@ -193,6 +209,7 @@ extension ChatDefaultComposition {
         let jwt = Jwt()
         
         let strategy = TokenBasedClientStrategy(client: smoochClient, storage: storage, jwt: jwt)
+        let clientLoaders = loaders(httpClient: httpClient, storage: storage)
         
         let managerClients = ClientMediatorClients(
             chatClient: smoochClient,
@@ -200,8 +217,19 @@ extension ChatDefaultComposition {
             tokenAdapter: tokenAdapter,
             jwtClient: jwt,
             storage: storage,
-            strategy: strategy)
+            strategy: strategy,
+            appIdLoader: clientLoaders.appIdLoader,
+            vendorTokenLoader: clientLoaders.tokenLoader,
+            identityStoreController: clientLoaders.identityController)
         
         return ClientMediator(clients: managerClients)
+    }
+    
+    private static func loaders(httpClient: HTTPClient, storage: Storage) -> (appIdLoader: RemoteAppIdLoader, tokenLoader: RemoteClientTokenLoader, identityController: IdentityStoreController) {
+        let appIdLoader = RemoteAppIdLoader(url: URLS.env.smoochVendorAppId, client: httpClient)
+        let userTokenLoader = RemoteClientTokenLoader(url: URLS.env.smoochVendorToken, client: httpClient)
+        let identityStoreController = IdentityStoreController(url: URLS.env.identityStore, httpClient: httpClient, identityInfo: IdentityStoreDataHelper.defaultIndetityInfo(), storage: storage)
+        
+        return (appIdLoader, userTokenLoader, identityStoreController)
     }
 }
