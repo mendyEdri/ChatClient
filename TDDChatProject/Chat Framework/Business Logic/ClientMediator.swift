@@ -19,6 +19,9 @@ public struct ClientMediatorClients {
     var jwtClient: Jwtable
     var storage: Storage
     var strategy: BasicProcessStrategy
+    var appIdLoader: RemoteAppIdLoader
+    var vendorTokenLoader: RemoteClientTokenLoader
+    var identityStoreController: IdentityStoreController
 }
 
 extension ClientMediator: Commands {}
@@ -59,7 +62,7 @@ final public class ClientMediator {
     
     private var clients: ClientMediatorClients
         
-    private var loaders: Loaders
+    //private var loaders: Loaders
     
     private var mediatorRetry = MediatorsRetry()
     
@@ -71,7 +74,6 @@ final public class ClientMediator {
         
     public init(clients: ClientMediatorClients) {
         self.clients = clients
-        loaders = Loaders(client: self.clients.httpClient, storage: self.clients.storage)
         commands = self
     }
     
@@ -94,7 +96,7 @@ extension ClientMediator {
     
     public func prepare(_ completion: @escaping (ClientState) -> Void) {
         // To support switching between enviroments
-        loaders = Loaders(client: self.clients.httpClient, storage: self.clients.storage)
+        //loaders = Loaders(client: self.clients.httpClient, storage: self.clients.storage)
         
         prepareCompletion = completion
         
@@ -102,7 +104,7 @@ extension ClientMediator {
     }
     
     public func renewUserToken(completion: @escaping (Result) -> Void) {
-        commands?.getRemoteToken(tokenAdapter: clients.tokenAdapter, loader: loaders.userToken) { [weak self] result in
+        commands?.getRemoteToken(tokenAdapter: clients.tokenAdapter, loader: clients.vendorTokenLoader) { [weak self] result in
             guard let self = self else { return }
             
             self.save(result: result, for: self.userTokenKey)
@@ -186,14 +188,14 @@ extension ClientMediator {
     }
     
     private func deleteSavedIdentityStore() {
-        loaders.identityStore.clearUserId()
+        clients.identityStoreController.clearUserId()
     }
 }
 
 private extension ClientMediator {
     // MARK: - Requests Commands
     private func appIdCommand() {
-        commands?.getRemoteAppId(loader: loaders.appId, completion: { [weak self] result in
+        commands?.getRemoteAppId(loader: clients.appIdLoader, completion: { [weak self] result in
             guard let self = self else { return }
             self.save(result: result, for: self.appIdKey)
             self.handle(result)
@@ -201,13 +203,14 @@ private extension ClientMediator {
     }
     
     private func userTokenCommand(_ completion: ((Result) -> Void)? = nil) {
-        commands?.getRemoteToken(tokenAdapter: clients.tokenAdapter, loader: loaders.userToken) { [weak self] result in
+        commands?.getRemoteToken(tokenAdapter: clients.tokenAdapter, loader: clients.vendorTokenLoader) { [weak self] result in
             guard let self = self else { return }
+          
             self.save(result: result, for: self.userTokenKey)
+            self.handle(result)
             result.success { token in
                 self.updateObeservers(token)
             }
-            self.handle(result)
         }
     }
     
@@ -249,7 +252,7 @@ private extension ClientMediator {
     }
     
     private func registerIdentityStoreCommandWithoutCompletion() {
-        loaders.identityStore.registerIfNeeded { _ in }
+        clients.identityStoreController.registerIfNeeded(tokenAdapter: clients.tokenAdapter) { _ in }
     }
     
     private func readyCommand() {

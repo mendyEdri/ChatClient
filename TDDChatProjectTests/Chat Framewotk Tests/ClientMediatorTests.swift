@@ -78,10 +78,11 @@ extension ClientMediatorTests {
         let tokenAdapter = AccessTokenMockAdapter()
         let jwt = Jwt()
         let storage = UserDefaultStorageMock()
+        
         let strategy = TokenBasedClientStrategy(client: chatCliet, storage: storage, jwt: jwt)
         
-    
-        let clients = ClientMediatorClients(chatClient: chatCliet, httpClient: httpClient, tokenAdapter: tokenAdapter, jwtClient: jwt, storage: storage, strategy: strategy)
+        let loader = clientLoaders(httpClient: httpClient, storage: storage)
+        let clients = ClientMediatorClients(chatClient: chatCliet, httpClient: httpClient, tokenAdapter: tokenAdapter, jwtClient: jwt, storage: storage, strategy: strategy, appIdLoader: loader.appId, vendorTokenLoader: loader.tokenLoader, identityStoreController: loader.identityStoreController)
         
         trackMemoryLeaks(chatCliet)
         trackMemoryLeaks(httpClient)
@@ -89,5 +90,13 @@ extension ClientMediatorTests {
         trackMemoryLeaks(strategy)
         
         return (clients, httpClient, chatCliet, storage)
+    }
+    
+    private func clientLoaders(httpClient: HTTPClient, storage: Storage) -> (appId: RemoteAppIdLoader, tokenLoader: RemoteClientTokenLoader, identityStoreController: IdentityStoreController) {
+        let appIdLoader = RemoteAppIdLoader(url: URLS.env.smoochVendorAppId, client: httpClient)
+        let userTokenLoader = RemoteClientTokenLoader(url: URLS.env.smoochVendorToken, client: httpClient)
+        let identityStoreController = IdentityStoreController(url: URLS.env.identityStore, httpClient: httpClient, identityInfo: IdentityStoreDataHelper.defaultIndetityInfo(), storage: storage)
+        
+        return (appIdLoader, userTokenLoader, identityStoreController)
     }
 }

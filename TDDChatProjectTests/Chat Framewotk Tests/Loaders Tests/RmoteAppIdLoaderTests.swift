@@ -71,7 +71,6 @@ class RmoteAppIdLoaderTests: XCTestCase {
         let item = makeItem(id: RmoteAppIdLoaderTests.ValidAppId)
         
         let clientError = NSError(domain: "test", code: 200, userInfo: nil)
-        
         expect(sut: sut, toCompleteWith: .success(item.asObject), when: {
             (requestAttempts - 1 as Int).loop {
                 client.complete(with: clientError, at: 0)

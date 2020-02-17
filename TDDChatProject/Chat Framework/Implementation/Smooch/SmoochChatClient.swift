@@ -33,7 +33,6 @@ final public class SmoochChatClient: ChatClient {
         Smooch.initWith(chatSettings(with: appId)) { (error, info) in
             if error != nil {
                 return self.logout { result in
-                    //Smooch.destroy()
                     completion(.failure(.initFailed))
                 }
             }

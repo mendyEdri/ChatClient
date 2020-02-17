@@ -100,4 +100,3 @@ internal struct ChatVendorTokenMapper {
         return .success(chatToken)
     }
 }
-

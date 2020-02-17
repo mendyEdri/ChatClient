@@ -22,16 +22,28 @@ class Clients {
     
     func makeManager() -> ClientMediator {
         let strategy = TokenBasedClientStrategy(client: chatClient, storage: storage, jwt: jwt)
-                
+        let loaders = clientLoaders()
+        
         let managerClients = ClientMediatorClients(
             chatClient: chatClient,
             httpClient: httpClient,
             tokenAdapter: tokenAdapter,
             jwtClient: jwt,
             storage: storage,
-            strategy: strategy)
+            strategy: strategy,
+            appIdLoader: loaders.appId,
+            vendorTokenLoader: loaders.tokenLoader,
+            identityStoreController: loaders.identityStoreController)
         
         return ClientMediator(clients: managerClients)
+    }
+    
+    private func clientLoaders() -> (appId: RemoteAppIdLoader, tokenLoader: RemoteClientTokenLoader, identityStoreController: IdentityStoreController) {
+        let appIdLoader = RemoteAppIdLoader(url: URLS.env.smoochVendorAppId, client: httpClient)
+        let userTokenLoader = RemoteClientTokenLoader(url: URLS.env.smoochVendorToken, client: httpClient)
+        let identityStoreController = IdentityStoreController(url: URLS.env.identityStore, httpClient: httpClient, identityInfo: IdentityStoreDataHelper.defaultIndetityInfo(), storage: storage)
+        
+        return (appIdLoader, userTokenLoader, identityStoreController)
     }
     
     lazy var facade: ChatFacade = ChatFacade(mediator: self.makeManager(), conversation: self.mockConversation)

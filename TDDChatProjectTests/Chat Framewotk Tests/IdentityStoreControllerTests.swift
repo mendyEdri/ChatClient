@@ -55,7 +55,7 @@ class IdentityStoreControllerTests: XCTestCase {
         let (sut, client, storage) = makeSUT()
         
         storage.save(value: anyUserID(), for: testSpecificUserIdKey)
-        sut.registerIfNeeded { _ in }
+        sut.registerIfNeeded(tokenAdapter: AccessTokenMockAdapter()) { _ in }
         
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
@@ -93,7 +93,7 @@ class IdentityStoreControllerTests: XCTestCase {
     private func start(_ sut: IdentityStoreController, when action: () -> Void, assert: () -> Void) {
         
         let exp = expectation(description: "Wait for start method to end")
-        sut.registerIfNeeded { _ in
+        sut.registerIfNeeded(tokenAdapter: AccessTokenMockAdapter()) { _ in
             exp.fulfill()
         }
         action()
@@ -107,7 +107,7 @@ class IdentityStoreControllerTests: XCTestCase {
         let storage = UserDefaultsStorage()
         let client = HTTPClientMock()
         
-        let sut = IdentityStoreController(url: anyURL(), httpClient: client, storage: storage, key: testSpecificUserIdKey)
+        let sut = IdentityStoreController(url: anyURL(), httpClient: client, identityInfo: IdentityStoreDataHelper.defaultIndetityInfo(), storage: storage, key: testSpecificUserIdKey)
         
         return (sut, client, storage)
     }

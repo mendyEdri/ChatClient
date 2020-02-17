@@ -12,35 +12,33 @@ import lit_networking
 public final class IdentityStoreController {
     
     private let url: URL
-    
-    internal let loader: RemoteIdentityStoreLoader
-
     private let storage: Storage
     private let userIdSaveKey: String
     private let key = "IdentityStoreController.identityStoreKey"
     
-    public enum Result {
-        case success(String)
-        case failure(Error)
-    }
+    internal let loader: RemoteIdentityStoreLoader
+       
+    var accountInfo: IdentityInfo
     
-    public required init(url: URL, httpClient: HTTPClient, storage: Storage, key: String = "IdentityStoreController.identityStoreKey") {
+    typealias Result = Swift.Result<String, RemoteIdentityStoreLoader.Error>
+    
+    public required init(url: URL, httpClient: HTTPClient, identityInfo: IdentityInfo, storage: Storage, key: String = "IdentityStoreController.identityStoreKey") {
         self.url = url
         self.loader = RemoteIdentityStoreLoader(url: url, client: httpClient)
         self.storage = storage
         self.userIdSaveKey = key
+        self.accountInfo = identityInfo
     }
     
-    func registerIfNeeded(_ completion: @escaping ((Result) -> Void)) {
+    func registerIfNeeded(tokenAdapter: AccessTokenAdapter, _ completion: @escaping ((Result) -> Void)) {
         if let avoidRequestSinceUserSavedLocally = savedUserId() {
             return completion(.success(avoidRequestSinceUserSavedLocally))
         }
 
-        loader.load(completion: { [weak self] result in
+        loader.load(with: tokenAdapter, for: accountInfo) { [weak self] result in
             guard let self = self else { return }
-            
             completion(self.mapResult(from: result))
-        })
+        }
     }
     
     public func clearUserId() {

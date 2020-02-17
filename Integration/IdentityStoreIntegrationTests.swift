@@ -42,6 +42,7 @@ class IdentityStoreIntegrationTests: XCTestCase {
         let jwt = Jwt()
         
         let strategy = TokenBasedClientStrategy(client: chatClient, storage: storage, jwt: jwt)
+        let loaders = clientLoaders(httpClient: httpClient, storage: storage)
         
         let managerClients = ClientMediatorClients(
             chatClient: chatClient,
@@ -49,9 +50,20 @@ class IdentityStoreIntegrationTests: XCTestCase {
             tokenAdapter: tokenAdapter,
             jwtClient: jwt,
             storage: storage,
-            strategy: strategy)
+            strategy: strategy,
+            appIdLoader: loaders.appId,
+            vendorTokenLoader: loaders.tokenLoader,
+            identityStoreController: loaders.identityStoreController)
         
         return (ClientMediator(clients: managerClients), managerClients)
+    }
+    
+    private func clientLoaders(httpClient: HTTPClient, storage: Storage) -> (appId: RemoteAppIdLoader, tokenLoader: RemoteClientTokenLoader, identityStoreController: IdentityStoreController) {
+        let appIdLoader = RemoteAppIdLoader(url: URLS.env.smoochVendorAppId, client: httpClient)
+        let userTokenLoader = RemoteClientTokenLoader(url: URLS.env.smoochVendorToken, client: httpClient)
+        let identityStoreController = IdentityStoreController(url: URLS.env.identityStore, httpClient: httpClient, identityInfo: IdentityStoreDataHelper.defaultIndetityInfo(), storage: storage)
+        
+        return (appIdLoader, userTokenLoader, identityStoreController)
     }
 }
 

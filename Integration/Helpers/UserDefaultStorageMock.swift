@@ -28,7 +28,7 @@ final class UserDefaultStorageMock: Storage {
         return (value(for: key) != nil)
     }
     
-    func keyValues() -> [String : Any] {
+    func keyValues() -> [String: Any] {
         return storage
     }
 }

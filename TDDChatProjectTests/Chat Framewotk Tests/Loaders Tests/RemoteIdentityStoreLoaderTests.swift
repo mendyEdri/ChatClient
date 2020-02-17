@@ -19,7 +19,8 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
         let (sut, _) = makeSUT()
         
         var capturedResult = [Result]()
-        sut.load { result in
+        
+        sut.load(with: AccessTokenMockAdapter(), for: IdentityStoreDataHelper.defaultIndetityInfo()) { result in
             capturedResult.append(result)
         }
         
@@ -30,7 +31,9 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: .failure(.connectivity), when: {
-            client.complete(with: anyNSError())
+            client.complete(with: anyNSError(), at: 0)
+            client.complete(with: anyNSError(), at: 1)
+            client.complete(with: anyNSError(), at: 2)
         })
     }
     
@@ -97,12 +100,11 @@ class RemoteIdentityStoreLoaderTests: XCTestCase {
         
         let exp = expectation(description: "Wait for load to complete")
         var capturedResult = [Result]()
-        
-        sut.load { result in
+                
+        sut.load(with: AccessTokenMockAdapter(), for: IdentityStoreDataHelper.defaultIndetityInfo(), completion: { result in
             capturedResult.append(result)
             exp.fulfill()
-        }
-        
+        })
         action()
         
         wait(for: [exp], timeout: 1.0)
