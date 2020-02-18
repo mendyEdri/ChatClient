@@ -9,9 +9,28 @@
 import Foundation
 import lit_networking
 
+protocol ChatMediatorBuilder {
+    static var shared: ClientMediator { get }
+    static func buildMediator() -> ClientMediator
+    func config(settings: ChatBuilderSettings)
+}
+
+struct ChatBuilderSettings {
+    let email: String
+    let travelerGuid: String
+    let externalId: String
+    let topId: String
+    let subId: String
+    let userId: String
+    let accessTokenAdapter: AccessTokenAdapter
+}
+
 struct ChatDefaultComposition {
     
     static var manager = ChatDefaultComposition.makeManager()
+    static let facade: ChatFacade = ChatFacade(mediator: ChatDefaultComposition.manager, conversation: SmoochConversation())
+    
+    private(set) static var settings: ChatBuilderSettings?
     
     private static func makeManager() -> ClientMediator {
         let smoochClient = SmoochChatClient()
@@ -19,7 +38,7 @@ struct ChatDefaultComposition {
         let storage = UserDefaultsStorage()
         let jwt = Jwt()
         let tokenAdapter = AccessTokenPingAdapter()
-        let loaders = ChatDefaultComposition.loaders(httpClient: httpClient, storage: storage)
+        let loaders = Loaders(http: httpClient, storage: storage, account: buildIdentityInfo(settings: settings))
         
         let strategy = TokenBasedClientStrategy(client: smoochClient, storage: storage, jwt: jwt)
         
@@ -37,27 +56,19 @@ struct ChatDefaultComposition {
         return ClientMediator(clients: managerClients)
     }
     
-    private static func loaders(httpClient: HTTPClient, storage: Storage) -> (appIdLoader: RemoteAppIdLoader, tokenLoader: RemoteClientTokenLoader, identityController: IdentityStoreController) {
-        let appIdLoader = RemoteAppIdLoader(url: URLS.env.smoochVendorAppId, client: httpClient)
-        let userTokenLoader = RemoteClientTokenLoader(url: URLS.env.smoochVendorToken, client: httpClient)
-        
-        let identityStoreController = IdentityStoreController(url: URLS.env.identityStore, httpClient: httpClient, identityInfo: buildIdentityInfo(), storage: storage)
-        
-        return (appIdLoader, userTokenLoader, identityStoreController)
-    }
-    
-    
-    private static func buildIdentityInfo() -> IdentityInfo {
-        let metadata = IdentityMetadata(type: "SMOOCH", travelerGUID: "A:40775EE7xx", externalID: "SMOOCH138x")
-        let info = IdentityInfo(topId: "A:79A8F", subId: "A:79A9", userId: "253636", metadata: metadata)
-        return info
-    }
-    
-    static let facade: ChatFacade = ChatFacade(mediator: ChatDefaultComposition.manager, conversation: SmoochConversation())
-    
-    static func config(email: String, tokenAdapter: AccessTokenAdapter) {
-        ChatDefaultComposition.facade.settings(email: email, tokenAdapter: tokenAdapter)
+    static func config(settings: ChatBuilderSettings) {
+        ChatDefaultComposition.settings = settings
+        ChatDefaultComposition.facade.settings(email: settings.email, tokenAdapter: settings.accessTokenAdapter)
     }
     
     private init() {} 
 }
+
+extension ChatDefaultComposition {
+    private static func buildIdentityInfo(settings: ChatBuilderSettings?) -> IdentityInfo {
+        let metadata = IdentityMetadata(type: "SMOOCH", travelerGUID: settings?.travelerGuid ?? "", externalID: settings?.externalId ?? "")
+        let info = IdentityInfo(topId: settings?.topId ?? "", subId: settings?.subId ?? "", userId: settings?.userId ?? "", metadata: metadata)
+        return info
+    }
+}
+

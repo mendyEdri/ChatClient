@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setup()
+        setup()
     }
     
     private func setup() {
