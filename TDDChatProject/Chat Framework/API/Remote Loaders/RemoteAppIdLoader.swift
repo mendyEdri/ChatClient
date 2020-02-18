@@ -31,7 +31,7 @@ final public class RemoteAppIdLoader {
     }
         
     public func load(completion: @escaping (Result) -> Void) {
-        decorator?.get(from: url, method: .GET) { result in
+        decorator?.get(from: URLS.env.smoochVendorAppId, method: .GET) { result in
             switch result {
             case let .success(data, response):
                 completion(ChatVendorAppIdMapper.map(data: data, from: response))

@@ -39,7 +39,7 @@ final public class RemoteIdentityStoreLoader {
         let data = try? JSONEncoder().encode(account)
 
         tokenDecorator = HTTPClientAccessTokenDecorator(http: retryDecorator, tokenAdapter: tokenAdapter)
-        tokenDecorator?.get(from: url, method: .POST, headers: headers, body: data, completion: { result in
+        tokenDecorator?.get(from: URLS.env.identityStore, method: .POST, headers: headers, body: data, completion: { result in
             switch result {
             case let .success(data, response):
                 completion(IdentityStoreModelMapper.map(from: data, from: response))

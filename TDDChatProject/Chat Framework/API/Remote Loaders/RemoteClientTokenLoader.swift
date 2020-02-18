@@ -37,7 +37,7 @@ final public class RemoteClientTokenLoader {
     
     func load(with tokenAdapter: AccessTokenAdapter, completion: @escaping (Result) -> Void) {
         tokenDecorator = HTTPClientAccessTokenDecorator(http: retryDecorator, tokenAdapter: tokenAdapter)
-        tokenDecorator?.get(from: url, method: .POST, headers: Headers.pairs()) { result in
+        tokenDecorator?.get(from: URLS.env.smoochVendorToken, method: .POST, headers: Headers.pairs()) { result in
             switch result {
             case let .success(data, response):
                 completion(ChatVendorTokenMapper.map(data: data, from: response))
