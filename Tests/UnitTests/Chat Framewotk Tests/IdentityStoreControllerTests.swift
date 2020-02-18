@@ -1,6 +1,6 @@
 //
 //  IdentityStoreControllerTests.swift
-//  TDDChatProjectTests
+//  ChatProjectTests
 //
 //  Created by Mendy Edri on 25/11/2019.
 //  Copyright © 2019 CWT. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 import lit_networking
-@testable import TDDChatProject
+@testable import ChatProject
 
 class IdentityStoreControllerTests: XCTestCase {
     

@@ -8,7 +8,7 @@
 
 import XCTest
 import lit_networking
-import TDDChatProject
+import ChatProject
 
 class ClientMediatorIntegrationTests: XCTestCase {
     

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import TDDChatProject
+import ChatProject
 
 class ChatFacadeIntegrationTests: XCTestCase {
     

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import TDDChatProject
+import ChatProject
 
 final class UserDefaultStorageMock: Storage {
     private var storage = [String: Any]()

@@ -1,13 +1,13 @@
 //
 //  ObserversCombainAdapterTests.swift
-//  TDDChatProjectTests
+//  ChatProjectTests
 //
 //  Created by Mendy Edri on 05/02/2020.
 //  Copyright © 2020 CWT. All rights reserved.
 //
 
 import XCTest
-import TDDChatProject
+import ChatProject
 
 
 private extension Notification.Name {

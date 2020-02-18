@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import TDDChatProject
+@testable import ChatProject
 import lit_networking
 
 class IdentityStoreIntegrationTests: XCTestCase {

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import TDDChatProject
+import ChatProject
 
 class ChatConversationMock: ChatConversation {
     

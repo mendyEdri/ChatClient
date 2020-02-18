@@ -8,7 +8,7 @@
 
 import XCTest
 import lit_networking
-@testable import TDDChatProject
+@testable import ChatProject
 
 class RemoteChatTokenLoaderTests: XCTestCase {
     

@@ -9,7 +9,7 @@
 import XCTest
 import lit_networking
 import Smooch
-@testable import TDDChatProject
+@testable import ChatProject
 
 class ChatEndToEndTests: XCTestCase {
     

@@ -1,13 +1,13 @@
 //
 //  RemoteIdentityStoreLoaderTests.swift
-//  TDDChatProjectTests
+//  ChatProjectTests
 //
 //  Created by Mendy Edri on 18/11/2019.
 //  Copyright © 2019 CWT. All rights reserved.
 //
 
 import XCTest
-import TDDChatProject
+import ChatProject
 import lit_networking
 
 class RemoteIdentityStoreLoaderTests: XCTestCase {

@@ -29,7 +29,7 @@
 		F05E7EE823990E6C00389F76 /* ChatClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05E7EE723990E6C00389F76 /* ChatClientSpy.swift */; };
 		F060145323CF47FE00216AA0 /* JSONMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060145223CF47FE00216AA0 /* JSONMockData.swift */; };
 		F060145523CF486300216AA0 /* BuilderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060145423CF486300216AA0 /* BuilderHelper.swift */; };
-		F06211D123CE164B00F36790 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = F06211D023CE164B00F36790 /* SwiftPackageProductDependency */; };
+		F06211D123CE164B00F36790 /* lit-networking in Frameworks */ = {isa = PBXBuildFile; productRef = F06211D023CE164B00F36790 /* lit-networking */; };
 		F062120723CF346000F36790 /* IdentityStoreIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062120623CF346000F36790 /* IdentityStoreIntegrationTests.swift */; };
 		F062121023CF355900F36790 /* UserDefaultStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062120F23CF355900F36790 /* UserDefaultStorageMock.swift */; };
 		F062121223CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062121123CF3B3D00F36790 /* ClientMediatorIntegrationTests.swift */; };
@@ -315,7 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F06211D123CE164B00F36790 /* BuildFile in Frameworks */,
+				F06211D123CE164B00F36790 /* lit-networking in Frameworks */,
 				C339AD61CE05661CB7802C60 /* libPods-ChatProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,7 +575,7 @@
 		F0E779DF2374932C002AB76E = {
 			isa = PBXGroup;
 			children = (
-				F0E779EA2374932C002AB76E /* TDDChatProject */,
+				F0E779EA2374932C002AB76E /* ChatProject */,
 				F0A4F82623FC0EA7007C58CA /* Tests */,
 				F0E779E92374932C002AB76E /* Products */,
 				FC50F3F0D3E7A5617CC15EB5 /* Pods */,
@@ -594,7 +594,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F0E779EA2374932C002AB76E /* TDDChatProject */ = {
+		F0E779EA2374932C002AB76E /* ChatProject */ = {
 			isa = PBXGroup;
 			children = (
 				F07D76C5239D08CE00063190 /* Frameworks */,
@@ -602,7 +602,7 @@
 				F0E77A1B23749357002AB76E /* Platform Spesific */,
 				F0E779F92374932D002AB76E /* Info.plist */,
 			);
-			path = TDDChatProject;
+			path = ChatProject;
 			sourceTree = "<group>";
 		};
 		F0E77A012374932D002AB76E /* UnitTests */ = {
@@ -610,6 +610,7 @@
 			children = (
 				F0E77A042374932D002AB76E /* Info.plist */,
 				F0E77A022374932D002AB76E /* Helper.swift */,
+				F0E77A122374934C002AB76E /* Helpers */,
 				F0E77A0D2374934C002AB76E /* Chat Framewotk Tests */,
 				F07D76C6239D08E200063190 /* Frameworks */,
 			);
@@ -620,7 +621,6 @@
 			isa = PBXGroup;
 			children = (
 				F0A2A62E23EA9ACF0004A1C1 /* ObservationAdapter Tests */,
-				F0E77A122374934C002AB76E /* Helpers */,
 				F0CEBFB323CC2F25005CF540 /* Loaders Tests */,
 				F0E77A102374934C002AB76E /* ClientMediatorTests.swift */,
 				F0ACDF3D238BD353003043E9 /* IdentityStoreControllerTests.swift */,
@@ -786,7 +786,7 @@
 			);
 			name = ChatProject;
 			packageProductDependencies = (
-				F06211D023CE164B00F36790 /* SwiftPackageProductDependency */,
+				F06211D023CE164B00F36790 /* lit-networking */,
 			);
 			productName = TDDChatProject;
 			productReference = F0E779E82374932C002AB76E /* ChatProject.app */;
@@ -847,7 +847,7 @@
 			);
 			mainGroup = F0E779DF2374932C002AB76E;
 			packageReferences = (
-				F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */,
+				F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */,
 			);
 			productRefGroup = F0E779E92374932C002AB76E /* Products */;
 			projectDirPath = "";
@@ -1422,7 +1422,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = TDDChatProject/Info.plist;
+				INFOPLIST_FILE = ChatProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1443,7 +1443,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = TDDChatProject/Info.plist;
+				INFOPLIST_FILE = ChatProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1556,7 +1556,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */ = {
+		F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mendyEdri/lit-networking.git";
 			requirement = {
@@ -1567,9 +1567,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F06211D023CE164B00F36790 /* SwiftPackageProductDependency */ = {
+		F06211D023CE164B00F36790 /* lit-networking */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F06211CF23CE164B00F36790 /* RemoteSwiftPackageReference */;
+			package = F06211CF23CE164B00F36790 /* XCRemoteSwiftPackageReference "lit-networking" */;
 			productName = "lit-networking";
 		};
 /* End XCSwiftPackageProductDependency section */

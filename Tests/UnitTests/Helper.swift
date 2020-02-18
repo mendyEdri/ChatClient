@@ -1,6 +1,6 @@
 //
-//  TDDChatProjectTests.swift
-//  TDDChatProjectTests
+//  ChatProjectTests.swift
+//  ChatProjectTests
 //
 //  Created by Mendy Edri on 07/11/2019.
 //  Copyright © 2019 CWT. All rights reserved.

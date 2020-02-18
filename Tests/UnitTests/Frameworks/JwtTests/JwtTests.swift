@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import TDDChatProject
+@testable import ChatProject
 
 class JwtTests: XCTestCase {
     
