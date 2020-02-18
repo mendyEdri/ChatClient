@@ -1,16 +1,16 @@
 PODS:
-  - Smooch (7.1.1)
+  - Smooch (7.1.2)
 
 DEPENDENCIES:
   - Smooch
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Smooch
 
 SPEC CHECKSUMS:
-  Smooch: 626c1f06a213b0e86aee2c27e56cd288c0b8c46d
+  Smooch: 280e42d223694066fe599045131fa3d99e1dbe74
 
-PODFILE CHECKSUM: c4c98c67eb1e4ad2850cb307bdaa936c62d8e7b5
+PODFILE CHECKSUM: e52309f6aeb54016e41c7997d6e85504d1c1b4c6
 
 COCOAPODS: 1.8.4

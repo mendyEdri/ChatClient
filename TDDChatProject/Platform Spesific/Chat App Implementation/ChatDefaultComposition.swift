@@ -38,6 +38,7 @@ struct ChatDefaultComposition {
         let storage = UserDefaultsStorage()
         let jwt = Jwt()
         let tokenAdapter = AccessTokenPingAdapter()
+        
         let loaders = Loaders(http: httpClient, storage: storage, account: buildIdentityInfo(settings: settings))
         
         let strategy = TokenBasedClientStrategy(client: smoochClient, storage: storage, jwt: jwt)

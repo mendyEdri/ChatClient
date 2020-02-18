@@ -17,32 +17,10 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F0E779FD2374932D002AB76E"
-               BuildableName = "TDDChatProjectTests.xctest"
-               BlueprintName = "TDDChatProjectTests"
-               ReferencedContainer = "container:TDDChatProject.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "F062120323CF346000F36790"
                BuildableName = "Integration.xctest"
                BlueprintName = "Integration"
-               ReferencedContainer = "container:TDDChatProject.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F0D596D823A297710005C76F"
-               BuildableName = "ChatEndToEndTests.xctest"
-               BlueprintName = "ChatEndToEndTests"
-               ReferencedContainer = "container:TDDChatProject.xcodeproj">
+               ReferencedContainer = "container:ChatProject.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,6 +35,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F0E779E72374932C002AB76E"
+            BuildableName = "TDDChatProject.app"
+            BlueprintName = "ChatProject"
+            ReferencedContainer = "container:TDDChatProject.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

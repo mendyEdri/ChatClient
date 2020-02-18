@@ -1,7 +1,7 @@
-target 'TDDChatProject' do
+target 'ChatProject' do
   pod 'Smooch'
 end
 
-target 'ChatEndToEndTests' do
+target 'EndToEnd Tests' do
   pod 'Smooch'
 end
